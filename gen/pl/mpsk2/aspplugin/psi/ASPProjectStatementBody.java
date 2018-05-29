@@ -18,30 +18,31 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPProjectStatementBody extends PsiElement {
 
-  @Nullable
-  ASPAtom getAtom();
+    @Nullable
+    ASPAtom getAtom();
 
-  @Nullable
-  ASPBodyCondDot getBodyCondDot();
+    @Nullable
+    ASPBodyCondDot getBodyCondDot();
 
-  @Nullable
-  ASPIdentifier getIdentifier();
+    @Nullable
+    ASPIdentifier getIdentifier();
 
-  @Nullable
-  PsiElement getDot();
+    @Nullable
+    PsiElement getDot();
 
-  @Nullable
-  PsiElement getSlash();
+    @Nullable
+    PsiElement getSlash();
 
-  @Nullable
-  PsiElement getSub();
+    @Nullable
+    PsiElement getSub();
 
-  @Nullable
-  PsiElement getNumber();
+    @Nullable
+    PsiElement getNumber();
 
 }

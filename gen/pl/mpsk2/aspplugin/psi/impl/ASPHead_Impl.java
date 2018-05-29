@@ -18,45 +18,48 @@
 package pl.mpsk2.aspplugin.psi.impl;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
+
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
+
 import pl.mpsk2.aspplugin.psi.*;
 
 public class ASPHead_Impl extends ASPCompositeElementImpl implements ASPHead_ {
 
-  public ASPHead_Impl(ASTNode node) {
-    super(node);
-  }
+    public ASPHead_Impl(ASTNode node) {
+        super(node);
+    }
 
-  public void accept(@NotNull ASPVisitor visitor) {
-    visitor.visitHead_(this);
-  }
+    public void accept(@NotNull ASPVisitor visitor) {
+        visitor.visitHead_(this);
+    }
 
-  public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ASPVisitor) accept((ASPVisitor)visitor);
-    else super.accept(visitor);
-  }
+    public void accept(@NotNull PsiElementVisitor visitor) {
+        if (visitor instanceof ASPVisitor) accept((ASPVisitor) visitor);
+        else super.accept(visitor);
+    }
 
-  @Override
-  @Nullable
-  public ASPDisjunction getDisjunction() {
-    return findChildByClass(ASPDisjunction.class);
-  }
+    @Override
+    @Nullable
+    public ASPDisjunction getDisjunction() {
+        return findChildByClass(ASPDisjunction.class);
+    }
 
-  @Override
-  @Nullable
-  public ASPLiteral getLiteral() {
-    return findChildByClass(ASPLiteral.class);
-  }
+    @Override
+    @Nullable
+    public ASPLiteral getLiteral() {
+        return findChildByClass(ASPLiteral.class);
+    }
 
-  @Override
-  @Nullable
-  public ASPLuHeadAggregate getLuHeadAggregate() {
-    return findChildByClass(ASPLuHeadAggregate.class);
-  }
+    @Override
+    @Nullable
+    public ASPLuHeadAggregate getLuHeadAggregate() {
+        return findChildByClass(ASPLuHeadAggregate.class);
+    }
 
 }

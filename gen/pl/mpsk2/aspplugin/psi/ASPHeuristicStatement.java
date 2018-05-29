@@ -18,33 +18,34 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPHeuristicStatement extends ASPStatement {
 
-  @Nullable
-  ASPAtom getAtom();
+    @Nullable
+    ASPAtom getAtom();
 
-  @Nullable
-  ASPBodyCondDot getBodyCondDot();
+    @Nullable
+    ASPBodyCondDot getBodyCondDot();
 
-  @NotNull
-  List<ASPTerm> getTermList();
+    @NotNull
+    List<ASPTerm> getTermList();
 
-  @Nullable
-  PsiElement getAt();
+    @Nullable
+    PsiElement getAt();
 
-  @Nullable
-  PsiElement getComma();
+    @Nullable
+    PsiElement getComma();
 
-  @NotNull
-  PsiElement getHeuristic();
+    @NotNull
+    PsiElement getHeuristic();
 
-  @Nullable
-  PsiElement getLbrack();
+    @Nullable
+    PsiElement getLbrack();
 
-  @Nullable
-  PsiElement getRbrack();
+    @Nullable
+    PsiElement getRbrack();
 
 }

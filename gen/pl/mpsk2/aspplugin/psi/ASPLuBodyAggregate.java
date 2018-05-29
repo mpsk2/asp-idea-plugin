@@ -18,36 +18,37 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPLuBodyAggregate extends PsiElement {
 
-  @NotNull
-  ASPBodyAggregate getBodyAggregate();
+    @NotNull
+    ASPBodyAggregate getBodyAggregate();
 
-  @NotNull
-  ASPTerm getTerm();
+    @NotNull
+    ASPTerm getTerm();
 
-  @Nullable
-  ASPUpper_ getUpper_();
+    @Nullable
+    ASPUpper_ getUpper_();
 
-  @Nullable
-  PsiElement getEq();
+    @Nullable
+    PsiElement getEq();
 
-  @Nullable
-  PsiElement getGeq();
+    @Nullable
+    PsiElement getGeq();
 
-  @Nullable
-  PsiElement getGt();
+    @Nullable
+    PsiElement getGt();
 
-  @Nullable
-  PsiElement getLeq();
+    @Nullable
+    PsiElement getLeq();
 
-  @Nullable
-  PsiElement getLt();
+    @Nullable
+    PsiElement getLt();
 
-  @Nullable
-  PsiElement getNeq();
+    @Nullable
+    PsiElement getNeq();
 
 }

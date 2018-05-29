@@ -18,39 +18,42 @@
 package pl.mpsk2.aspplugin.psi.impl;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
+
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
+
 import pl.mpsk2.aspplugin.psi.*;
 
 public class ASPBody_Impl extends ASPCompositeElementImpl implements ASPBody_ {
 
-  public ASPBody_Impl(ASTNode node) {
-    super(node);
-  }
+    public ASPBody_Impl(ASTNode node) {
+        super(node);
+    }
 
-  public void accept(@NotNull ASPVisitor visitor) {
-    visitor.visitBody_(this);
-  }
+    public void accept(@NotNull ASPVisitor visitor) {
+        visitor.visitBody_(this);
+    }
 
-  public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ASPVisitor) accept((ASPVisitor)visitor);
-    else super.accept(visitor);
-  }
+    public void accept(@NotNull PsiElementVisitor visitor) {
+        if (visitor instanceof ASPVisitor) accept((ASPVisitor) visitor);
+        else super.accept(visitor);
+    }
 
-  @Override
-  @NotNull
-  public List<ASPBodyDotElem> getBodyDotElemList() {
-    return ASPPsiTreeUtil.getChildrenOfTypeAsList(this, ASPBodyDotElem.class);
-  }
+    @Override
+    @NotNull
+    public List<ASPBodyDotElem> getBodyDotElemList() {
+        return ASPPsiTreeUtil.getChildrenOfTypeAsList(this, ASPBodyDotElem.class);
+    }
 
-  @Override
-  @NotNull
-  public List<ASPBodyDotElem2> getBodyDotElem2List() {
-    return ASPPsiTreeUtil.getChildrenOfTypeAsList(this, ASPBodyDotElem2.class);
-  }
+    @Override
+    @NotNull
+    public List<ASPBodyDotElem2> getBodyDotElem2List() {
+        return ASPPsiTreeUtil.getChildrenOfTypeAsList(this, ASPBodyDotElem2.class);
+    }
 
 }

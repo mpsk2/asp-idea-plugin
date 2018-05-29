@@ -18,39 +18,42 @@
 package pl.mpsk2.aspplugin.psi.impl;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
+
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
+
 import pl.mpsk2.aspplugin.psi.*;
 
 public class ASPAltBodyAggrVecImpl extends ASPCompositeElementImpl implements ASPAltBodyAggrVec {
 
-  public ASPAltBodyAggrVecImpl(ASTNode node) {
-    super(node);
-  }
+    public ASPAltBodyAggrVecImpl(ASTNode node) {
+        super(node);
+    }
 
-  public void accept(@NotNull ASPVisitor visitor) {
-    visitor.visitAltBodyAggrVec(this);
-  }
+    public void accept(@NotNull ASPVisitor visitor) {
+        visitor.visitAltBodyAggrVec(this);
+    }
 
-  public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ASPVisitor) accept((ASPVisitor)visitor);
-    else super.accept(visitor);
-  }
+    public void accept(@NotNull PsiElementVisitor visitor) {
+        if (visitor instanceof ASPVisitor) accept((ASPVisitor) visitor);
+        else super.accept(visitor);
+    }
 
-  @Override
-  @NotNull
-  public ASPAltBodyAggrElem getAltBodyAggrElem() {
-    return findNotNullChildByClass(ASPAltBodyAggrElem.class);
-  }
+    @Override
+    @NotNull
+    public ASPAltBodyAggrElem getAltBodyAggrElem() {
+        return findNotNullChildByClass(ASPAltBodyAggrElem.class);
+    }
 
-  @Override
-  @NotNull
-  public List<ASPAltBodyAggrVec> getAltBodyAggrVecList() {
-    return ASPPsiTreeUtil.getChildrenOfTypeAsList(this, ASPAltBodyAggrVec.class);
-  }
+    @Override
+    @NotNull
+    public List<ASPAltBodyAggrVec> getAltBodyAggrVecList() {
+        return ASPPsiTreeUtil.getChildrenOfTypeAsList(this, ASPAltBodyAggrVec.class);
+    }
 
 }

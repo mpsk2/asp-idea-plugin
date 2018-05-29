@@ -18,24 +18,25 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPEdgeStatement extends ASPStatement {
 
-  @Nullable
-  ASPBinaryArgVec getBinaryArgVec();
+    @Nullable
+    ASPBinaryArgVec getBinaryArgVec();
 
-  @Nullable
-  ASPBodyCondDot getBodyCondDot();
+    @Nullable
+    ASPBodyCondDot getBodyCondDot();
 
-  @NotNull
-  PsiElement getEdge();
+    @NotNull
+    PsiElement getEdge();
 
-  @Nullable
-  PsiElement getLparen();
+    @Nullable
+    PsiElement getLparen();
 
-  @Nullable
-  PsiElement getRparen();
+    @Nullable
+    PsiElement getRparen();
 
 }

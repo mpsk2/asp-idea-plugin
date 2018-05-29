@@ -18,24 +18,25 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPExternalStatement extends ASPStatement {
 
-  @NotNull
-  ASPAtom getAtom();
+    @NotNull
+    ASPAtom getAtom();
 
-  @Nullable
-  ASPBody_ getBody_();
+    @Nullable
+    ASPBody_ getBody_();
 
-  @Nullable
-  PsiElement getColon();
+    @Nullable
+    PsiElement getColon();
 
-  @NotNull
-  PsiElement getDot();
+    @NotNull
+    PsiElement getDot();
 
-  @NotNull
-  PsiElement getExternal();
+    @NotNull
+    PsiElement getExternal();
 
 }

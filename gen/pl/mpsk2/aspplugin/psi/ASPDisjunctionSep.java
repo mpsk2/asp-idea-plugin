@@ -18,24 +18,25 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPDisjunctionSep extends PsiElement {
 
-  @Nullable
-  ASPLNOptCondition getLNOptCondition();
+    @Nullable
+    ASPLNOptCondition getLNOptCondition();
 
-  @Nullable
-  ASPLiteral getLiteral();
+    @Nullable
+    ASPLiteral getLiteral();
 
-  @Nullable
-  PsiElement getComma();
+    @Nullable
+    PsiElement getComma();
 
-  @Nullable
-  PsiElement getSem();
+    @Nullable
+    PsiElement getSem();
 
-  @Nullable
-  PsiElement getVbar();
+    @Nullable
+    PsiElement getVbar();
 
 }

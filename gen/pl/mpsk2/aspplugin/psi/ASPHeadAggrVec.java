@@ -18,12 +18,13 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPHeadAggrVec extends PsiElement {
 
-  @NotNull
-  List<ASPHeadAggrElem> getHeadAggrElemList();
+    @NotNull
+    List<ASPHeadAggrElem> getHeadAggrElemList();
 
 }

@@ -18,15 +18,16 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPAddTerm extends ASPBinaryTerm {
 
-  @Nullable
-  PsiElement getAdd();
+    @Nullable
+    PsiElement getAdd();
 
-  @Nullable
-  PsiElement getSub();
+    @Nullable
+    PsiElement getSub();
 
 }

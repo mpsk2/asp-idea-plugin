@@ -18,15 +18,16 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPOptCondition extends PsiElement {
 
-  @Nullable
-  ASPNLitVec getNLitVec();
+    @Nullable
+    ASPNLitVec getNLitVec();
 
-  @Nullable
-  PsiElement getColon();
+    @Nullable
+    PsiElement getColon();
 
 }

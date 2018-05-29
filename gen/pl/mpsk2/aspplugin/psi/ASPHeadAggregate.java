@@ -18,21 +18,25 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPHeadAggregate extends PsiElement {
 
-  @Nullable
-  ASPAggregateFunction getAggregateFunction();
+    @Nullable
+    ASPAggregateFunction getAggregateFunction();
 
-  @Nullable
-  ASPHeadAggrVec getHeadAggrVec();
+    @Nullable
+    ASPAltHeadAggrVec getAltHeadAggrVec();
 
-  @NotNull
-  PsiElement getLbrace();
+    @Nullable
+    ASPHeadAggrVec getHeadAggrVec();
 
-  @NotNull
-  PsiElement getRbrace();
+    @NotNull
+    PsiElement getLbrace();
+
+    @NotNull
+    PsiElement getRbrace();
 
 }

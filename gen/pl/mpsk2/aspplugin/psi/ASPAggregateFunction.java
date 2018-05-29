@@ -18,24 +18,25 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPAggregateFunction extends PsiElement {
 
-  @Nullable
-  PsiElement getCount();
+    @Nullable
+    PsiElement getCount();
 
-  @Nullable
-  PsiElement getMax();
+    @Nullable
+    PsiElement getMax();
 
-  @Nullable
-  PsiElement getMin();
+    @Nullable
+    PsiElement getMin();
 
-  @Nullable
-  PsiElement getSum();
+    @Nullable
+    PsiElement getSum();
 
-  @Nullable
-  PsiElement getSump();
+    @Nullable
+    PsiElement getSump();
 
 }

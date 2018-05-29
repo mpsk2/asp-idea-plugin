@@ -18,42 +18,43 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPLiteral extends PsiElement {
 
-  @Nullable
-  ASPAtom getAtom();
+    @Nullable
+    ASPAtom getAtom();
 
-  @Nullable
-  ASPCspLiteral getCspLiteral();
+    @Nullable
+    ASPCspLiteral getCspLiteral();
 
-  @NotNull
-  List<ASPTerm> getTermList();
+    @NotNull
+    List<ASPTerm> getTermList();
 
-  @Nullable
-  PsiElement getEq();
+    @Nullable
+    PsiElement getEq();
 
-  @Nullable
-  PsiElement getFalse();
+    @Nullable
+    PsiElement getFalse();
 
-  @Nullable
-  PsiElement getGeq();
+    @Nullable
+    PsiElement getGeq();
 
-  @Nullable
-  PsiElement getGt();
+    @Nullable
+    PsiElement getGt();
 
-  @Nullable
-  PsiElement getLeq();
+    @Nullable
+    PsiElement getLeq();
 
-  @Nullable
-  PsiElement getLt();
+    @Nullable
+    PsiElement getLt();
 
-  @Nullable
-  PsiElement getNeq();
+    @Nullable
+    PsiElement getNeq();
 
-  @Nullable
-  PsiElement getTrue();
+    @Nullable
+    PsiElement getTrue();
 
 }

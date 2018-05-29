@@ -18,24 +18,25 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPAtom extends PsiElement {
 
-  @Nullable
-  ASPArgVec getArgVec();
+    @Nullable
+    ASPArgVec getArgVec();
 
-  @NotNull
-  ASPIdentifier getIdentifier();
+    @NotNull
+    ASPIdentifier getIdentifier();
 
-  @Nullable
-  PsiElement getLparen();
+    @Nullable
+    PsiElement getLparen();
 
-  @Nullable
-  PsiElement getRparen();
+    @Nullable
+    PsiElement getRparen();
 
-  @Nullable
-  PsiElement getSub();
+    @Nullable
+    PsiElement getSub();
 
 }

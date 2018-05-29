@@ -18,15 +18,16 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPProjectStatement extends ASPStatement {
 
-  @Nullable
-  ASPProjectStatementBody getProjectStatementBody();
+    @Nullable
+    ASPProjectStatementBody getProjectStatementBody();
 
-  @NotNull
-  PsiElement getProject_();
+    @NotNull
+    PsiElement getProject_();
 
 }

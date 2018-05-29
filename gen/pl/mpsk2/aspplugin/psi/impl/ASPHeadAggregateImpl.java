@@ -18,51 +18,60 @@
 package pl.mpsk2.aspplugin.psi.impl;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
+
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
+
 import pl.mpsk2.aspplugin.psi.*;
 
 public class ASPHeadAggregateImpl extends ASPCompositeElementImpl implements ASPHeadAggregate {
 
-  public ASPHeadAggregateImpl(ASTNode node) {
-    super(node);
-  }
+    public ASPHeadAggregateImpl(ASTNode node) {
+        super(node);
+    }
 
-  public void accept(@NotNull ASPVisitor visitor) {
-    visitor.visitHeadAggregate(this);
-  }
+    public void accept(@NotNull ASPVisitor visitor) {
+        visitor.visitHeadAggregate(this);
+    }
 
-  public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ASPVisitor) accept((ASPVisitor)visitor);
-    else super.accept(visitor);
-  }
+    public void accept(@NotNull PsiElementVisitor visitor) {
+        if (visitor instanceof ASPVisitor) accept((ASPVisitor) visitor);
+        else super.accept(visitor);
+    }
 
-  @Override
-  @Nullable
-  public ASPAggregateFunction getAggregateFunction() {
-    return findChildByClass(ASPAggregateFunction.class);
-  }
+    @Override
+    @Nullable
+    public ASPAggregateFunction getAggregateFunction() {
+        return findChildByClass(ASPAggregateFunction.class);
+    }
 
-  @Override
-  @Nullable
-  public ASPHeadAggrVec getHeadAggrVec() {
-    return findChildByClass(ASPHeadAggrVec.class);
-  }
+    @Override
+    @Nullable
+    public ASPAltHeadAggrVec getAltHeadAggrVec() {
+        return findChildByClass(ASPAltHeadAggrVec.class);
+    }
 
-  @Override
-  @NotNull
-  public PsiElement getLbrace() {
-    return findNotNullChildByType(LBRACE);
-  }
+    @Override
+    @Nullable
+    public ASPHeadAggrVec getHeadAggrVec() {
+        return findChildByClass(ASPHeadAggrVec.class);
+    }
 
-  @Override
-  @NotNull
-  public PsiElement getRbrace() {
-    return findNotNullChildByType(RBRACE);
-  }
+    @Override
+    @NotNull
+    public PsiElement getLbrace() {
+        return findNotNullChildByType(LBRACE);
+    }
+
+    @Override
+    @NotNull
+    public PsiElement getRbrace() {
+        return findNotNullChildByType(RBRACE);
+    }
 
 }

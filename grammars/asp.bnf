@@ -303,11 +303,11 @@ LuBodyAggregate ::= Term CmpOp? BodyAggregate Upper_? // | theory_atom
 HeadAggrElem ::= TermVec COLON AltHeadAggrElem
 HeadAggrVec ::= HeadAggrElem (SEM HeadAggrElem)*
 AltHeadAggrElem ::= Literal OptCondition
-// AltHeadAggrVec ::= AltHeadAggrElem (SEM AltHeadAggrElem)*
+AltHeadAggrVec ::= AltHeadAggrElem (SEM AltHeadAggrElem)*
 
 // Head Aggregate
-HeadAggregate ::= AggregateFunction? LBRACE HeadAggrVec? RBRACE
-LuHeadAggregate ::= (Term CmpOp?)? HeadAggregate Upper_? // | theory_atom
+HeadAggregate ::= AggregateFunction LBRACE HeadAggrVec? RBRACE | LBRACE AltHeadAggrVec? RBRACE
+LuHeadAggregate ::= (Term CmpOp?)? HeadAggregate Upper_? {pin=2}// | theory_atom
 
 // Disjoint Aggregate
 NCspElem ::= TermVec COLON AddTermCsp OptCondition
@@ -339,8 +339,8 @@ Body_DotElem ::=
 Body_DotElem2 ::= Disjoint_ | Conjunction
 Body_CondDot ::= COLON? DOT | COLON Body_ DOT
 Head_ ::=
-      Disjunction
-    | LuHeadAggregate
+      LuHeadAggregate
+    | Disjunction
     | Literal
 
 // Optimization

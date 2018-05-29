@@ -18,24 +18,25 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPMinimizeStatement extends ASPStatement {
 
-  @Nullable
-  ASPMaxMinList getMaxMinList();
+    @Nullable
+    ASPMaxMinList getMaxMinList();
 
-  @Nullable
-  PsiElement getDot();
+    @Nullable
+    PsiElement getDot();
 
-  @Nullable
-  PsiElement getLbrace();
+    @Nullable
+    PsiElement getLbrace();
 
-  @NotNull
-  PsiElement getMinimize();
+    @NotNull
+    PsiElement getMinimize();
 
-  @Nullable
-  PsiElement getRbrace();
+    @Nullable
+    PsiElement getRbrace();
 
 }

@@ -18,15 +18,16 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPLNOptCondition extends PsiElement {
 
-  @NotNull
-  ASPLiteral getLiteral();
+    @NotNull
+    ASPLiteral getLiteral();
 
-  @NotNull
-  ASPNOptCondition getNOptCondition();
+    @NotNull
+    ASPNOptCondition getNOptCondition();
 
 }

@@ -18,15 +18,16 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPAltBodyAggrElem extends PsiElement {
 
-  @NotNull
-  ASPLiteral getLiteral();
+    @NotNull
+    ASPLiteral getLiteral();
 
-  @NotNull
-  ASPOptCondition getOptCondition();
+    @NotNull
+    ASPOptCondition getOptCondition();
 
 }

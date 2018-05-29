@@ -18,15 +18,16 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPBodyDotElem2 extends PsiElement {
 
-  @Nullable
-  ASPConjunction getConjunction();
+    @Nullable
+    ASPConjunction getConjunction();
 
-  @Nullable
-  ASPDisjoint_ getDisjoint_();
+    @Nullable
+    ASPDisjoint_ getDisjoint_();
 
 }

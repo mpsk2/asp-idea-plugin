@@ -18,22 +18,23 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPBinaryConstantTerm extends ASPConstantTerm {
 
-  @NotNull
-  List<ASPConstantTerm> getConstantTermList();
+    @NotNull
+    List<ASPConstantTerm> getConstantTermList();
 
-  @NotNull
-  ASPConstantTerm getLhs();
+    @NotNull
+    ASPConstantTerm getLhs();
 
-  @Nullable
-  ASPConstantTerm getRhs();
+    @Nullable
+    ASPConstantTerm getRhs();
 
-  //WARNING: getOperator(...) is skipped
-  //matching getOperator(ASPBinaryConstantTerm, ...)
-  //methods are not found in ASPPsiImplUtil
+    //WARNING: getOperator(...) is skipped
+    //matching getOperator(ASPBinaryConstantTerm, ...)
+    //methods are not found in ASPPsiImplUtil
 
 }

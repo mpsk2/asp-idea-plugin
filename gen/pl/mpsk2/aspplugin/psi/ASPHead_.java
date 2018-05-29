@@ -18,18 +18,19 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPHead_ extends PsiElement {
 
-  @Nullable
-  ASPDisjunction getDisjunction();
+    @Nullable
+    ASPDisjunction getDisjunction();
 
-  @Nullable
-  ASPLiteral getLiteral();
+    @Nullable
+    ASPLiteral getLiteral();
 
-  @Nullable
-  ASPLuHeadAggregate getLuHeadAggregate();
+    @Nullable
+    ASPLuHeadAggregate getLuHeadAggregate();
 
 }

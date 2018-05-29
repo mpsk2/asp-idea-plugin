@@ -18,12 +18,13 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPMaxMinList extends PsiElement {
 
-  @NotNull
-  List<ASPMaxMinElem> getMaxMinElemList();
+    @NotNull
+    List<ASPMaxMinElem> getMaxMinElemList();
 
 }

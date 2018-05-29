@@ -18,15 +18,16 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPAltBodyAggrVec extends PsiElement {
 
-  @NotNull
-  ASPAltBodyAggrElem getAltBodyAggrElem();
+    @NotNull
+    ASPAltBodyAggrElem getAltBodyAggrElem();
 
-  @NotNull
-  List<ASPAltBodyAggrVec> getAltBodyAggrVecList();
+    @NotNull
+    List<ASPAltBodyAggrVec> getAltBodyAggrVecList();
 
 }

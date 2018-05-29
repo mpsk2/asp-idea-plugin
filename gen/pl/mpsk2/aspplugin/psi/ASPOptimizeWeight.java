@@ -18,18 +18,19 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPOptimizeWeight extends PsiElement {
 
-  @Nullable
-  ASPNTermVec getNTermVec();
+    @Nullable
+    ASPNTermVec getNTermVec();
 
-  @NotNull
-  ASPTerm getTerm();
+    @NotNull
+    ASPTerm getTerm();
 
-  @Nullable
-  PsiElement getAt();
+    @Nullable
+    PsiElement getAt();
 
 }

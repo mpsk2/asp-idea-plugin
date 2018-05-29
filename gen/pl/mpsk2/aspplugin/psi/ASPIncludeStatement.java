@@ -18,27 +18,28 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPIncludeStatement extends ASPStatement {
 
-  @Nullable
-  ASPIdentifier getIdentifier();
+    @Nullable
+    ASPIdentifier getIdentifier();
 
-  @Nullable
-  PsiElement getDot();
+    @Nullable
+    PsiElement getDot();
 
-  @Nullable
-  PsiElement getGt();
+    @Nullable
+    PsiElement getGt();
 
-  @NotNull
-  PsiElement getInclude();
+    @NotNull
+    PsiElement getInclude();
 
-  @Nullable
-  PsiElement getLt();
+    @Nullable
+    PsiElement getLt();
 
-  @Nullable
-  PsiElement getString();
+    @Nullable
+    PsiElement getString();
 
 }

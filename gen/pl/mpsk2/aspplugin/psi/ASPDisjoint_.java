@@ -18,21 +18,22 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPDisjoint_ extends PsiElement {
 
-  @Nullable
-  ASPNCspVec getNCspVec();
+    @Nullable
+    ASPNCspVec getNCspVec();
 
-  @NotNull
-  PsiElement getDisjoint();
+    @NotNull
+    PsiElement getDisjoint();
 
-  @NotNull
-  PsiElement getLbrace();
+    @NotNull
+    PsiElement getLbrace();
 
-  @NotNull
-  PsiElement getRbrace();
+    @NotNull
+    PsiElement getRbrace();
 
 }

@@ -18,15 +18,16 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPUnNotTerm extends ASPTerm {
 
-  @Nullable
-  ASPTerm getTerm();
+    @Nullable
+    ASPTerm getTerm();
 
-  @NotNull
-  PsiElement getNot();
+    @NotNull
+    PsiElement getNot();
 
 }

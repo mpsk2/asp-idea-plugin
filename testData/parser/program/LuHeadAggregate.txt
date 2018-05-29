@@ -18,31 +18,26 @@ Answer Set Programming file
               PsiElement(id)('mazda')
           HEAD_AGGREGATE
             PsiElement({)('{')
-            HEAD_AGGR_VEC
-              HEAD_AGGR_ELEM
-                TERM_VEC
-                  N_TERM_VEC
-                    CONST_TERM
-                      IDENTIFIER
-                        PsiElement(id)('a')
-                    PsiElement(,)(',')
-                    CONST_TERM
-                      IDENTIFIER
-                        PsiElement(id)('b')
-                    PsiElement(,)(',')
-                    CONST_TERM
-                      IDENTIFIER
-                        PsiElement(id)('c')
-                PsiElement(:)(':')
-                ALT_HEAD_AGGR_ELEM
-                  LITERAL
-                    PsiElement(not)('not')
-                    PsiElement(not)('not')
-                    PsiElement(#true)('#true')
-                  OPT_CONDITION
-                    PsiElement(:)(':')
-                    N_LIT_VEC
-                      LITERAL
-                        PsiElement(#true)('#true')
+            ALT_HEAD_AGGR_VEC
+              ALT_HEAD_AGGR_ELEM
+                LITERAL
+                  ATOM
+                    IDENTIFIER
+                      PsiElement(id)('a')
+                OPT_CONDITION
+                  <empty list>
+              PsiElement(;)(';')
+              ALT_HEAD_AGGR_ELEM
+                LITERAL
+                  ATOM
+                    IDENTIFIER
+                      PsiElement(id)('c')
+                OPT_CONDITION
+                  PsiElement(:)(':')
+                  N_LIT_VEC
+                    LITERAL
+                      PsiElement(not)('not')
+                      PsiElement(not)('not')
+                      PsiElement(#true)('#true')
             PsiElement(})('}')
       PsiElement(.)('.')

@@ -18,75 +18,78 @@
 package pl.mpsk2.aspplugin.psi.impl;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
+
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
+
 import pl.mpsk2.aspplugin.psi.*;
 
 public class ASPDisjunctionImpl extends ASPCompositeElementImpl implements ASPDisjunction {
 
-  public ASPDisjunctionImpl(ASTNode node) {
-    super(node);
-  }
+    public ASPDisjunctionImpl(ASTNode node) {
+        super(node);
+    }
 
-  public void accept(@NotNull ASPVisitor visitor) {
-    visitor.visitDisjunction(this);
-  }
+    public void accept(@NotNull ASPVisitor visitor) {
+        visitor.visitDisjunction(this);
+    }
 
-  public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ASPVisitor) accept((ASPVisitor)visitor);
-    else super.accept(visitor);
-  }
+    public void accept(@NotNull PsiElementVisitor visitor) {
+        if (visitor instanceof ASPVisitor) accept((ASPVisitor) visitor);
+        else super.accept(visitor);
+    }
 
-  @Override
-  @NotNull
-  public List<ASPDisjunctionSep> getDisjunctionSepList() {
-    return ASPPsiTreeUtil.getChildrenOfTypeAsList(this, ASPDisjunctionSep.class);
-  }
+    @Override
+    @NotNull
+    public List<ASPDisjunctionSep> getDisjunctionSepList() {
+        return ASPPsiTreeUtil.getChildrenOfTypeAsList(this, ASPDisjunctionSep.class);
+    }
 
-  @Override
-  @Nullable
-  public ASPLNOptCondition getLNOptCondition() {
-    return findChildByClass(ASPLNOptCondition.class);
-  }
+    @Override
+    @Nullable
+    public ASPLNOptCondition getLNOptCondition() {
+        return findChildByClass(ASPLNOptCondition.class);
+    }
 
-  @Override
-  @NotNull
-  public ASPLiteral getLiteral() {
-    return findNotNullChildByClass(ASPLiteral.class);
-  }
+    @Override
+    @NotNull
+    public ASPLiteral getLiteral() {
+        return findNotNullChildByClass(ASPLiteral.class);
+    }
 
-  @Override
-  @Nullable
-  public ASPNLitVec getNLitVec() {
-    return findChildByClass(ASPNLitVec.class);
-  }
+    @Override
+    @Nullable
+    public ASPNLitVec getNLitVec() {
+        return findChildByClass(ASPNLitVec.class);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getColon() {
-    return findChildByType(COLON);
-  }
+    @Override
+    @Nullable
+    public PsiElement getColon() {
+        return findChildByType(COLON);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getComma() {
-    return findChildByType(COMMA);
-  }
+    @Override
+    @Nullable
+    public PsiElement getComma() {
+        return findChildByType(COMMA);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getSem() {
-    return findChildByType(SEM);
-  }
+    @Override
+    @Nullable
+    public PsiElement getSem() {
+        return findChildByType(SEM);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getVbar() {
-    return findChildByType(VBAR);
-  }
+    @Override
+    @Nullable
+    public PsiElement getVbar() {
+        return findChildByType(VBAR);
+    }
 
 }

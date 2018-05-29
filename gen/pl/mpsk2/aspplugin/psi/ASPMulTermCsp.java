@@ -18,18 +18,19 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPMulTermCsp extends PsiElement {
 
-  @NotNull
-  List<ASPTerm> getTermList();
+    @NotNull
+    List<ASPTerm> getTermList();
 
-  @Nullable
-  PsiElement getCsp();
+    @Nullable
+    PsiElement getCsp();
 
-  @Nullable
-  PsiElement getCspMul();
+    @Nullable
+    PsiElement getCspMul();
 
 }

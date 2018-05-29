@@ -18,57 +18,60 @@
 package pl.mpsk2.aspplugin.psi.impl;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
+
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
+
 import pl.mpsk2.aspplugin.psi.*;
 
 public class ASPMinimizeStatementImpl extends ASPStatementImpl implements ASPMinimizeStatement {
 
-  public ASPMinimizeStatementImpl(ASTNode node) {
-    super(node);
-  }
+    public ASPMinimizeStatementImpl(ASTNode node) {
+        super(node);
+    }
 
-  public void accept(@NotNull ASPVisitor visitor) {
-    visitor.visitMinimizeStatement(this);
-  }
+    public void accept(@NotNull ASPVisitor visitor) {
+        visitor.visitMinimizeStatement(this);
+    }
 
-  public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ASPVisitor) accept((ASPVisitor)visitor);
-    else super.accept(visitor);
-  }
+    public void accept(@NotNull PsiElementVisitor visitor) {
+        if (visitor instanceof ASPVisitor) accept((ASPVisitor) visitor);
+        else super.accept(visitor);
+    }
 
-  @Override
-  @Nullable
-  public ASPMaxMinList getMaxMinList() {
-    return findChildByClass(ASPMaxMinList.class);
-  }
+    @Override
+    @Nullable
+    public ASPMaxMinList getMaxMinList() {
+        return findChildByClass(ASPMaxMinList.class);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getDot() {
-    return findChildByType(DOT);
-  }
+    @Override
+    @Nullable
+    public PsiElement getDot() {
+        return findChildByType(DOT);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getLbrace() {
-    return findChildByType(LBRACE);
-  }
+    @Override
+    @Nullable
+    public PsiElement getLbrace() {
+        return findChildByType(LBRACE);
+    }
 
-  @Override
-  @NotNull
-  public PsiElement getMinimize() {
-    return findNotNullChildByType(MINIMIZE);
-  }
+    @Override
+    @NotNull
+    public PsiElement getMinimize() {
+        return findNotNullChildByType(MINIMIZE);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getRbrace() {
-    return findChildByType(RBRACE);
-  }
+    @Override
+    @Nullable
+    public PsiElement getRbrace() {
+        return findChildByType(RBRACE);
+    }
 
 }

@@ -18,39 +18,42 @@
 package pl.mpsk2.aspplugin.psi.impl;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
+
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
+
 import pl.mpsk2.aspplugin.psi.*;
 
 public class ASPDotsTermImpl extends ASPTermImpl implements ASPDotsTerm {
 
-  public ASPDotsTermImpl(ASTNode node) {
-    super(node);
-  }
+    public ASPDotsTermImpl(ASTNode node) {
+        super(node);
+    }
 
-  public void accept(@NotNull ASPVisitor visitor) {
-    visitor.visitDotsTerm(this);
-  }
+    public void accept(@NotNull ASPVisitor visitor) {
+        visitor.visitDotsTerm(this);
+    }
 
-  public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ASPVisitor) accept((ASPVisitor)visitor);
-    else super.accept(visitor);
-  }
+    public void accept(@NotNull PsiElementVisitor visitor) {
+        if (visitor instanceof ASPVisitor) accept((ASPVisitor) visitor);
+        else super.accept(visitor);
+    }
 
-  @Override
-  @NotNull
-  public List<ASPTerm> getTermList() {
-    return ASPPsiTreeUtil.getChildrenOfTypeAsList(this, ASPTerm.class);
-  }
+    @Override
+    @NotNull
+    public List<ASPTerm> getTermList() {
+        return ASPPsiTreeUtil.getChildrenOfTypeAsList(this, ASPTerm.class);
+    }
 
-  @Override
-  @NotNull
-  public PsiElement getDots() {
-    return findNotNullChildByType(DOTS);
-  }
+    @Override
+    @NotNull
+    public PsiElement getDots() {
+        return findNotNullChildByType(DOTS);
+    }
 
 }

@@ -18,57 +18,60 @@
 package pl.mpsk2.aspplugin.psi.impl;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
+
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
+
 import pl.mpsk2.aspplugin.psi.*;
 
 public class ASPShowStatementBodyImpl extends ASPCompositeElementImpl implements ASPShowStatementBody {
 
-  public ASPShowStatementBodyImpl(ASTNode node) {
-    super(node);
-  }
+    public ASPShowStatementBodyImpl(ASTNode node) {
+        super(node);
+    }
 
-  public void accept(@NotNull ASPVisitor visitor) {
-    visitor.visitShowStatementBody(this);
-  }
+    public void accept(@NotNull ASPVisitor visitor) {
+        visitor.visitShowStatementBody(this);
+    }
 
-  public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ASPVisitor) accept((ASPVisitor)visitor);
-    else super.accept(visitor);
-  }
+    public void accept(@NotNull PsiElementVisitor visitor) {
+        if (visitor instanceof ASPVisitor) accept((ASPVisitor) visitor);
+        else super.accept(visitor);
+    }
 
-  @Override
-  @Nullable
-  public ASPBody_ getBody_() {
-    return findChildByClass(ASPBody_.class);
-  }
+    @Override
+    @Nullable
+    public ASPBody_ getBody_() {
+        return findChildByClass(ASPBody_.class);
+    }
 
-  @Override
-  @Nullable
-  public ASPTerm getTerm() {
-    return findChildByClass(ASPTerm.class);
-  }
+    @Override
+    @Nullable
+    public ASPTerm getTerm() {
+        return findChildByClass(ASPTerm.class);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getColon() {
-    return findChildByType(COLON);
-  }
+    @Override
+    @Nullable
+    public PsiElement getColon() {
+        return findChildByType(COLON);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getCsp() {
-    return findChildByType(CSP);
-  }
+    @Override
+    @Nullable
+    public PsiElement getCsp() {
+        return findChildByType(CSP);
+    }
 
-  @Override
-  @NotNull
-  public PsiElement getDot() {
-    return findNotNullChildByType(DOT);
-  }
+    @Override
+    @NotNull
+    public PsiElement getDot() {
+        return findNotNullChildByType(DOT);
+    }
 
 }

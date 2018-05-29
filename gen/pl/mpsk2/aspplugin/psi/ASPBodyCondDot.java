@@ -18,18 +18,19 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPBodyCondDot extends PsiElement {
 
-  @Nullable
-  ASPBody_ getBody_();
+    @Nullable
+    ASPBody_ getBody_();
 
-  @Nullable
-  PsiElement getColon();
+    @Nullable
+    PsiElement getColon();
 
-  @NotNull
-  PsiElement getDot();
+    @NotNull
+    PsiElement getDot();
 
 }

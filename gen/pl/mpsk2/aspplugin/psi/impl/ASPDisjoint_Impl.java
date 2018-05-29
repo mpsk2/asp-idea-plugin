@@ -18,51 +18,54 @@
 package pl.mpsk2.aspplugin.psi.impl;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
+
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
+
 import pl.mpsk2.aspplugin.psi.*;
 
 public class ASPDisjoint_Impl extends ASPCompositeElementImpl implements ASPDisjoint_ {
 
-  public ASPDisjoint_Impl(ASTNode node) {
-    super(node);
-  }
+    public ASPDisjoint_Impl(ASTNode node) {
+        super(node);
+    }
 
-  public void accept(@NotNull ASPVisitor visitor) {
-    visitor.visitDisjoint_(this);
-  }
+    public void accept(@NotNull ASPVisitor visitor) {
+        visitor.visitDisjoint_(this);
+    }
 
-  public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ASPVisitor) accept((ASPVisitor)visitor);
-    else super.accept(visitor);
-  }
+    public void accept(@NotNull PsiElementVisitor visitor) {
+        if (visitor instanceof ASPVisitor) accept((ASPVisitor) visitor);
+        else super.accept(visitor);
+    }
 
-  @Override
-  @Nullable
-  public ASPNCspVec getNCspVec() {
-    return findChildByClass(ASPNCspVec.class);
-  }
+    @Override
+    @Nullable
+    public ASPNCspVec getNCspVec() {
+        return findChildByClass(ASPNCspVec.class);
+    }
 
-  @Override
-  @NotNull
-  public PsiElement getDisjoint() {
-    return findNotNullChildByType(DISJOINT);
-  }
+    @Override
+    @NotNull
+    public PsiElement getDisjoint() {
+        return findNotNullChildByType(DISJOINT);
+    }
 
-  @Override
-  @NotNull
-  public PsiElement getLbrace() {
-    return findNotNullChildByType(LBRACE);
-  }
+    @Override
+    @NotNull
+    public PsiElement getLbrace() {
+        return findNotNullChildByType(LBRACE);
+    }
 
-  @Override
-  @NotNull
-  public PsiElement getRbrace() {
-    return findNotNullChildByType(RBRACE);
-  }
+    @Override
+    @NotNull
+    public PsiElement getRbrace() {
+        return findNotNullChildByType(RBRACE);
+    }
 
 }

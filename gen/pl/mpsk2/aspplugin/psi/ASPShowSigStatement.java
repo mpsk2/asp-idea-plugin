@@ -18,30 +18,31 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPShowSigStatement extends ASPStatement {
 
-  @Nullable
-  ASPIdentifier getIdentifier();
+    @Nullable
+    ASPIdentifier getIdentifier();
 
-  @Nullable
-  PsiElement getCsp();
+    @Nullable
+    PsiElement getCsp();
 
-  @Nullable
-  PsiElement getDot();
+    @Nullable
+    PsiElement getDot();
 
-  @NotNull
-  PsiElement getShowsig();
+    @NotNull
+    PsiElement getShowsig();
 
-  @Nullable
-  PsiElement getSlash();
+    @Nullable
+    PsiElement getSlash();
 
-  @Nullable
-  PsiElement getSub();
+    @Nullable
+    PsiElement getSub();
 
-  @Nullable
-  PsiElement getNumber();
+    @Nullable
+    PsiElement getNumber();
 
 }

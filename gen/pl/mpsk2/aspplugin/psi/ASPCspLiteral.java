@@ -18,15 +18,16 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPCspLiteral extends PsiElement {
 
-  @NotNull
-  ASPAddTermCsp getAddTermCsp();
+    @NotNull
+    ASPAddTermCsp getAddTermCsp();
 
-  @NotNull
-  List<ASPCspLiteral> getCspLiteralList();
+    @NotNull
+    List<ASPCspLiteral> getCspLiteralList();
 
 }

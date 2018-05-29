@@ -18,47 +18,50 @@
 package pl.mpsk2.aspplugin.psi.impl;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
+
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
+
 import pl.mpsk2.aspplugin.psi.*;
 
 public class ASPBinaryConstantTermImpl extends ASPConstantTermImpl implements ASPBinaryConstantTerm {
 
-  public ASPBinaryConstantTermImpl(ASTNode node) {
-    super(node);
-  }
+    public ASPBinaryConstantTermImpl(ASTNode node) {
+        super(node);
+    }
 
-  public void accept(@NotNull ASPVisitor visitor) {
-    visitor.visitBinaryConstantTerm(this);
-  }
+    public void accept(@NotNull ASPVisitor visitor) {
+        visitor.visitBinaryConstantTerm(this);
+    }
 
-  public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ASPVisitor) accept((ASPVisitor)visitor);
-    else super.accept(visitor);
-  }
+    public void accept(@NotNull PsiElementVisitor visitor) {
+        if (visitor instanceof ASPVisitor) accept((ASPVisitor) visitor);
+        else super.accept(visitor);
+    }
 
-  @Override
-  @NotNull
-  public List<ASPConstantTerm> getConstantTermList() {
-    return ASPPsiTreeUtil.getChildrenOfTypeAsList(this, ASPConstantTerm.class);
-  }
+    @Override
+    @NotNull
+    public List<ASPConstantTerm> getConstantTermList() {
+        return ASPPsiTreeUtil.getChildrenOfTypeAsList(this, ASPConstantTerm.class);
+    }
 
-  @Override
-  @NotNull
-  public ASPConstantTerm getLhs() {
-    List<ASPConstantTerm> p1 = getConstantTermList();
-    return p1.get(0);
-  }
+    @Override
+    @NotNull
+    public ASPConstantTerm getLhs() {
+        List<ASPConstantTerm> p1 = getConstantTermList();
+        return p1.get(0);
+    }
 
-  @Override
-  @Nullable
-  public ASPConstantTerm getRhs() {
-    List<ASPConstantTerm> p1 = getConstantTermList();
-    return p1.size() < 2 ? null : p1.get(1);
-  }
+    @Override
+    @Nullable
+    public ASPConstantTerm getRhs() {
+        List<ASPConstantTerm> p1 = getConstantTermList();
+        return p1.size() < 2 ? null : p1.get(1);
+    }
 
 }

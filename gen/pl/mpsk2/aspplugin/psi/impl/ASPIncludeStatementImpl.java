@@ -18,63 +18,66 @@
 package pl.mpsk2.aspplugin.psi.impl;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
+
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
+
 import pl.mpsk2.aspplugin.psi.*;
 
 public class ASPIncludeStatementImpl extends ASPStatementImpl implements ASPIncludeStatement {
 
-  public ASPIncludeStatementImpl(ASTNode node) {
-    super(node);
-  }
+    public ASPIncludeStatementImpl(ASTNode node) {
+        super(node);
+    }
 
-  public void accept(@NotNull ASPVisitor visitor) {
-    visitor.visitIncludeStatement(this);
-  }
+    public void accept(@NotNull ASPVisitor visitor) {
+        visitor.visitIncludeStatement(this);
+    }
 
-  public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ASPVisitor) accept((ASPVisitor)visitor);
-    else super.accept(visitor);
-  }
+    public void accept(@NotNull PsiElementVisitor visitor) {
+        if (visitor instanceof ASPVisitor) accept((ASPVisitor) visitor);
+        else super.accept(visitor);
+    }
 
-  @Override
-  @Nullable
-  public ASPIdentifier getIdentifier() {
-    return findChildByClass(ASPIdentifier.class);
-  }
+    @Override
+    @Nullable
+    public ASPIdentifier getIdentifier() {
+        return findChildByClass(ASPIdentifier.class);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getDot() {
-    return findChildByType(DOT);
-  }
+    @Override
+    @Nullable
+    public PsiElement getDot() {
+        return findChildByType(DOT);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getGt() {
-    return findChildByType(GT);
-  }
+    @Override
+    @Nullable
+    public PsiElement getGt() {
+        return findChildByType(GT);
+    }
 
-  @Override
-  @NotNull
-  public PsiElement getInclude() {
-    return findNotNullChildByType(INCLUDE);
-  }
+    @Override
+    @NotNull
+    public PsiElement getInclude() {
+        return findNotNullChildByType(INCLUDE);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getLt() {
-    return findChildByType(LT);
-  }
+    @Override
+    @Nullable
+    public PsiElement getLt() {
+        return findChildByType(LT);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getString() {
-    return findChildByType(STRING);
-  }
+    @Override
+    @Nullable
+    public PsiElement getString() {
+        return findChildByType(STRING);
+    }
 
 }

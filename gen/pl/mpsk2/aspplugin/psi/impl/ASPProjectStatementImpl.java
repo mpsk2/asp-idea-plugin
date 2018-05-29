@@ -18,39 +18,42 @@
 package pl.mpsk2.aspplugin.psi.impl;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
+
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
+
 import pl.mpsk2.aspplugin.psi.*;
 
 public class ASPProjectStatementImpl extends ASPStatementImpl implements ASPProjectStatement {
 
-  public ASPProjectStatementImpl(ASTNode node) {
-    super(node);
-  }
+    public ASPProjectStatementImpl(ASTNode node) {
+        super(node);
+    }
 
-  public void accept(@NotNull ASPVisitor visitor) {
-    visitor.visitProjectStatement(this);
-  }
+    public void accept(@NotNull ASPVisitor visitor) {
+        visitor.visitProjectStatement(this);
+    }
 
-  public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ASPVisitor) accept((ASPVisitor)visitor);
-    else super.accept(visitor);
-  }
+    public void accept(@NotNull PsiElementVisitor visitor) {
+        if (visitor instanceof ASPVisitor) accept((ASPVisitor) visitor);
+        else super.accept(visitor);
+    }
 
-  @Override
-  @Nullable
-  public ASPProjectStatementBody getProjectStatementBody() {
-    return findChildByClass(ASPProjectStatementBody.class);
-  }
+    @Override
+    @Nullable
+    public ASPProjectStatementBody getProjectStatementBody() {
+        return findChildByClass(ASPProjectStatementBody.class);
+    }
 
-  @Override
-  @NotNull
-  public PsiElement getProject_() {
-    return findNotNullChildByType(PROJECT_);
-  }
+    @Override
+    @NotNull
+    public PsiElement getProject_() {
+        return findNotNullChildByType(PROJECT_);
+    }
 
 }

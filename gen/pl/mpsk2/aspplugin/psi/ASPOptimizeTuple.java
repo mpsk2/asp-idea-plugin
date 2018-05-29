@@ -18,15 +18,16 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPOptimizeTuple extends PsiElement {
 
-  @NotNull
-  ASPNTermVec getNTermVec();
+    @NotNull
+    ASPNTermVec getNTermVec();
 
-  @NotNull
-  PsiElement getComma();
+    @NotNull
+    PsiElement getComma();
 
 }

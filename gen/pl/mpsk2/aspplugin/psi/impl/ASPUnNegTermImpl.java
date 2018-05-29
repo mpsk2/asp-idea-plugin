@@ -18,39 +18,42 @@
 package pl.mpsk2.aspplugin.psi.impl;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
+
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
+
 import pl.mpsk2.aspplugin.psi.*;
 
 public class ASPUnNegTermImpl extends ASPTermImpl implements ASPUnNegTerm {
 
-  public ASPUnNegTermImpl(ASTNode node) {
-    super(node);
-  }
+    public ASPUnNegTermImpl(ASTNode node) {
+        super(node);
+    }
 
-  public void accept(@NotNull ASPVisitor visitor) {
-    visitor.visitUnNegTerm(this);
-  }
+    public void accept(@NotNull ASPVisitor visitor) {
+        visitor.visitUnNegTerm(this);
+    }
 
-  public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ASPVisitor) accept((ASPVisitor)visitor);
-    else super.accept(visitor);
-  }
+    public void accept(@NotNull PsiElementVisitor visitor) {
+        if (visitor instanceof ASPVisitor) accept((ASPVisitor) visitor);
+        else super.accept(visitor);
+    }
 
-  @Override
-  @Nullable
-  public ASPTerm getTerm() {
-    return findChildByClass(ASPTerm.class);
-  }
+    @Override
+    @Nullable
+    public ASPTerm getTerm() {
+        return findChildByClass(ASPTerm.class);
+    }
 
-  @Override
-  @NotNull
-  public PsiElement getSub() {
-    return findNotNullChildByType(SUB);
-  }
+    @Override
+    @NotNull
+    public PsiElement getSub() {
+        return findNotNullChildByType(SUB);
+    }
 
 }

@@ -18,21 +18,22 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPNCspElem extends PsiElement {
 
-  @NotNull
-  ASPAddTermCsp getAddTermCsp();
+    @NotNull
+    ASPAddTermCsp getAddTermCsp();
 
-  @NotNull
-  ASPOptCondition getOptCondition();
+    @NotNull
+    ASPOptCondition getOptCondition();
 
-  @NotNull
-  ASPTermVec getTermVec();
+    @NotNull
+    ASPTermVec getTermVec();
 
-  @NotNull
-  PsiElement getColon();
+    @NotNull
+    PsiElement getColon();
 
 }

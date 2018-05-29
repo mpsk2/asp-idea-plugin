@@ -18,24 +18,25 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPShowStatementBody extends PsiElement {
 
-  @Nullable
-  ASPBody_ getBody_();
+    @Nullable
+    ASPBody_ getBody_();
 
-  @Nullable
-  ASPTerm getTerm();
+    @Nullable
+    ASPTerm getTerm();
 
-  @Nullable
-  PsiElement getColon();
+    @Nullable
+    PsiElement getColon();
 
-  @Nullable
-  PsiElement getCsp();
+    @Nullable
+    PsiElement getCsp();
 
-  @NotNull
-  PsiElement getDot();
+    @NotNull
+    PsiElement getDot();
 
 }

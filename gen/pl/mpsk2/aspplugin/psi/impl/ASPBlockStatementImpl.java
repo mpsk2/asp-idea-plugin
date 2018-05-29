@@ -18,63 +18,66 @@
 package pl.mpsk2.aspplugin.psi.impl;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
+
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
+
 import pl.mpsk2.aspplugin.psi.*;
 
 public class ASPBlockStatementImpl extends ASPStatementImpl implements ASPBlockStatement {
 
-  public ASPBlockStatementImpl(ASTNode node) {
-    super(node);
-  }
+    public ASPBlockStatementImpl(ASTNode node) {
+        super(node);
+    }
 
-  public void accept(@NotNull ASPVisitor visitor) {
-    visitor.visitBlockStatement(this);
-  }
+    public void accept(@NotNull ASPVisitor visitor) {
+        visitor.visitBlockStatement(this);
+    }
 
-  public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ASPVisitor) accept((ASPVisitor)visitor);
-    else super.accept(visitor);
-  }
+    public void accept(@NotNull PsiElementVisitor visitor) {
+        if (visitor instanceof ASPVisitor) accept((ASPVisitor) visitor);
+        else super.accept(visitor);
+    }
 
-  @Override
-  @Nullable
-  public ASPIdentifier getIdentifier() {
-    return findChildByClass(ASPIdentifier.class);
-  }
+    @Override
+    @Nullable
+    public ASPIdentifier getIdentifier() {
+        return findChildByClass(ASPIdentifier.class);
+    }
 
-  @Override
-  @Nullable
-  public ASPIdentifierList getIdentifierList() {
-    return findChildByClass(ASPIdentifierList.class);
-  }
+    @Override
+    @Nullable
+    public ASPIdentifierList getIdentifierList() {
+        return findChildByClass(ASPIdentifierList.class);
+    }
 
-  @Override
-  @NotNull
-  public PsiElement getBlock() {
-    return findNotNullChildByType(BLOCK);
-  }
+    @Override
+    @NotNull
+    public PsiElement getBlock() {
+        return findNotNullChildByType(BLOCK);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getDot() {
-    return findChildByType(DOT);
-  }
+    @Override
+    @Nullable
+    public PsiElement getDot() {
+        return findChildByType(DOT);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getLparen() {
-    return findChildByType(LPAREN);
-  }
+    @Override
+    @Nullable
+    public PsiElement getLparen() {
+        return findChildByType(LPAREN);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getRparen() {
-    return findChildByType(RPAREN);
-  }
+    @Override
+    @Nullable
+    public PsiElement getRparen() {
+        return findChildByType(RPAREN);
+    }
 
 }

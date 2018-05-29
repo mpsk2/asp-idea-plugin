@@ -18,93 +18,96 @@
 package pl.mpsk2.aspplugin.psi.impl;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
+
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
+
 import pl.mpsk2.aspplugin.psi.*;
 
 public class ASPLiteralImpl extends ASPCompositeElementImpl implements ASPLiteral {
 
-  public ASPLiteralImpl(ASTNode node) {
-    super(node);
-  }
+    public ASPLiteralImpl(ASTNode node) {
+        super(node);
+    }
 
-  public void accept(@NotNull ASPVisitor visitor) {
-    visitor.visitLiteral(this);
-  }
+    public void accept(@NotNull ASPVisitor visitor) {
+        visitor.visitLiteral(this);
+    }
 
-  public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ASPVisitor) accept((ASPVisitor)visitor);
-    else super.accept(visitor);
-  }
+    public void accept(@NotNull PsiElementVisitor visitor) {
+        if (visitor instanceof ASPVisitor) accept((ASPVisitor) visitor);
+        else super.accept(visitor);
+    }
 
-  @Override
-  @Nullable
-  public ASPAtom getAtom() {
-    return findChildByClass(ASPAtom.class);
-  }
+    @Override
+    @Nullable
+    public ASPAtom getAtom() {
+        return findChildByClass(ASPAtom.class);
+    }
 
-  @Override
-  @Nullable
-  public ASPCspLiteral getCspLiteral() {
-    return findChildByClass(ASPCspLiteral.class);
-  }
+    @Override
+    @Nullable
+    public ASPCspLiteral getCspLiteral() {
+        return findChildByClass(ASPCspLiteral.class);
+    }
 
-  @Override
-  @NotNull
-  public List<ASPTerm> getTermList() {
-    return ASPPsiTreeUtil.getChildrenOfTypeAsList(this, ASPTerm.class);
-  }
+    @Override
+    @NotNull
+    public List<ASPTerm> getTermList() {
+        return ASPPsiTreeUtil.getChildrenOfTypeAsList(this, ASPTerm.class);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getEq() {
-    return findChildByType(EQ);
-  }
+    @Override
+    @Nullable
+    public PsiElement getEq() {
+        return findChildByType(EQ);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getFalse() {
-    return findChildByType(FALSE);
-  }
+    @Override
+    @Nullable
+    public PsiElement getFalse() {
+        return findChildByType(FALSE);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getGeq() {
-    return findChildByType(GEQ);
-  }
+    @Override
+    @Nullable
+    public PsiElement getGeq() {
+        return findChildByType(GEQ);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getGt() {
-    return findChildByType(GT);
-  }
+    @Override
+    @Nullable
+    public PsiElement getGt() {
+        return findChildByType(GT);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getLeq() {
-    return findChildByType(LEQ);
-  }
+    @Override
+    @Nullable
+    public PsiElement getLeq() {
+        return findChildByType(LEQ);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getLt() {
-    return findChildByType(LT);
-  }
+    @Override
+    @Nullable
+    public PsiElement getLt() {
+        return findChildByType(LT);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getNeq() {
-    return findChildByType(NEQ);
-  }
+    @Override
+    @Nullable
+    public PsiElement getNeq() {
+        return findChildByType(NEQ);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getTrue() {
-    return findChildByType(TRUE);
-  }
+    @Override
+    @Nullable
+    public PsiElement getTrue() {
+        return findChildByType(TRUE);
+    }
 
 }

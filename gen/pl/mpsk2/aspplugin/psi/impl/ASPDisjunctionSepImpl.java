@@ -18,57 +18,60 @@
 package pl.mpsk2.aspplugin.psi.impl;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
+
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
+
 import pl.mpsk2.aspplugin.psi.*;
 
 public class ASPDisjunctionSepImpl extends ASPCompositeElementImpl implements ASPDisjunctionSep {
 
-  public ASPDisjunctionSepImpl(ASTNode node) {
-    super(node);
-  }
+    public ASPDisjunctionSepImpl(ASTNode node) {
+        super(node);
+    }
 
-  public void accept(@NotNull ASPVisitor visitor) {
-    visitor.visitDisjunctionSep(this);
-  }
+    public void accept(@NotNull ASPVisitor visitor) {
+        visitor.visitDisjunctionSep(this);
+    }
 
-  public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ASPVisitor) accept((ASPVisitor)visitor);
-    else super.accept(visitor);
-  }
+    public void accept(@NotNull PsiElementVisitor visitor) {
+        if (visitor instanceof ASPVisitor) accept((ASPVisitor) visitor);
+        else super.accept(visitor);
+    }
 
-  @Override
-  @Nullable
-  public ASPLNOptCondition getLNOptCondition() {
-    return findChildByClass(ASPLNOptCondition.class);
-  }
+    @Override
+    @Nullable
+    public ASPLNOptCondition getLNOptCondition() {
+        return findChildByClass(ASPLNOptCondition.class);
+    }
 
-  @Override
-  @Nullable
-  public ASPLiteral getLiteral() {
-    return findChildByClass(ASPLiteral.class);
-  }
+    @Override
+    @Nullable
+    public ASPLiteral getLiteral() {
+        return findChildByClass(ASPLiteral.class);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getComma() {
-    return findChildByType(COMMA);
-  }
+    @Override
+    @Nullable
+    public PsiElement getComma() {
+        return findChildByType(COMMA);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getSem() {
-    return findChildByType(SEM);
-  }
+    @Override
+    @Nullable
+    public PsiElement getSem() {
+        return findChildByType(SEM);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getVbar() {
-    return findChildByType(VBAR);
-  }
+    @Override
+    @Nullable
+    public PsiElement getVbar() {
+        return findChildByType(VBAR);
+    }
 
 }

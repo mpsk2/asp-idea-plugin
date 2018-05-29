@@ -18,51 +18,54 @@
 package pl.mpsk2.aspplugin.psi.impl;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
+
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
+
 import pl.mpsk2.aspplugin.psi.*;
 
 public class ASPHeadStatementImpl extends ASPStatementImpl implements ASPHeadStatement {
 
-  public ASPHeadStatementImpl(ASTNode node) {
-    super(node);
-  }
+    public ASPHeadStatementImpl(ASTNode node) {
+        super(node);
+    }
 
-  public void accept(@NotNull ASPVisitor visitor) {
-    visitor.visitHeadStatement(this);
-  }
+    public void accept(@NotNull ASPVisitor visitor) {
+        visitor.visitHeadStatement(this);
+    }
 
-  public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ASPVisitor) accept((ASPVisitor)visitor);
-    else super.accept(visitor);
-  }
+    public void accept(@NotNull PsiElementVisitor visitor) {
+        if (visitor instanceof ASPVisitor) accept((ASPVisitor) visitor);
+        else super.accept(visitor);
+    }
 
-  @Override
-  @Nullable
-  public ASPBody_ getBody_() {
-    return findChildByClass(ASPBody_.class);
-  }
+    @Override
+    @Nullable
+    public ASPBody_ getBody_() {
+        return findChildByClass(ASPBody_.class);
+    }
 
-  @Override
-  @NotNull
-  public ASPHead_ getHead_() {
-    return findNotNullChildByClass(ASPHead_.class);
-  }
+    @Override
+    @NotNull
+    public ASPHead_ getHead_() {
+        return findNotNullChildByClass(ASPHead_.class);
+    }
 
-  @Override
-  @NotNull
-  public PsiElement getDot() {
-    return findNotNullChildByType(DOT);
-  }
+    @Override
+    @NotNull
+    public PsiElement getDot() {
+        return findNotNullChildByType(DOT);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getIf() {
-    return findChildByType(IF);
-  }
+    @Override
+    @Nullable
+    public PsiElement getIf() {
+        return findChildByType(IF);
+    }
 
 }

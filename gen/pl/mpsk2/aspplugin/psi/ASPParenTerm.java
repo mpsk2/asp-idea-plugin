@@ -18,21 +18,22 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPParenTerm extends ASPTerm {
 
-  @Nullable
-  ASPTermVec getTermVec();
+    @Nullable
+    ASPTermVec getTermVec();
 
-  @Nullable
-  PsiElement getComma();
+    @Nullable
+    PsiElement getComma();
 
-  @NotNull
-  PsiElement getLparen();
+    @NotNull
+    PsiElement getLparen();
 
-  @NotNull
-  PsiElement getRparen();
+    @NotNull
+    PsiElement getRparen();
 
 }

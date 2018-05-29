@@ -18,57 +18,60 @@
 package pl.mpsk2.aspplugin.psi.impl;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
+
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
+
 import pl.mpsk2.aspplugin.psi.*;
 
 public class ASPConstantImpl extends ASPCompositeElementImpl implements ASPConstant {
 
-  public ASPConstantImpl(ASTNode node) {
-    super(node);
-  }
+    public ASPConstantImpl(ASTNode node) {
+        super(node);
+    }
 
-  public void accept(@NotNull ASPVisitor visitor) {
-    visitor.visitConstant(this);
-  }
+    public void accept(@NotNull ASPVisitor visitor) {
+        visitor.visitConstant(this);
+    }
 
-  public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ASPVisitor) accept((ASPVisitor)visitor);
-    else super.accept(visitor);
-  }
+    public void accept(@NotNull PsiElementVisitor visitor) {
+        if (visitor instanceof ASPVisitor) accept((ASPVisitor) visitor);
+        else super.accept(visitor);
+    }
 
-  @Override
-  @Nullable
-  public ASPIdentifier getIdentifier() {
-    return findChildByClass(ASPIdentifier.class);
-  }
+    @Override
+    @Nullable
+    public ASPIdentifier getIdentifier() {
+        return findChildByClass(ASPIdentifier.class);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getInfimum() {
-    return findChildByType(INFIMUM);
-  }
+    @Override
+    @Nullable
+    public PsiElement getInfimum() {
+        return findChildByType(INFIMUM);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getSupremum() {
-    return findChildByType(SUPREMUM);
-  }
+    @Override
+    @Nullable
+    public PsiElement getSupremum() {
+        return findChildByType(SUPREMUM);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getNumber() {
-    return findChildByType(NUMBER);
-  }
+    @Override
+    @Nullable
+    public PsiElement getNumber() {
+        return findChildByType(NUMBER);
+    }
 
-  @Override
-  @Nullable
-  public PsiElement getString() {
-    return findChildByType(STRING);
-  }
+    @Override
+    @Nullable
+    public PsiElement getString() {
+        return findChildByType(STRING);
+    }
 
 }

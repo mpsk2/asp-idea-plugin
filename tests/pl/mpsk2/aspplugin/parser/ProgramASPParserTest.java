@@ -20,9 +20,11 @@ public class ProgramASPParserTest extends ASPParserTestBase {
     public void testLuHeadAggregate() { doTest(true); }
     public void testMaxMin() { doTest(true); }
     public void testMaxMinHard() { doTest(true); }
+    public void testRobots() { doTest(true); }
     public void testRobots1() { doTest(true); }
     public void testRobots2() { doTest(true); }
     public void testRobots3() { doTest(true); }
+    public void testRobots4() { doTest(true); }
     public void testShow() { doTest(true); }
     public void testShowBasicExpression() { doTest(true); }
     public void testShowEmpty() { doTest(true); }

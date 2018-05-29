@@ -18,18 +18,19 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPConjunction extends PsiElement {
 
-  @NotNull
-  ASPLiteral getLiteral();
+    @NotNull
+    ASPLiteral getLiteral();
 
-  @NotNull
-  ASPNLitVec getNLitVec();
+    @NotNull
+    ASPNLitVec getNLitVec();
 
-  @NotNull
-  PsiElement getColon();
+    @NotNull
+    PsiElement getColon();
 
 }

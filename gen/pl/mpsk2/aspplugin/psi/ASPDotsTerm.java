@@ -18,15 +18,16 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPDotsTerm extends ASPTerm {
 
-  @NotNull
-  List<ASPTerm> getTermList();
+    @NotNull
+    List<ASPTerm> getTermList();
 
-  @NotNull
-  PsiElement getDots();
+    @NotNull
+    PsiElement getDots();
 
 }

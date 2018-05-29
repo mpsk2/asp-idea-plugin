@@ -18,22 +18,23 @@
 package pl.mpsk2.aspplugin.psi;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface ASPBinaryTerm extends ASPTerm {
 
-  @NotNull
-  List<ASPTerm> getTermList();
+    @NotNull
+    List<ASPTerm> getTermList();
 
-  @NotNull
-  ASPTerm getLhs();
+    @NotNull
+    ASPTerm getLhs();
 
-  @Nullable
-  ASPTerm getRhs();
+    @Nullable
+    ASPTerm getRhs();
 
-  //WARNING: getOperator(...) is skipped
-  //matching getOperator(ASPBinaryTerm, ...)
-  //methods are not found in ASPPsiImplUtil
+    //WARNING: getOperator(...) is skipped
+    //matching getOperator(ASPBinaryTerm, ...)
+    //methods are not found in ASPPsiImplUtil
 
 }
