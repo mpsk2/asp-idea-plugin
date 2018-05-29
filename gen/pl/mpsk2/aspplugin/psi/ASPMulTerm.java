@@ -29,4 +29,7 @@ public interface ASPMulTerm extends ASPBinaryTerm {
   @Nullable
   PsiElement getMul();
 
+  @Nullable
+  PsiElement getSlash();
+
 }

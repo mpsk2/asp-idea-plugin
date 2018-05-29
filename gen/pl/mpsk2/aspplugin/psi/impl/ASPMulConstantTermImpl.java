@@ -53,4 +53,10 @@ public class ASPMulConstantTermImpl extends ASPBinaryConstantTermImpl implements
     return findChildByType(MUL);
   }
 
+  @Override
+  @Nullable
+  public PsiElement getSlash() {
+    return findChildByType(SLASH);
+  }
+
 }

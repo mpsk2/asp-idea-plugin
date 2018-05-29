@@ -53,4 +53,10 @@ public class ASPMulTermImpl extends ASPBinaryTermImpl implements ASPMulTerm {
     return findChildByType(MUL);
   }
 
+  @Override
+  @Nullable
+  public PsiElement getSlash() {
+    return findChildByType(SLASH);
+  }
+
 }

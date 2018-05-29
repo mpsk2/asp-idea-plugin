@@ -388,7 +388,7 @@ private XorOp ::= XOR
 private QuestionOp ::= QUESTION
 private AndOp ::= AND
 private AddOp ::= ADD | SUB
-private MulOp ::= MUL | MOD // DIV? TODO
+private MulOp ::= MUL | MOD | SLASH // DIV? TODO
 
 Identifier ::= id
 IdentifierList ::= Identifier (COMMA Identifier)*

@@ -1831,13 +1831,13 @@ public class ASPParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // MUL | MOD
+  // MUL | MOD | SLASH
   static boolean MulOp(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MulOp")) return false;
-    if (!nextTokenIs(b, "", MOD, MUL)) return false;
     boolean r;
     r = consumeToken(b, MUL);
     if (!r) r = consumeToken(b, MOD);
+    if (!r) r = consumeToken(b, SLASH);
     return r;
   }
 
