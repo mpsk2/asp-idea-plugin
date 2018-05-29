@@ -1,11 +1,10 @@
 <idea-plugin>
     <id>pl.mpsk2.aspplugin</id>
-    <name>Plugin display name here</name>
-    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+    <name>Answer Set Programming</name>
+    <vendor email="ms335789@students.mimuw.edu.pl" url="http://www.mimuw.edu.pl">MIM UW</vendor>
 
     <description><![CDATA[
-    Enter short description for your plugin here.<br>
-    <em>most HTML tags may be used</em>
+    <h1>Answer Set Programming language support <h1>
     ]]></description>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
