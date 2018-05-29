@@ -18,21 +18,12 @@ package pl.mpsk2.aspplugin.actions.file;
 
 import com.intellij.ide.actions.CreateFileFromTemplateAction;
 import com.intellij.ide.actions.CreateFileFromTemplateDialog;
-import com.intellij.openapi.editor.Editor;
-import com.intellij.openapi.fileEditor.FileDocumentManager;
-import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.DumbAware;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiDirectory;
-import com.intellij.psi.PsiFile;
 import org.jetbrains.annotations.NotNull;
-import pl.mpsk2.aspplugin.ASPFileType;
 import pl.mpsk2.aspplugin.ASPIcons;
 import pl.mpsk2.aspplugin.ASPLanguage;
-import pl.mpsk2.aspplugin.psi.ASPFile;
-
-import java.util.Map;
 
 public class ASPCreateFile extends CreateFileFromTemplateAction implements DumbAware {
     public static final String FILE_TEMPLATE = "ASP File.lp";
