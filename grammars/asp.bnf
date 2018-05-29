@@ -121,7 +121,7 @@
 
 // Root
 root ::= RootItem
-private  RootItem ::= Program | Define
+private RootItem ::= Program | Define
 
 Program ::= Statement+
 Define ::= Identifier EQ ConstantTerm
