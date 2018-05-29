@@ -23,6 +23,8 @@
     </extensions>
 
     <actions>
-        <!-- Add your actions here -->
+        <action class="pl.mpsk2.aspplugin.actions.file.ASPCreateFile" id="ASP.NewASPFile" text="ASP File" description="Create new ASP file">
+            <add-to-group group-id="NewGroup" anchor="before" relative-to-action="NewFile"/>
+        </action>
     </actions>
 </idea-plugin>
