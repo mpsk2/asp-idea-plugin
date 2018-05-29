@@ -69,11 +69,11 @@ public class ASPParser implements PsiParser, LightPsiParser {
     else if (t == BLOCK_STATEMENT) {
       r = BlockStatement(b, 0);
     }
+    else if (t == BODY_AGGREGATE) {
+      r = BodyAggregate(b, 0);
+    }
     else if (t == BODY_) {
       r = Body_(b, 0);
-    }
-    else if (t == BODY_AGGREGATE) {
-      r = Body_Aggregate(b, 0);
     }
     else if (t == BODY_COND_DOT) {
       r = Body_CondDot(b, 0);
@@ -160,7 +160,7 @@ public class ASPParser implements PsiParser, LightPsiParser {
       r = Literal(b, 0);
     }
     else if (t == LU_BODY_AGGREGATE) {
-      r = LuBody_Aggregate(b, 0);
+      r = LuBodyAggregate(b, 0);
     }
     else if (t == LU_HEAD_AGGREGATE) {
       r = LuHeadAggregate(b, 0);
@@ -585,6 +585,34 @@ public class ASPParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // AggregateFunction? LBRACE AltBody_AggrVec? RBRACE
+  public static boolean BodyAggregate(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "BodyAggregate")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NONE_, BODY_AGGREGATE, "<body aggregate>");
+    r = BodyAggregate_0(b, l + 1);
+    r = r && consumeToken(b, LBRACE);
+    r = r && BodyAggregate_2(b, l + 1);
+    r = r && consumeToken(b, RBRACE);
+    exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  // AggregateFunction?
+  private static boolean BodyAggregate_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "BodyAggregate_0")) return false;
+    AggregateFunction(b, l + 1);
+    return true;
+  }
+
+  // AltBody_AggrVec?
+  private static boolean BodyAggregate_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "BodyAggregate_2")) return false;
+    AltBody_AggrVec(b, l + 1);
+    return true;
+  }
+
+  /* ********************************************************** */
   // Body_DotElem ((COMMA|SEM) Body_DotElem|SEM Body_DotElem2)*
   public static boolean Body_(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Body_")) return false;
@@ -650,34 +678,6 @@ public class ASPParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // AggregateFunction? LBRACE AltBody_AggrVec? RBRACE
-  public static boolean Body_Aggregate(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Body_Aggregate")) return false;
-    boolean r;
-    Marker m = enter_section_(b, l, _NONE_, BODY_AGGREGATE, "<body aggregate>");
-    r = Body_Aggregate_0(b, l + 1);
-    r = r && consumeToken(b, LBRACE);
-    r = r && Body_Aggregate_2(b, l + 1);
-    r = r && consumeToken(b, RBRACE);
-    exit_section_(b, l, m, r, false, null);
-    return r;
-  }
-
-  // AggregateFunction?
-  private static boolean Body_Aggregate_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Body_Aggregate_0")) return false;
-    AggregateFunction(b, l + 1);
-    return true;
-  }
-
-  // AltBody_AggrVec?
-  private static boolean Body_Aggregate_2(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Body_Aggregate_2")) return false;
-    AltBody_AggrVec(b, l + 1);
-    return true;
-  }
-
-  /* ********************************************************** */
   // COLON? DOT | COLON Body_ DOT
   public static boolean Body_CondDot(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Body_CondDot")) return false;
@@ -721,9 +721,9 @@ public class ASPParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // NOT NOT LuBody_Aggregate
-  //     |     NOT LuBody_Aggregate
-  //     |         LuBody_Aggregate
+  // NOT NOT LuBodyAggregate
+  //     |     NOT LuBodyAggregate
+  //     |         LuBodyAggregate
   //     | Literal
   public static boolean Body_DotElem(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Body_DotElem")) return false;
@@ -731,30 +731,30 @@ public class ASPParser implements PsiParser, LightPsiParser {
     Marker m = enter_section_(b, l, _NONE_, BODY_DOT_ELEM, "<body dot elem>");
     r = Body_DotElem_0(b, l + 1);
     if (!r) r = Body_DotElem_1(b, l + 1);
-    if (!r) r = LuBody_Aggregate(b, l + 1);
+    if (!r) r = LuBodyAggregate(b, l + 1);
     if (!r) r = Literal(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
 
-  // NOT NOT LuBody_Aggregate
+  // NOT NOT LuBodyAggregate
   private static boolean Body_DotElem_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Body_DotElem_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeTokens(b, 0, NOT, NOT);
-    r = r && LuBody_Aggregate(b, l + 1);
+    r = r && LuBodyAggregate(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // NOT LuBody_Aggregate
+  // NOT LuBodyAggregate
   private static boolean Body_DotElem_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Body_DotElem_1")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, NOT);
-    r = r && LuBody_Aggregate(b, l + 1);
+    r = r && LuBodyAggregate(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -1649,29 +1649,29 @@ public class ASPParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // Term CmpOp? Body_Aggregate Upper_?
-  public static boolean LuBody_Aggregate(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "LuBody_Aggregate")) return false;
+  // Term CmpOp? BodyAggregate Upper_?
+  public static boolean LuBodyAggregate(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "LuBodyAggregate")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, LU_BODY_AGGREGATE, "<lu body aggregate>");
     r = Term(b, l + 1, -1);
-    r = r && LuBody_Aggregate_1(b, l + 1);
-    r = r && Body_Aggregate(b, l + 1);
-    r = r && LuBody_Aggregate_3(b, l + 1);
+    r = r && LuBodyAggregate_1(b, l + 1);
+    r = r && BodyAggregate(b, l + 1);
+    r = r && LuBodyAggregate_3(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
 
   // CmpOp?
-  private static boolean LuBody_Aggregate_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "LuBody_Aggregate_1")) return false;
+  private static boolean LuBodyAggregate_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "LuBodyAggregate_1")) return false;
     CmpOp(b, l + 1);
     return true;
   }
 
   // Upper_?
-  private static boolean LuBody_Aggregate_3(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "LuBody_Aggregate_3")) return false;
+  private static boolean LuBodyAggregate_3(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "LuBodyAggregate_3")) return false;
     Upper_(b, l + 1);
     return true;
   }

@@ -87,11 +87,11 @@ public class ASPVisitor extends PsiElementVisitor {
     visitStatement(o);
   }
 
-  public void visitBody_(@NotNull ASPBody_ o) {
+  public void visitBodyAggregate(@NotNull ASPBodyAggregate o) {
     visitPsiElement(o);
   }
 
-  public void visitBodyAggregate(@NotNull ASPBodyAggregate o) {
+  public void visitBody_(@NotNull ASPBody_ o) {
     visitPsiElement(o);
   }
 

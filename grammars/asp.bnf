@@ -294,9 +294,9 @@ AltBody_AggrVec ::= AltBody_AggrElem (SEM AltBody_AggrVec)*
 
 // Body_ aggregates
 
-Body_Aggregate ::= AggregateFunction? LBRACE AltBody_AggrVec? RBRACE
+BodyAggregate ::= AggregateFunction? LBRACE AltBody_AggrVec? RBRACE
 Upper_ ::= CmpOp? Term
-LuBody_Aggregate ::= Term CmpOp? Body_Aggregate Upper_? // | theory_atom
+LuBodyAggregate ::= Term CmpOp? BodyAggregate Upper_? // | theory_atom
 
 // Head Aggregate Elements
 
@@ -332,9 +332,9 @@ Disjunction ::=
 // Rules
 Body_ ::= Body_DotElem ((COMMA|SEM) Body_DotElem|SEM Body_DotElem2)*
 Body_DotElem ::=
-      NOT NOT LuBody_Aggregate
-    |     NOT LuBody_Aggregate
-    |         LuBody_Aggregate
+      NOT NOT LuBodyAggregate
+    |     NOT LuBodyAggregate
+    |         LuBodyAggregate
     | Literal
 Body_DotElem2 ::= Disjoint_ | Conjunction
 Body_CondDot ::= COLON? DOT | COLON Body_ DOT
