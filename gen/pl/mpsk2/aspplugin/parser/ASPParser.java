@@ -1733,15 +1733,23 @@ public class ASPParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // OptimizeWeight OptimizeCond
+  // OptimizeWeight OptimizeTuple? OptimizeCond
   public static boolean MaxMinElem(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MaxMinElem")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, MAX_MIN_ELEM, "<max min elem>");
     r = OptimizeWeight(b, l + 1);
+    r = r && MaxMinElem_1(b, l + 1);
     r = r && OptimizeCond(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
+  }
+
+  // OptimizeTuple?
+  private static boolean MaxMinElem_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "MaxMinElem_1")) return false;
+    OptimizeTuple(b, l + 1);
+    return true;
   }
 
   /* ********************************************************** */

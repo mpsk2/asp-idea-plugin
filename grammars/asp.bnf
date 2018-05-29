@@ -350,7 +350,7 @@ OptimizeWeight ::= Term (AT NTermVec)?
 OptimizeLitVec ::= NLitVec
 OptimizeCond ::= COLON OptimizeLitVec?
 MaxMinList ::= MaxMinElem (SEM MaxMinElem)*
-MaxMinElem ::= OptimizeWeight OptimizeCond
+MaxMinElem ::= OptimizeWeight OptimizeTuple? OptimizeCond
 
 Term ::=
       DotsTerm

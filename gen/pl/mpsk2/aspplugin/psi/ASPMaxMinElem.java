@@ -26,6 +26,9 @@ public interface ASPMaxMinElem extends PsiElement {
   @NotNull
   ASPOptimizeCond getOptimizeCond();
 
+  @Nullable
+  ASPOptimizeTuple getOptimizeTuple();
+
   @NotNull
   ASPOptimizeWeight getOptimizeWeight();
 

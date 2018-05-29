@@ -48,6 +48,12 @@ public class ASPMaxMinElemImpl extends ASPCompositeElementImpl implements ASPMax
   }
 
   @Override
+  @Nullable
+  public ASPOptimizeTuple getOptimizeTuple() {
+    return findChildByClass(ASPOptimizeTuple.class);
+  }
+
+  @Override
   @NotNull
   public ASPOptimizeWeight getOptimizeWeight() {
     return findNotNullChildByClass(ASPOptimizeWeight.class);
