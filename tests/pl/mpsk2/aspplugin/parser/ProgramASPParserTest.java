@@ -5,6 +5,7 @@ public class ProgramASPParserTest extends ASPParserTestBase {
         super("program");
     }
 
+    public void testBoard() { doTest(true); }
     public void testCsp() { doTest(true); }
     public void testDisjoint() { doTest(true); }
     public void testDisjunction() { doTest(true); }
