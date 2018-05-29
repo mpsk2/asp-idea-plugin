@@ -1,0 +1,16 @@
+Answer Set Programming file
+  PROGRAM
+    HEAD_STATEMENT
+      HEAD_
+        DISJUNCTION
+          LITERAL
+            ATOM
+              IDENTIFIER
+                PsiElement(id)('jazda')
+          PsiElement(:)(':')
+          N_LIT_VEC
+            LITERAL
+              ATOM
+                IDENTIFIER
+                  PsiElement(id)('jazda')
+      PsiElement(.)('.')

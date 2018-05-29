@@ -1,0 +1,28 @@
+<idea-plugin>
+    <id>pl.mpsk2.aspplugin</id>
+    <name>Plugin display name here</name>
+    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+
+    <description><![CDATA[
+    Enter short description for your plugin here.<br>
+    <em>most HTML tags may be used</em>
+    ]]></description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+
+    <extensions defaultExtensionNs="com.intellij">
+        <fileTypeFactory implementation="pl.mpsk2.aspplugin.ASPFileTypeFactory"/>
+        <lang.commenter language="Answer Set Programming" implementationClass="pl.mpsk2.aspplugin.ASPCommenter"/>
+        <lang.parserDefinition language="Answer Set Programming" implementationClass="pl.mpsk2.aspplugin.parser.ASPParserDefinition"/>
+        <lang.syntaxHighlighterFactory language="Answer Set Programming" implementationClass="pl.mpsk2.aspplugin.highlighting.ASPSyntaxHighlighterFactory"/>
+        <colorSettingsPage implementation="pl.mpsk2.aspplugin.highlighting.ASPColorSettingsPage"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>

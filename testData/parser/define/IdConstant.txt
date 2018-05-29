@@ -1,0 +1,14 @@
+Answer Set Programming file
+  DEFINE
+    IDENTIFIER
+      PsiElement(id)('something')
+    PsiElement(=)('=')
+    ID_CONSTANT_TERM
+      IDENTIFIER
+        PsiElement(id)('other')
+      PsiElement(()('(')
+      CONSTANT_TERM_VEC
+        CONST_CONSTANT_TERM
+          CONSTANT
+            PsiElement(number)('1234')
+      PsiElement())(')')

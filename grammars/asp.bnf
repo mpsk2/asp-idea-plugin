@@ -1,0 +1,395 @@
+{
+    parserClass = 'pl.mpsk2.aspplugin.parser.ASPParser'
+    classHeader = 'copyrightHeader.java'
+
+    extends = 'pl.mpsk2.aspplugin.psi.impl.ASPCompositeElementImpl'
+
+    psiClassPrefix = 'ASP'
+    psiImplClassSuffix = 'Impl'
+    psiPackage = 'pl.mpsk2.aspplugin.psi'
+    psiImplPackage = 'pl.mpsk2.aspplugin.psi.impl'
+    psiImplUtilClass = 'pl.mpsk2.aspplugin.psi.impl.ASPPsiImplUtil'
+    parserUtilClass = 'pl.mpsk2.aspplugin.parser.ASPParserUtil'
+
+    elementTypeHolderClass = 'pl.mpsk2.aspplugin.psi.ASPTypes'
+    elementTypeClass = 'pl.mpsk2.aspplugin.psi.ASPElementType'
+    tokenTypeClass = 'pl.mpsk2.aspplugin.psi.ASPTokenType'
+    psiTreeUtilClass = 'pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil'
+
+    tokens = [
+        ADD       = "+"
+        AND       = "&"
+        EQ        = "="
+        AT        = "@"
+        BASE      = "#base"
+        BNOT      = "~"
+        COLON     = ":"
+        COMMA     = ","
+        CONST     = "#const"
+        COUNT     = "#count"
+        CSP       = "$"
+        CSP_ADD   = "$+"
+        CSP_SUB   = "$-"
+        CSP_MUL   = "$*"
+        CSP_LEQ   = "$<="
+        CSP_LT    = "$<"
+        CSP_GT    = "$>"
+        CSP_GEQ   = "$>="
+        CSP_EQ    = "$="
+        CSP_NEQ   = "$!="
+        CUMULATIVE= "#cumulative"
+        DISJOINT  = "#disjoint"
+        DOT       = "."
+        DOTS      = ".."
+        EXTERNAL  = "#external"
+        FALSE     = "#false"
+        FORGET    = "#forget"
+        GEQ       = ">="
+        GT        = ">"
+        IF        = ":-"
+        INCLUDE   = "#include"
+        INFIMUM   = "#inf"
+        LBRACE    = "{"
+        LBRACK    = "["
+        LEQ       = "<="
+        LPAREN    = "("
+        LT        = "<"
+        MAX       = "#max"
+        MAXIMIZE  = "#maximize"
+        MIN       = "#min"
+        MINIMIZE  = "#minimize"
+        MOD       = "\\"
+        MUL       = "*"
+        NEQ       = "!="
+        POW       = "**"
+        QUESTION  = "?"
+        RBRACE    = "}"
+        RBRACK    = "]"
+        RPAREN    = ")"
+        SEM       = ";"
+        SHOW      = "#show"
+        EDGE      = "#edge"
+        PROJECT_  = "#project" // Nome collision
+        HEURISTIC = "#heuristic"
+        SHOWSIG   = "#showsig"
+        SLASH     = "/"
+        SUB       = "-"
+        SUM       = "#sum"
+        SUMP      = "#sum+"
+        SUPREMUM  = "#sup"
+        TRUE      = "#true"
+        BLOCK     = "#program"
+        VBAR      = "|"
+        VOLATILE  = "#volatile"
+        WIF       = ":~"
+        XOR       = "^"
+        PARSE_LP  = "<program>"
+        PARSE_DEF = "<define>"
+        ANY       = "any"
+        UNARY     = "unary"
+        BINARY    = "binary"
+        LEFT      = "left"
+        RIGHT     = "right"
+        HEAD      = "head"
+        BODY      = "body"
+        DIRECTIVE = "directive"
+        THEORY    = "#theory"
+
+        NOT       = "not"
+
+        space     = 'regexp:\s+'
+        comment   = 'regexp://.*'
+        number    = 'regexp:0|([1-9]\d*)'
+        id        = "regexp:_*[a-z][a-zA-Z0-9_']*"
+        variable  = "regexp:_*[A-Z][a-zA-Z0-9_']*"
+        anonymous = "_"
+        string    = "regexp:('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")"
+    ]
+
+
+    extends("(Xor|Question|And|Add|Mul)ConstantTerm")=BinaryConstantTerm
+    extends(".*ConstantTerm")=ConstantTerm
+
+    extends("(Xor|Question|And|Add|Mul)(?!Constant)Term")=BinaryTerm
+    extends(".*(?!Constant)Term")=Term
+
+    extends(".*Statement")=Statement
+    pin(".*Statement")=1
+
+    generateTokenAccessors=true
+}
+
+// Root
+root ::= RootItem
+private  RootItem ::= Program | Define
+
+Program ::= Statement+
+Define ::= Identifier EQ ConstantTerm
+
+// ConstantTerm
+
+// similar to term
+ConstantTerm ::=
+      XorConstantTerm
+    | QuestionConstantTerm
+    | AndConstantTerm
+    | AddConstantTerm
+    | MulConstantTerm
+    | UnNegConstantTerm
+    | UnNotConstantTerm
+    | ParenConstantTerm
+    | IdConstantTerm
+    | VBarConstantTerm
+    | ConstConstantTerm
+
+fake BinaryConstantTerm ::= ConstantTerm+ {
+    methods=[lhs="ConstantTerm[0]" rhs="ConstantTerm[1]" getOperator]
+}
+
+XorConstantTerm ::= ConstantTerm XorOp ConstantTerm
+QuestionConstantTerm ::= ConstantTerm QuestionOp ConstantTerm
+AndConstantTerm ::= ConstantTerm AndOp ConstantTerm
+AddConstantTerm ::= ConstantTerm AddOp ConstantTerm
+MulConstantTerm ::= ConstantTerm MulOp ConstantTerm
+UnNegConstantTerm ::= SUB ConstantTerm
+UnNotConstantTerm ::= NOT ConstantTerm
+ParenConstantTerm ::= LPAREN ConstantTermVec? COMMA? RPAREN
+IdConstantTerm ::= AT? Identifier LPAREN ConstantTermVec? RPAREN
+VBarConstantTerm ::= VBAR ConstantTerm VBAR
+ConstConstantTerm ::= Identifier | Constant
+
+ConstantTermVec ::= ConstantTerm (COMMA ConstantTerm)*
+
+// Statement
+
+Statement ::=
+    // error disable_theory_lexing DOT
+    HeadStatement
+    | IfStatement
+    | DisjointStatement
+    | WIfStatement
+    | MinimizeStatement
+    | MaximizeStatement
+    | ShowSigStatement
+    | ShowStatement
+    | EdgeStatement
+    | HeuristicStatement
+    | ProjectStatement
+    | LuaCodeStatement
+    | DefineStatement
+    | PythonCodeStatement
+    | IncludeStatement
+    | BlockStatement
+    | ExternalStatement
+    | TheoryStatement
+
+HeadStatement ::=
+    Head_ DOT
+    | Head_ IF Body_? DOT
+
+IfStatement ::= IF Body_? DOT {pin=1}
+
+DisjointStatement ::=
+      Disjoint_ IF Body_? DOT
+    | Disjoint_ DOT
+
+WIfStatement ::= WIF Body_ DOT LBRACK OptimizeWeight OptimizeTuple? RBRACK
+
+MinimizeStatement ::= MINIMIZE LBRACE MaxMinList? RBRACE DOT {pin=1}
+
+MaximizeStatement ::= MAXIMIZE LBRACE MaxMinList? RBRACE DOT {pin=1}
+
+ShowSigStatement ::= SHOWSIG (SUB|CSP)? Identifier SLASH number DOT {pin=1}
+
+ShowStatement ::= SHOW ShowStatementBody
+ShowStatementBody ::= DOT | CSP? Term (COLON Body_)? DOT
+
+EdgeStatement ::= EDGE LPAREN BinaryArgVec RPAREN Body_CondDot
+
+HeuristicStatement ::= HEURISTIC Atom Body_CondDot LBRACK Term (AT Term)? COMMA Term RBRACK
+
+ProjectStatement ::= PROJECT_ ProjectStatementBody
+ProjectStatementBody ::= Atom Body_CondDot | SUB? Identifier SLASH number DOT
+
+DefineStatement ::= CONST Identifier EQ ConstantTerm DOT
+
+PythonCodeStatement ::= "todo python code statement"
+    // PYTHON[code] DOT
+
+LuaCodeStatement ::= "todo lua code statement"
+    // LUA[code]    DOT
+
+IncludeStatement ::= INCLUDE (string|LT Identifier GT) DOT
+
+BlockStatement ::= BLOCK Identifier (LPAREN IdentifierList? RPAREN)? DOT
+
+ExternalStatement ::=
+      EXTERNAL Atom COLON Body_ DOT
+    | EXTERNAL Atom COLON? DOT {pin=1}
+
+TheoryStatement ::= "todo theory statement"
+    // THEORY identifier[name] enable_theory_definition_lexing LBRACE theory_definition_list[defs] RBRACE disable_theory_lexing DOT
+
+// Argument lists for unary operations
+
+// UnaryArgVec ::= Term (SEM Term)*
+
+// Argument lists for functions
+
+TermVec ::= NTermVec |
+NTermVec ::= Term (COMMA Term)*
+// Tuple ::= NTermVec? COMMA?
+// TupleVec ::= Tuple (SEM Tuple)*
+// TupleVecSem ::= TupleVec SEM
+ArgVec ::= TermVec (SEM TermVec)*
+BinaryArgVec ::= BinaryArgVecElem (SEM BinaryArgVecElem)*
+BinaryArgVecElem ::= Term COMMA Term
+
+// Literals
+
+private CmpOp ::= EQ | NEQ | GT | GEQ | LT | LEQ
+Atom ::= SUB? Identifier !CspAnyOp (LPAREN ArgVec RPAREN)?
+Literal ::=
+      NOT NOT TRUE
+    |     NOT TRUE
+    |         TRUE
+    | NOT NOT FALSE
+    |     NOT FALSE
+    |         FALSE
+    | NOT NOT Term CmpOp Term
+    |     NOT Term CmpOp Term
+    |         Term CmpOp Term
+    | NOT NOT Atom
+    |     NOT Atom
+    |         Atom
+    | CspLiteral
+
+
+MulTermCsp ::=
+      CSP Term CSP_MUL Term
+    | Term CSP_MUL CSP Term
+    | CSP? Term
+AddTermCsp ::= MulTermCsp ((CSP_ADD|CSP_SUB) MulTermCsp)*
+private CspRelOp ::= CSP_GT | CSP_LT | CSP_GEQ | CSP_LEQ | CSP_EQ | CSP_NEQ
+private CspAnyOp ::= CspRelOp | CSP | CSP_ADD | CSP_MUL | CSP_SUB
+CspLiteral ::= AddTermCsp (CspRelOp CspLiteral)*
+
+// Aggregates
+// Auxiliary Rules
+
+NLitVec ::= Literal (COMMA Literal)*
+NOptCondition ::= (COLON NLitVec)?
+OptCondition ::= (COLON NLitVec?)?
+AggregateFunction ::= SUM | SUMP | MIN | MAX | COUNT
+
+// Body_ aggregate elements
+
+// Body_AggrElem ::=
+//       COLON NLitVec?
+//     | NTermVec OptCondition
+// Body_AggrVec ::= Body_AggrElem (SEM Body_AggrElem)*
+
+AltBody_AggrElem ::= Literal OptCondition
+AltBody_AggrVec ::= AltBody_AggrElem (SEM AltBody_AggrVec)*
+
+// Body_ aggregates
+
+Body_Aggregate ::= AggregateFunction? LBRACE AltBody_AggrVec? RBRACE
+Upper_ ::= CmpOp? Term
+LuBody_Aggregate ::= Term CmpOp? Body_Aggregate Upper_? // | theory_atom
+
+// Head Aggregate Elements
+
+HeadAggrElem ::= TermVec COLON AltHeadAggrElem
+HeadAggrVec ::= HeadAggrElem (SEM HeadAggrElem)*
+AltHeadAggrElem ::= Literal OptCondition
+// AltHeadAggrVec ::= AltHeadAggrElem (SEM AltHeadAggrElem)*
+
+// Head Aggregate
+HeadAggregate ::= AggregateFunction? LBRACE HeadAggrVec? RBRACE
+LuHeadAggregate ::= (Term CmpOp?)? HeadAggregate Upper_? // | theory_atom
+
+// Disjoint Aggregate
+NCspElem ::= TermVec COLON AddTermCsp OptCondition
+NCspVec ::= NCspElem (SEM NCspElem)*
+Disjoint_ ::=
+      NOT NOT DISJOINT LBRACE NCspVec? RBRACE
+    |     NOT DISJOINT LBRACE NCspVec? RBRACE
+    |         DISJOINT LBRACE NCspVec? RBRACE
+
+// Conjunctions
+Conjunction ::= Literal COLON NLitVec
+
+// Disjunctions
+private DSymOp ::= SEM | VBAR
+DisjunctionSep ::= Literal COMMA | LNOptCondition DSymOp
+LNOptCondition ::= Literal NOptCondition
+Disjunction ::=
+      Literal (COMMA|DSymOp) DisjunctionSep* LNOptCondition
+    | Literal COLON NLitVec (DSymOp DisjunctionSep* LNOptCondition)?
+
+// Statements
+// Rules
+Body_ ::= Body_DotElem ((COMMA|SEM) Body_DotElem|SEM Body_DotElem2)*
+Body_DotElem ::=
+      NOT NOT LuBody_Aggregate
+    |     NOT LuBody_Aggregate
+    |         LuBody_Aggregate
+    | Literal
+Body_DotElem2 ::= Disjoint_ | Conjunction
+Body_CondDot ::= COLON? DOT | COLON Body_ DOT
+Head_ ::=
+      Disjunction
+    | LuHeadAggregate
+    | Literal
+
+// Optimization
+
+OptimizeTuple ::= COMMA NTermVec
+OptimizeWeight ::= Term (AT NTermVec)?
+OptimizeLitVec ::= NLitVec
+OptimizeCond ::= COLON OptimizeLitVec?
+MaxMinList ::= MaxMinElem (SEM MaxMinElem)*
+MaxMinElem ::= OptimizeWeight OptimizeCond
+
+Term ::=
+      DotsTerm
+    | XorTerm
+    | QuestionTerm
+    | AndTerm
+    | AddTerm
+    | MulTerm
+    | UnNegTerm
+    | UnNotTerm
+    | ParenTerm
+    | IdTerm
+    | VBarTerm
+    | ConstTerm
+
+fake BinaryTerm ::= Term+ {
+    methods=[lhs="Term[0]" rhs="Term[1]" getOperator]
+}
+
+DotsTerm ::= Term DotsOp Term
+XorTerm ::= Term XorOp Term
+QuestionTerm ::= Term QuestionOp Term
+AndTerm ::= Term AndOp Term
+AddTerm ::= Term AddOp Term
+MulTerm ::= Term MulOp Term
+UnNegTerm ::= SUB Term
+UnNotTerm ::= NOT Term
+ParenTerm ::= LPAREN TermVec? COMMA? RPAREN
+IdTerm ::= AT? Identifier LPAREN ArgVec RPAREN
+VBarTerm ::= VBAR Term VBAR
+ConstTerm ::= Identifier | Constant | variable | anonymous
+
+private DotsOp ::= DOTS
+private XorOp ::= XOR
+private QuestionOp ::= QUESTION
+private AndOp ::= AND
+private AddOp ::= ADD | SUB
+private MulOp ::= MUL | MOD // DIV? TODO
+
+Identifier ::= id
+IdentifierList ::= Identifier (COMMA Identifier)*
+Constant ::= INFIMUM | SUPREMUM | string | number | Identifier

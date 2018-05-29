@@ -1,0 +1,6 @@
+Answer Set Programming file
+  PROGRAM
+    SHOW_STATEMENT
+      PsiElement(#show)('#show')
+      SHOW_STATEMENT_BODY
+        PsiElement(.)('.')

@@ -1,0 +1,24 @@
+Answer Set Programming file
+  PROGRAM
+    INCLUDE_STATEMENT
+      PsiElement(#include)('#include')
+      PsiElement(string)('"file1"')
+      PsiElement(.)('.')
+    INCLUDE_STATEMENT
+      PsiElement(#include)('#include')
+      PsiElement(<)('<')
+      IDENTIFIER
+        PsiElement(id)('a')
+      PsiElement(>)('>')
+      PsiElement(.)('.')
+    INCLUDE_STATEMENT
+      PsiElement(#include)('#include')
+      PsiElement(string)('"fiel2"')
+      PsiElement(.)('.')
+    INCLUDE_STATEMENT
+      PsiElement(#include)('#include')
+      PsiElement(<)('<')
+      IDENTIFIER
+        PsiElement(id)('b')
+      PsiElement(>)('>')
+      PsiElement(.)('.')

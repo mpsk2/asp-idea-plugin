@@ -1,0 +1,15 @@
+Answer Set Programming file
+  PROGRAM
+    EXTERNAL_STATEMENT
+      PsiElement(#external)('#external')
+      ATOM
+        IDENTIFIER
+          PsiElement(id)('abecadlo')
+      PsiElement(.)('.')
+    EXTERNAL_STATEMENT
+      PsiElement(#external)('#external')
+      ATOM
+        PsiElement(-)('-')
+        IDENTIFIER
+          PsiElement(id)('abecadlo')
+      PsiElement(.)('.')

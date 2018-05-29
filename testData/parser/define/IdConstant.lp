@@ -1,0 +1,1 @@
+something = other(1234)

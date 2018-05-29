@@ -1,0 +1,8 @@
+Answer Set Programming file
+  PROGRAM
+    IF_STATEMENT
+      PsiElement(:-)(':-')
+      PsiElement(.)('.')
+    IF_STATEMENT
+      PsiElement(:-)(':-')
+      PsiElement(.)('.')
