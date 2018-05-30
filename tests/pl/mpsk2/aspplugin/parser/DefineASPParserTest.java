@@ -5,6 +5,7 @@ public class DefineASPParserTest extends ASPParserTestBase {
         super("define");
     }
 
+    public void testBig() { doTest(true); }
     public void testIdConstant() { doTest(true); }
     public void testT1() { doTest(true); }
 }
