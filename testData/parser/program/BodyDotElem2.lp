@@ -1,0 +1,1 @@
+:- x; not not #true : not not #false, not not a < b.

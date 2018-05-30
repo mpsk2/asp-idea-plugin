@@ -95,10 +95,6 @@ public class ASPVisitor extends PsiElementVisitor {
         visitPsiElement(o);
     }
 
-    public void visitBody_(@NotNull ASPBody_ o) {
-        visitPsiElement(o);
-    }
-
     public void visitBodyCondDot(@NotNull ASPBodyCondDot o) {
         visitPsiElement(o);
     }
@@ -108,6 +104,10 @@ public class ASPVisitor extends PsiElementVisitor {
     }
 
     public void visitBodyDotElem2(@NotNull ASPBodyDotElem2 o) {
+        visitPsiElement(o);
+    }
+
+    public void visitBody_(@NotNull ASPBody_ o) {
         visitPsiElement(o);
     }
 

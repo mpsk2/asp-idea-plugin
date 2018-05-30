@@ -204,12 +204,12 @@ ShowSigStatement ::= SHOWSIG (SUB|CSP)? Identifier SLASH number DOT {pin=1}
 ShowStatement ::= SHOW ShowStatementBody
 ShowStatementBody ::= DOT | CSP? Term (COLON Body_)? DOT
 
-EdgeStatement ::= EDGE LPAREN BinaryArgVec RPAREN Body_CondDot
+EdgeStatement ::= EDGE LPAREN BinaryArgVec RPAREN BodyCondDot
 
-HeuristicStatement ::= HEURISTIC Atom Body_CondDot LBRACK Term (AT Term)? COMMA Term RBRACK
+HeuristicStatement ::= HEURISTIC Atom BodyCondDot LBRACK Term (AT Term)? COMMA Term RBRACK
 
 ProjectStatement ::= PROJECT_ ProjectStatementBody
-ProjectStatementBody ::= Atom Body_CondDot | SUB? Identifier SLASH number DOT
+ProjectStatementBody ::= Atom BodyCondDot | SUB? Identifier SLASH number DOT
 
 DefineStatement ::= CONST Identifier EQ ConstantTerm DOT
 
@@ -318,7 +318,7 @@ Disjoint_ ::=
     |         DISJOINT LBRACE NCspVec? RBRACE
 
 // Conjunctions
-Conjunction ::= Literal COLON NLitVec
+Conjunction ::= Literal COLON NLitVec {pin=2}
 
 // Disjunctions
 private DSymOp ::= SEM | VBAR
@@ -330,14 +330,14 @@ Disjunction ::=
 
 // Statements
 // Rules
-Body_ ::= Body_DotElem ((COMMA|SEM) Body_DotElem|SEM Body_DotElem2)*
-Body_DotElem ::=
+Body_ ::= (BodyDotElem2|BodyDotElem) (SEM BodyDotElem2|(COMMA|SEM) BodyDotElem)*
+BodyDotElem ::=
       NOT NOT LuBodyAggregate
     |     NOT LuBodyAggregate
     |         LuBodyAggregate
     | Literal
-Body_DotElem2 ::= Disjoint_ | Conjunction
-Body_CondDot ::= COLON? DOT | COLON Body_ DOT
+BodyDotElem2 ::= Disjoint_ | Conjunction
+BodyCondDot ::= COLON? DOT | COLON Body_ DOT
 Head_ ::=
       LuHeadAggregate
     | Disjunction

@@ -27,7 +27,7 @@ public interface ASPConjunction extends PsiElement {
     @NotNull
     ASPLiteral getLiteral();
 
-    @NotNull
+    @Nullable
     ASPNLitVec getNLitVec();
 
     @NotNull

@@ -51,9 +51,9 @@ public class ASPConjunctionImpl extends ASPCompositeElementImpl implements ASPCo
     }
 
     @Override
-    @NotNull
+    @Nullable
     public ASPNLitVec getNLitVec() {
-        return findNotNullChildByClass(ASPNLitVec.class);
+        return findChildByClass(ASPNLitVec.class);
     }
 
     @Override

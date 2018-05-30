@@ -32,6 +32,169 @@ import com.intellij.lang.LightPsiParser;
 @SuppressWarnings({"SimplifiableIfStatement", "UnusedAssignment"})
 public class ASPParser implements PsiParser, LightPsiParser {
 
+    public ASTNode parse(IElementType t, PsiBuilder b) {
+        parseLight(t, b);
+        return b.getTreeBuilt();
+    }
+
+    public void parseLight(IElementType t, PsiBuilder b) {
+        boolean r;
+        b = adapt_builder_(t, b, this, EXTENDS_SETS_);
+        Marker m = enter_section_(b, 0, _COLLAPSE_, null);
+        if (t == ADD_TERM_CSP) {
+            r = AddTermCsp(b, 0);
+        } else if (t == AGGREGATE_FUNCTION) {
+            r = AggregateFunction(b, 0);
+        } else if (t == ALT_BODY_AGGR_ELEM) {
+            r = AltBody_AggrElem(b, 0);
+        } else if (t == ALT_BODY_AGGR_VEC) {
+            r = AltBody_AggrVec(b, 0);
+        } else if (t == ALT_HEAD_AGGR_ELEM) {
+            r = AltHeadAggrElem(b, 0);
+        } else if (t == ALT_HEAD_AGGR_VEC) {
+            r = AltHeadAggrVec(b, 0);
+        } else if (t == ARG_VEC) {
+            r = ArgVec(b, 0);
+        } else if (t == ATOM) {
+            r = Atom(b, 0);
+        } else if (t == BINARY_ARG_VEC) {
+            r = BinaryArgVec(b, 0);
+        } else if (t == BINARY_ARG_VEC_ELEM) {
+            r = BinaryArgVecElem(b, 0);
+        } else if (t == BLOCK_STATEMENT) {
+            r = BlockStatement(b, 0);
+        } else if (t == BODY_AGGREGATE) {
+            r = BodyAggregate(b, 0);
+        } else if (t == BODY_COND_DOT) {
+            r = BodyCondDot(b, 0);
+        } else if (t == BODY_DOT_ELEM) {
+            r = BodyDotElem(b, 0);
+        } else if (t == BODY_DOT_ELEM_2) {
+            r = BodyDotElem2(b, 0);
+        } else if (t == BODY_) {
+            r = Body_(b, 0);
+        } else if (t == CONJUNCTION) {
+            r = Conjunction(b, 0);
+        } else if (t == CONSTANT) {
+            r = Constant(b, 0);
+        } else if (t == CONSTANT_TERM) {
+            r = ConstantTerm(b, 0, -1);
+        } else if (t == CONSTANT_TERM_VEC) {
+            r = ConstantTermVec(b, 0);
+        } else if (t == CSP_LITERAL) {
+            r = CspLiteral(b, 0);
+        } else if (t == DEFINE) {
+            r = Define(b, 0);
+        } else if (t == DEFINE_STATEMENT) {
+            r = DefineStatement(b, 0);
+        } else if (t == DISJOINT_STATEMENT) {
+            r = DisjointStatement(b, 0);
+        } else if (t == DISJOINT_) {
+            r = Disjoint_(b, 0);
+        } else if (t == DISJUNCTION) {
+            r = Disjunction(b, 0);
+        } else if (t == DISJUNCTION_SEP) {
+            r = DisjunctionSep(b, 0);
+        } else if (t == EDGE_STATEMENT) {
+            r = EdgeStatement(b, 0);
+        } else if (t == EXTERNAL_STATEMENT) {
+            r = ExternalStatement(b, 0);
+        } else if (t == HEAD_AGGR_ELEM) {
+            r = HeadAggrElem(b, 0);
+        } else if (t == HEAD_AGGR_VEC) {
+            r = HeadAggrVec(b, 0);
+        } else if (t == HEAD_AGGREGATE) {
+            r = HeadAggregate(b, 0);
+        } else if (t == HEAD_STATEMENT) {
+            r = HeadStatement(b, 0);
+        } else if (t == HEAD_) {
+            r = Head_(b, 0);
+        } else if (t == HEURISTIC_STATEMENT) {
+            r = HeuristicStatement(b, 0);
+        } else if (t == IDENTIFIER) {
+            r = Identifier(b, 0);
+        } else if (t == IDENTIFIER_LIST) {
+            r = IdentifierList(b, 0);
+        } else if (t == IF_STATEMENT) {
+            r = IfStatement(b, 0);
+        } else if (t == INCLUDE_STATEMENT) {
+            r = IncludeStatement(b, 0);
+        } else if (t == LN_OPT_CONDITION) {
+            r = LNOptCondition(b, 0);
+        } else if (t == LITERAL) {
+            r = Literal(b, 0);
+        } else if (t == LU_BODY_AGGREGATE) {
+            r = LuBodyAggregate(b, 0);
+        } else if (t == LU_HEAD_AGGREGATE) {
+            r = LuHeadAggregate(b, 0);
+        } else if (t == LUA_CODE_STATEMENT) {
+            r = LuaCodeStatement(b, 0);
+        } else if (t == MAX_MIN_ELEM) {
+            r = MaxMinElem(b, 0);
+        } else if (t == MAX_MIN_LIST) {
+            r = MaxMinList(b, 0);
+        } else if (t == MAXIMIZE_STATEMENT) {
+            r = MaximizeStatement(b, 0);
+        } else if (t == MINIMIZE_STATEMENT) {
+            r = MinimizeStatement(b, 0);
+        } else if (t == MUL_TERM_CSP) {
+            r = MulTermCsp(b, 0);
+        } else if (t == N_CSP_ELEM) {
+            r = NCspElem(b, 0);
+        } else if (t == N_CSP_VEC) {
+            r = NCspVec(b, 0);
+        } else if (t == N_LIT_VEC) {
+            r = NLitVec(b, 0);
+        } else if (t == N_OPT_CONDITION) {
+            r = NOptCondition(b, 0);
+        } else if (t == N_TERM_VEC) {
+            r = NTermVec(b, 0);
+        } else if (t == OPT_CONDITION) {
+            r = OptCondition(b, 0);
+        } else if (t == OPTIMIZE_COND) {
+            r = OptimizeCond(b, 0);
+        } else if (t == OPTIMIZE_LIT_VEC) {
+            r = OptimizeLitVec(b, 0);
+        } else if (t == OPTIMIZE_TUPLE) {
+            r = OptimizeTuple(b, 0);
+        } else if (t == OPTIMIZE_WEIGHT) {
+            r = OptimizeWeight(b, 0);
+        } else if (t == PROGRAM) {
+            r = Program(b, 0);
+        } else if (t == PROJECT_STATEMENT) {
+            r = ProjectStatement(b, 0);
+        } else if (t == PROJECT_STATEMENT_BODY) {
+            r = ProjectStatementBody(b, 0);
+        } else if (t == PYTHON_CODE_STATEMENT) {
+            r = PythonCodeStatement(b, 0);
+        } else if (t == SHOW_SIG_STATEMENT) {
+            r = ShowSigStatement(b, 0);
+        } else if (t == SHOW_STATEMENT) {
+            r = ShowStatement(b, 0);
+        } else if (t == SHOW_STATEMENT_BODY) {
+            r = ShowStatementBody(b, 0);
+        } else if (t == STATEMENT) {
+            r = Statement(b, 0);
+        } else if (t == TERM) {
+            r = Term(b, 0, -1);
+        } else if (t == TERM_VEC) {
+            r = TermVec(b, 0);
+        } else if (t == THEORY_STATEMENT) {
+            r = TheoryStatement(b, 0);
+        } else if (t == UPPER_) {
+            r = Upper_(b, 0);
+        } else if (t == W_IF_STATEMENT) {
+            r = WIfStatement(b, 0);
+        } else {
+            r = parse_root_(t, b, 0);
+        }
+        exit_section_(b, 0, m, t, r, true, TRUE_CONDITION);
+    }
+
+    protected boolean parse_root_(IElementType t, PsiBuilder b, int l) {
+        return root(b, l + 1);
+    }
+
     public static final TokenSet[] EXTENDS_SETS_ = new TokenSet[]{
             create_token_set_(ADD_CONSTANT_TERM, AND_CONSTANT_TERM, CONSTANT_TERM, CONST_CONSTANT_TERM,
                     ID_CONSTANT_TERM, MUL_CONSTANT_TERM, PAREN_CONSTANT_TERM, QUESTION_CONSTANT_TERM,
@@ -417,104 +580,39 @@ public class ASPParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // Body_DotElem ((COMMA|SEM) Body_DotElem|SEM Body_DotElem2)*
-    public static boolean Body_(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "Body_")) return false;
-        boolean r;
-        Marker m = enter_section_(b, l, _NONE_, BODY_, "<body>");
-        r = Body_DotElem(b, l + 1);
-        r = r && Body__1(b, l + 1);
-        exit_section_(b, l, m, r, false, null);
-        return r;
-    }
-
-    // ((COMMA|SEM) Body_DotElem|SEM Body_DotElem2)*
-    private static boolean Body__1(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "Body__1")) return false;
-        while (true) {
-            int c = current_position_(b);
-            if (!Body__1_0(b, l + 1)) break;
-            if (!empty_element_parsed_guard_(b, "Body__1", c)) break;
-        }
-        return true;
-    }
-
-    // (COMMA|SEM) Body_DotElem|SEM Body_DotElem2
-    private static boolean Body__1_0(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "Body__1_0")) return false;
-        boolean r;
-        Marker m = enter_section_(b);
-        r = Body__1_0_0(b, l + 1);
-        if (!r) r = Body__1_0_1(b, l + 1);
-        exit_section_(b, m, null, r);
-        return r;
-    }
-
-    // (COMMA|SEM) Body_DotElem
-    private static boolean Body__1_0_0(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "Body__1_0_0")) return false;
-        boolean r;
-        Marker m = enter_section_(b);
-        r = Body__1_0_0_0(b, l + 1);
-        r = r && Body_DotElem(b, l + 1);
-        exit_section_(b, m, null, r);
-        return r;
-    }
-
-    // COMMA|SEM
-    private static boolean Body__1_0_0_0(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "Body__1_0_0_0")) return false;
-        boolean r;
-        r = consumeToken(b, COMMA);
-        if (!r) r = consumeToken(b, SEM);
-        return r;
-    }
-
-    // SEM Body_DotElem2
-    private static boolean Body__1_0_1(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "Body__1_0_1")) return false;
-        boolean r;
-        Marker m = enter_section_(b);
-        r = consumeToken(b, SEM);
-        r = r && Body_DotElem2(b, l + 1);
-        exit_section_(b, m, null, r);
-        return r;
-    }
-
-    /* ********************************************************** */
     // COLON? DOT | COLON Body_ DOT
-    public static boolean Body_CondDot(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "Body_CondDot")) return false;
+    public static boolean BodyCondDot(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "BodyCondDot")) return false;
         if (!nextTokenIs(b, "<body cond dot>", COLON, DOT)) return false;
         boolean r;
         Marker m = enter_section_(b, l, _NONE_, BODY_COND_DOT, "<body cond dot>");
-        r = Body_CondDot_0(b, l + 1);
-        if (!r) r = Body_CondDot_1(b, l + 1);
+        r = BodyCondDot_0(b, l + 1);
+        if (!r) r = BodyCondDot_1(b, l + 1);
         exit_section_(b, l, m, r, false, null);
         return r;
     }
 
     // COLON? DOT
-    private static boolean Body_CondDot_0(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "Body_CondDot_0")) return false;
+    private static boolean BodyCondDot_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "BodyCondDot_0")) return false;
         boolean r;
         Marker m = enter_section_(b);
-        r = Body_CondDot_0_0(b, l + 1);
+        r = BodyCondDot_0_0(b, l + 1);
         r = r && consumeToken(b, DOT);
         exit_section_(b, m, null, r);
         return r;
     }
 
     // COLON?
-    private static boolean Body_CondDot_0_0(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "Body_CondDot_0_0")) return false;
+    private static boolean BodyCondDot_0_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "BodyCondDot_0_0")) return false;
         consumeToken(b, COLON);
         return true;
     }
 
     // COLON Body_ DOT
-    private static boolean Body_CondDot_1(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "Body_CondDot_1")) return false;
+    private static boolean BodyCondDot_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "BodyCondDot_1")) return false;
         boolean r;
         Marker m = enter_section_(b);
         r = consumeToken(b, COLON);
@@ -529,12 +627,12 @@ public class ASPParser implements PsiParser, LightPsiParser {
     //     |     NOT LuBodyAggregate
     //     |         LuBodyAggregate
     //     | Literal
-    public static boolean Body_DotElem(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "Body_DotElem")) return false;
+    public static boolean BodyDotElem(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "BodyDotElem")) return false;
         boolean r;
         Marker m = enter_section_(b, l, _NONE_, BODY_DOT_ELEM, "<body dot elem>");
-        r = Body_DotElem_0(b, l + 1);
-        if (!r) r = Body_DotElem_1(b, l + 1);
+        r = BodyDotElem_0(b, l + 1);
+        if (!r) r = BodyDotElem_1(b, l + 1);
         if (!r) r = LuBodyAggregate(b, l + 1);
         if (!r) r = Literal(b, l + 1);
         exit_section_(b, l, m, r, false, null);
@@ -542,8 +640,8 @@ public class ASPParser implements PsiParser, LightPsiParser {
     }
 
     // NOT NOT LuBodyAggregate
-    private static boolean Body_DotElem_0(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "Body_DotElem_0")) return false;
+    private static boolean BodyDotElem_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "BodyDotElem_0")) return false;
         boolean r;
         Marker m = enter_section_(b);
         r = consumeTokens(b, 0, NOT, NOT);
@@ -553,8 +651,8 @@ public class ASPParser implements PsiParser, LightPsiParser {
     }
 
     // NOT LuBodyAggregate
-    private static boolean Body_DotElem_1(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "Body_DotElem_1")) return false;
+    private static boolean BodyDotElem_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "BodyDotElem_1")) return false;
         boolean r;
         Marker m = enter_section_(b);
         r = consumeToken(b, NOT);
@@ -565,13 +663,87 @@ public class ASPParser implements PsiParser, LightPsiParser {
 
     /* ********************************************************** */
     // Disjoint_ | Conjunction
-    public static boolean Body_DotElem2(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "Body_DotElem2")) return false;
+    public static boolean BodyDotElem2(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "BodyDotElem2")) return false;
         boolean r;
         Marker m = enter_section_(b, l, _NONE_, BODY_DOT_ELEM_2, "<body dot elem 2>");
         r = Disjoint_(b, l + 1);
         if (!r) r = Conjunction(b, l + 1);
         exit_section_(b, l, m, r, false, null);
+        return r;
+    }
+
+    /* ********************************************************** */
+    // (BodyDotElem2|BodyDotElem) (SEM BodyDotElem2|(COMMA|SEM) BodyDotElem)*
+    public static boolean Body_(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "Body_")) return false;
+        boolean r;
+        Marker m = enter_section_(b, l, _NONE_, BODY_, "<body>");
+        r = Body__0(b, l + 1);
+        r = r && Body__1(b, l + 1);
+        exit_section_(b, l, m, r, false, null);
+        return r;
+    }
+
+    // BodyDotElem2|BodyDotElem
+    private static boolean Body__0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "Body__0")) return false;
+        boolean r;
+        r = BodyDotElem2(b, l + 1);
+        if (!r) r = BodyDotElem(b, l + 1);
+        return r;
+    }
+
+    // (SEM BodyDotElem2|(COMMA|SEM) BodyDotElem)*
+    private static boolean Body__1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "Body__1")) return false;
+        while (true) {
+            int c = current_position_(b);
+            if (!Body__1_0(b, l + 1)) break;
+            if (!empty_element_parsed_guard_(b, "Body__1", c)) break;
+        }
+        return true;
+    }
+
+    // SEM BodyDotElem2|(COMMA|SEM) BodyDotElem
+    private static boolean Body__1_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "Body__1_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = Body__1_0_0(b, l + 1);
+        if (!r) r = Body__1_0_1(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // SEM BodyDotElem2
+    private static boolean Body__1_0_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "Body__1_0_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, SEM);
+        r = r && BodyDotElem2(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // (COMMA|SEM) BodyDotElem
+    private static boolean Body__1_0_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "Body__1_0_1")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = Body__1_0_1_0(b, l + 1);
+        r = r && BodyDotElem(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // COMMA|SEM
+    private static boolean Body__1_0_1_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "Body__1_0_1_0")) return false;
+        boolean r;
+        r = consumeToken(b, COMMA);
+        if (!r) r = consumeToken(b, SEM);
         return r;
     }
 
@@ -593,13 +765,14 @@ public class ASPParser implements PsiParser, LightPsiParser {
     // Literal COLON NLitVec
     public static boolean Conjunction(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "Conjunction")) return false;
-        boolean r;
+        boolean r, p;
         Marker m = enter_section_(b, l, _NONE_, CONJUNCTION, "<conjunction>");
         r = Literal(b, l + 1);
         r = r && consumeToken(b, COLON);
+        p = r; // pin = 2
         r = r && NLitVec(b, l + 1);
-        exit_section_(b, l, m, r, false, null);
-        return r;
+        exit_section_(b, l, m, r, p, null);
+        return r || p;
     }
 
     /* ********************************************************** */
@@ -1002,7 +1175,7 @@ public class ASPParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // EDGE LPAREN BinaryArgVec RPAREN Body_CondDot
+    // EDGE LPAREN BinaryArgVec RPAREN BodyCondDot
     public static boolean EdgeStatement(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "EdgeStatement")) return false;
         if (!nextTokenIs(b, EDGE)) return false;
@@ -1012,7 +1185,7 @@ public class ASPParser implements PsiParser, LightPsiParser {
         p = r; // pin = 1
         r = r && report_error_(b, BinaryArgVec(b, l + 1));
         r = p && report_error_(b, consumeToken(b, RPAREN)) && r;
-        r = p && Body_CondDot(b, l + 1) && r;
+        r = p && BodyCondDot(b, l + 1) && r;
         exit_section_(b, l, m, r, p, null);
         return r || p;
     }
@@ -1223,7 +1396,7 @@ public class ASPParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // HEURISTIC Atom Body_CondDot LBRACK Term (AT Term)? COMMA Term RBRACK
+    // HEURISTIC Atom BodyCondDot LBRACK Term (AT Term)? COMMA Term RBRACK
     public static boolean HeuristicStatement(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "HeuristicStatement")) return false;
         if (!nextTokenIs(b, HEURISTIC)) return false;
@@ -1232,7 +1405,7 @@ public class ASPParser implements PsiParser, LightPsiParser {
         r = consumeToken(b, HEURISTIC);
         p = r; // pin = 1
         r = r && report_error_(b, Atom(b, l + 1));
-        r = p && report_error_(b, Body_CondDot(b, l + 1)) && r;
+        r = p && report_error_(b, BodyCondDot(b, l + 1)) && r;
         r = p && report_error_(b, consumeToken(b, LBRACK)) && r;
         r = p && report_error_(b, Term(b, l + 1, -1)) && r;
         r = p && report_error_(b, HeuristicStatement_5(b, l + 1)) && r;
@@ -1997,7 +2170,7 @@ public class ASPParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // Atom Body_CondDot | SUB? Identifier SLASH number DOT
+    // Atom BodyCondDot | SUB? Identifier SLASH number DOT
     public static boolean ProjectStatementBody(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "ProjectStatementBody")) return false;
         if (!nextTokenIs(b, "<project statement body>", SUB, ID)) return false;
@@ -2009,13 +2182,13 @@ public class ASPParser implements PsiParser, LightPsiParser {
         return r;
     }
 
-    // Atom Body_CondDot
+    // Atom BodyCondDot
     private static boolean ProjectStatementBody_0(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "ProjectStatementBody_0")) return false;
         boolean r;
         Marker m = enter_section_(b);
         r = Atom(b, l + 1);
-        r = r && Body_CondDot(b, l + 1);
+        r = r && BodyCondDot(b, l + 1);
         exit_section_(b, m, null, r);
         return r;
     }
@@ -2611,169 +2784,6 @@ public class ASPParser implements PsiParser, LightPsiParser {
         if (!r) r = consumeTokenSmart(b, ANONYMOUS);
         exit_section_(b, l, m, r, false, null);
         return r;
-    }
-
-    public ASTNode parse(IElementType t, PsiBuilder b) {
-        parseLight(t, b);
-        return b.getTreeBuilt();
-    }
-
-    public void parseLight(IElementType t, PsiBuilder b) {
-        boolean r;
-        b = adapt_builder_(t, b, this, EXTENDS_SETS_);
-        Marker m = enter_section_(b, 0, _COLLAPSE_, null);
-        if (t == ADD_TERM_CSP) {
-            r = AddTermCsp(b, 0);
-        } else if (t == AGGREGATE_FUNCTION) {
-            r = AggregateFunction(b, 0);
-        } else if (t == ALT_BODY_AGGR_ELEM) {
-            r = AltBody_AggrElem(b, 0);
-        } else if (t == ALT_BODY_AGGR_VEC) {
-            r = AltBody_AggrVec(b, 0);
-        } else if (t == ALT_HEAD_AGGR_ELEM) {
-            r = AltHeadAggrElem(b, 0);
-        } else if (t == ALT_HEAD_AGGR_VEC) {
-            r = AltHeadAggrVec(b, 0);
-        } else if (t == ARG_VEC) {
-            r = ArgVec(b, 0);
-        } else if (t == ATOM) {
-            r = Atom(b, 0);
-        } else if (t == BINARY_ARG_VEC) {
-            r = BinaryArgVec(b, 0);
-        } else if (t == BINARY_ARG_VEC_ELEM) {
-            r = BinaryArgVecElem(b, 0);
-        } else if (t == BLOCK_STATEMENT) {
-            r = BlockStatement(b, 0);
-        } else if (t == BODY_AGGREGATE) {
-            r = BodyAggregate(b, 0);
-        } else if (t == BODY_) {
-            r = Body_(b, 0);
-        } else if (t == BODY_COND_DOT) {
-            r = Body_CondDot(b, 0);
-        } else if (t == BODY_DOT_ELEM) {
-            r = Body_DotElem(b, 0);
-        } else if (t == BODY_DOT_ELEM_2) {
-            r = Body_DotElem2(b, 0);
-        } else if (t == CONJUNCTION) {
-            r = Conjunction(b, 0);
-        } else if (t == CONSTANT) {
-            r = Constant(b, 0);
-        } else if (t == CONSTANT_TERM) {
-            r = ConstantTerm(b, 0, -1);
-        } else if (t == CONSTANT_TERM_VEC) {
-            r = ConstantTermVec(b, 0);
-        } else if (t == CSP_LITERAL) {
-            r = CspLiteral(b, 0);
-        } else if (t == DEFINE) {
-            r = Define(b, 0);
-        } else if (t == DEFINE_STATEMENT) {
-            r = DefineStatement(b, 0);
-        } else if (t == DISJOINT_STATEMENT) {
-            r = DisjointStatement(b, 0);
-        } else if (t == DISJOINT_) {
-            r = Disjoint_(b, 0);
-        } else if (t == DISJUNCTION) {
-            r = Disjunction(b, 0);
-        } else if (t == DISJUNCTION_SEP) {
-            r = DisjunctionSep(b, 0);
-        } else if (t == EDGE_STATEMENT) {
-            r = EdgeStatement(b, 0);
-        } else if (t == EXTERNAL_STATEMENT) {
-            r = ExternalStatement(b, 0);
-        } else if (t == HEAD_AGGR_ELEM) {
-            r = HeadAggrElem(b, 0);
-        } else if (t == HEAD_AGGR_VEC) {
-            r = HeadAggrVec(b, 0);
-        } else if (t == HEAD_AGGREGATE) {
-            r = HeadAggregate(b, 0);
-        } else if (t == HEAD_STATEMENT) {
-            r = HeadStatement(b, 0);
-        } else if (t == HEAD_) {
-            r = Head_(b, 0);
-        } else if (t == HEURISTIC_STATEMENT) {
-            r = HeuristicStatement(b, 0);
-        } else if (t == IDENTIFIER) {
-            r = Identifier(b, 0);
-        } else if (t == IDENTIFIER_LIST) {
-            r = IdentifierList(b, 0);
-        } else if (t == IF_STATEMENT) {
-            r = IfStatement(b, 0);
-        } else if (t == INCLUDE_STATEMENT) {
-            r = IncludeStatement(b, 0);
-        } else if (t == LN_OPT_CONDITION) {
-            r = LNOptCondition(b, 0);
-        } else if (t == LITERAL) {
-            r = Literal(b, 0);
-        } else if (t == LU_BODY_AGGREGATE) {
-            r = LuBodyAggregate(b, 0);
-        } else if (t == LU_HEAD_AGGREGATE) {
-            r = LuHeadAggregate(b, 0);
-        } else if (t == LUA_CODE_STATEMENT) {
-            r = LuaCodeStatement(b, 0);
-        } else if (t == MAX_MIN_ELEM) {
-            r = MaxMinElem(b, 0);
-        } else if (t == MAX_MIN_LIST) {
-            r = MaxMinList(b, 0);
-        } else if (t == MAXIMIZE_STATEMENT) {
-            r = MaximizeStatement(b, 0);
-        } else if (t == MINIMIZE_STATEMENT) {
-            r = MinimizeStatement(b, 0);
-        } else if (t == MUL_TERM_CSP) {
-            r = MulTermCsp(b, 0);
-        } else if (t == N_CSP_ELEM) {
-            r = NCspElem(b, 0);
-        } else if (t == N_CSP_VEC) {
-            r = NCspVec(b, 0);
-        } else if (t == N_LIT_VEC) {
-            r = NLitVec(b, 0);
-        } else if (t == N_OPT_CONDITION) {
-            r = NOptCondition(b, 0);
-        } else if (t == N_TERM_VEC) {
-            r = NTermVec(b, 0);
-        } else if (t == OPT_CONDITION) {
-            r = OptCondition(b, 0);
-        } else if (t == OPTIMIZE_COND) {
-            r = OptimizeCond(b, 0);
-        } else if (t == OPTIMIZE_LIT_VEC) {
-            r = OptimizeLitVec(b, 0);
-        } else if (t == OPTIMIZE_TUPLE) {
-            r = OptimizeTuple(b, 0);
-        } else if (t == OPTIMIZE_WEIGHT) {
-            r = OptimizeWeight(b, 0);
-        } else if (t == PROGRAM) {
-            r = Program(b, 0);
-        } else if (t == PROJECT_STATEMENT) {
-            r = ProjectStatement(b, 0);
-        } else if (t == PROJECT_STATEMENT_BODY) {
-            r = ProjectStatementBody(b, 0);
-        } else if (t == PYTHON_CODE_STATEMENT) {
-            r = PythonCodeStatement(b, 0);
-        } else if (t == SHOW_SIG_STATEMENT) {
-            r = ShowSigStatement(b, 0);
-        } else if (t == SHOW_STATEMENT) {
-            r = ShowStatement(b, 0);
-        } else if (t == SHOW_STATEMENT_BODY) {
-            r = ShowStatementBody(b, 0);
-        } else if (t == STATEMENT) {
-            r = Statement(b, 0);
-        } else if (t == TERM) {
-            r = Term(b, 0, -1);
-        } else if (t == TERM_VEC) {
-            r = TermVec(b, 0);
-        } else if (t == THEORY_STATEMENT) {
-            r = TheoryStatement(b, 0);
-        } else if (t == UPPER_) {
-            r = Upper_(b, 0);
-        } else if (t == W_IF_STATEMENT) {
-            r = WIfStatement(b, 0);
-        } else {
-            r = parse_root_(t, b, 0);
-        }
-        exit_section_(b, 0, m, t, r, true, TRUE_CONDITION);
-    }
-
-    protected boolean parse_root_(IElementType t, PsiBuilder b, int l) {
-        return root(b, l + 1);
     }
 
 }
