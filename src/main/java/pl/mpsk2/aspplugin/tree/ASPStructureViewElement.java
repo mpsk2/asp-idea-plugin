@@ -25,9 +25,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import pl.mpsk2.aspplugin.psi.ASPDefine;
 import pl.mpsk2.aspplugin.psi.ASPFile;
-import pl.mpsk2.aspplugin.psi.ASPStatement;
-import pl.mpsk2.aspplugin.psi.impl.ASPDefineImpl;
-import pl.mpsk2.aspplugin.psi.impl.ASPStatementImpl;
+import pl.mpsk2.aspplugin.psi.statement.ASPStatement;
 
 import java.util.Collection;
 import java.util.List;
@@ -45,7 +43,7 @@ public class ASPStructureViewElement extends PsiTreeElementBase<PsiElement> {
         List<StructureViewTreeElement> result = ContainerUtil.newArrayList();
         PsiElement element = getElement();
         if (element instanceof ASPFile) {
-            for(ASPStatement o : ((ASPFile) element).getStatements())
+            for (ASPStatement o : ((ASPFile) element).getStatements())
                 result.add(new ASPStructureViewElement(o));
             ASPDefine define = ((ASPFile) element).getDefine();
             if (define != null) {

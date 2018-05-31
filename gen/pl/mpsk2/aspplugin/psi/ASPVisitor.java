@@ -20,6 +20,9 @@ package pl.mpsk2.aspplugin.psi;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.PsiElement;
+import pl.mpsk2.aspplugin.psi.constantTerm.*;
+import pl.mpsk2.aspplugin.psi.statement.*;
+import pl.mpsk2.aspplugin.psi.term.*;
 
 public class ASPVisitor extends PsiElementVisitor {
 

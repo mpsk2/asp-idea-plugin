@@ -28,6 +28,7 @@ import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
 
 import pl.mpsk2.aspplugin.psi.*;
+import pl.mpsk2.aspplugin.psi.term.ASPTerm;
 
 public class ASPLuHeadAggregateImpl extends ASPCompositeElementImpl implements ASPLuHeadAggregate {
 

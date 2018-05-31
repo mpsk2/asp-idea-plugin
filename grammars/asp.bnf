@@ -109,11 +109,18 @@
 
     extends("(Xor|Question|And|Add|Mul)ConstantTerm")=BinaryConstantTerm
     extends(".*ConstantTerm")=ConstantTerm
+    psiPackage(".*ConstantTerm")="pl.mpsk2.aspplugin.psi.constantTerm"
+    psiImplPackage(".*ConstantTerm")="pl.mpsk2.aspplugin.psi.impl.constantTerm"
 
     extends("(Xor|Question|And|Add|Mul)(?!Constant)Term")=BinaryTerm
     extends(".*(?!Constant)Term")=Term
+    psiPackage(".*(?!Constant)Term")="pl.mpsk2.aspplugin.psi.term"
+    psiImplPackage(".*(?!Constant)Term")="pl.mpsk2.aspplugin.psi.impl.term"
 
     extends(".*Statement")=Statement
+    psiPackage(".*Statement")="pl.mpsk2.aspplugin.psi.statement"
+    psiImplPackage(".*Statement")="pl.mpsk2.aspplugin.psi.impl.statement"
+
     pin(".*Statement")=1
 
     generateTokenAccessors=true

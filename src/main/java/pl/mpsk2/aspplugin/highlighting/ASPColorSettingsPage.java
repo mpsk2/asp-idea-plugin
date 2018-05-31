@@ -15,7 +15,7 @@ import java.util.Map;
 
 import static pl.mpsk2.aspplugin.highlighting.ASPSyntaxHighlightingColors.*;
 
-public class ASPColorSettingsPage implements  ColorSettingsPage {
+public class ASPColorSettingsPage implements ColorSettingsPage {
     private static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[]{
             new AttributesDescriptor("Comment", COMMENT),
             new AttributesDescriptor("String", STRING),
@@ -23,6 +23,7 @@ public class ASPColorSettingsPage implements  ColorSettingsPage {
             new AttributesDescriptor("Key words", KEYWORD)
     };
     private static final Map<String, TextAttributesKey> ATTRIBUTES_KEY_MAP = ContainerUtil.newTroveMap();
+
     static {
         ATTRIBUTES_KEY_MAP.put("kw", KEYWORD);
     }

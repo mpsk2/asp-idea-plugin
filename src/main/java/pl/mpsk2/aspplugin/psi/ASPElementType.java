@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import pl.mpsk2.aspplugin.ASPLanguage;
 
 public class ASPElementType extends IElementType {
-    public  ASPElementType(@NotNull @NonNls String debugName) {
+    public ASPElementType(@NotNull @NonNls String debugName) {
         super(debugName, ASPLanguage.INSTANCE);
     }
 }

@@ -17,7 +17,7 @@ import static pl.mpsk2.aspplugin.highlighting.ASPSyntaxHighlightingColors.*;
 
 public class ASPSyntaxHighlighter extends SyntaxHighlighterBase {
     private static final Map<IElementType, TextAttributesKey> ATTRIBUTES = new HashMap<IElementType, TextAttributesKey>();
-    
+
     static {
         fillMap(ATTRIBUTES, COMMENT, ASPTypes.COMMENT);
         fillMap(ATTRIBUTES, PARENTHESES, ASPTypes.LPAREN, ASPTypes.RPAREN);

@@ -3,13 +3,12 @@ package pl.mpsk2.aspplugin.psi;
 import com.intellij.extapi.psi.PsiFileBase;
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.psi.FileViewProvider;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiStatement;
 import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import pl.mpsk2.aspplugin.ASPFileType;
 import pl.mpsk2.aspplugin.ASPLanguage;
+import pl.mpsk2.aspplugin.psi.statement.ASPStatement;
 
 import javax.swing.*;
 import java.util.ArrayList;

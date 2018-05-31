@@ -28,7 +28,7 @@ abstract public class ASPParserTestBase extends ParsingTestCase {
 
     protected void doTest() {
         super.doTest(true);
-        if(CHECK_ERRORS) {
+        if (CHECK_ERRORS) {
             assertFalse(
                     "PsiFile contains error elements",
                     toParseTreeText(myFile, skipSpaces(), includeRanges()).contains("PsiErrorElement")

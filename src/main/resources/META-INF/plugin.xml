@@ -16,14 +16,18 @@
     <extensions defaultExtensionNs="com.intellij">
         <fileTypeFactory implementation="pl.mpsk2.aspplugin.ASPFileTypeFactory"/>
         <lang.commenter language="Answer Set Programming" implementationClass="pl.mpsk2.aspplugin.ASPCommenter"/>
-        <lang.parserDefinition language="Answer Set Programming" implementationClass="pl.mpsk2.aspplugin.parser.ASPParserDefinition"/>
-        <lang.psiStructureViewFactory language="Answer Set Programming" implementationClass="pl.mpsk2.aspplugin.tree.ASPStructureViewFactory"/>
-        <lang.syntaxHighlighterFactory language="Answer Set Programming" implementationClass="pl.mpsk2.aspplugin.highlighting.ASPSyntaxHighlighterFactory"/>
+        <lang.parserDefinition language="Answer Set Programming"
+                               implementationClass="pl.mpsk2.aspplugin.parser.ASPParserDefinition"/>
+        <lang.psiStructureViewFactory language="Answer Set Programming"
+                                      implementationClass="pl.mpsk2.aspplugin.tree.ASPStructureViewFactory"/>
+        <lang.syntaxHighlighterFactory language="Answer Set Programming"
+                                       implementationClass="pl.mpsk2.aspplugin.highlighting.ASPSyntaxHighlighterFactory"/>
         <colorSettingsPage implementation="pl.mpsk2.aspplugin.highlighting.ASPColorSettingsPage"/>
     </extensions>
 
     <actions>
-        <action class="pl.mpsk2.aspplugin.actions.file.ASPCreateFile" id="ASP.NewASPFile" text="ASP File" description="Create new ASP file">
+        <action class="pl.mpsk2.aspplugin.actions.file.ASPCreateFile" id="ASP.NewASPFile" text="ASP File"
+                description="Create new ASP file">
             <add-to-group group-id="NewGroup" anchor="before" relative-to-action="NewFile"/>
         </action>
     </actions>

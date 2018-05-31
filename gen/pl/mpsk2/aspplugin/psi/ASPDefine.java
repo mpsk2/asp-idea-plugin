@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
+import pl.mpsk2.aspplugin.psi.constantTerm.ASPConstantTerm;
 
 public interface ASPDefine extends PsiElement {
 

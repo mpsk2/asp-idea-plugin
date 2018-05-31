@@ -28,6 +28,7 @@ import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
 
 import pl.mpsk2.aspplugin.psi.*;
+import pl.mpsk2.aspplugin.psi.statement.ASPStatement;
 
 public class ASPProgramImpl extends ASPCompositeElementImpl implements ASPProgram {
 

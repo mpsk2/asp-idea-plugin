@@ -21,6 +21,9 @@ import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.PsiElement;
 import com.intellij.lang.ASTNode;
 import pl.mpsk2.aspplugin.psi.impl.*;
+import pl.mpsk2.aspplugin.psi.impl.constantTerm.*;
+import pl.mpsk2.aspplugin.psi.impl.statement.*;
+import pl.mpsk2.aspplugin.psi.impl.term.*;
 
 public interface ASPTypes {
 
