@@ -9,6 +9,8 @@ import org.jetbrains.annotations.NotNull;
 import pl.mpsk2.aspplugin.ASPFileType;
 
 abstract public class ASPParserTestBase extends ParsingTestCase {
+    protected static final boolean CHECK_ERRORS = true;
+
     public ASPParserTestBase(String dataPath) {
         super(dataPath, ASPFileType.INSTANCE.getDefaultExtension(), new ASPParserDefinition());
     }
@@ -24,10 +26,9 @@ abstract public class ASPParserTestBase extends ParsingTestCase {
         return true;
     }
 
-    @Override
-    protected void doTest(boolean checkErrors) {
+    protected void doTest() {
         super.doTest(true);
-        if(checkErrors) {
+        if(CHECK_ERRORS) {
             assertFalse(
                     "PsiFile contains error elements",
                     toParseTreeText(myFile, skipSpaces(), includeRanges()).contains("PsiErrorElement")
