@@ -14,6 +14,8 @@
     -->
 
     <extensions defaultExtensionNs="com.intellij">
+        <applicationConfigurable groupId="language" instance="pl.mpsk2.aspplugin.options.ASPOptionsPanel"/>
+        <applicationService serviceImplementation="pl.mpsk2.aspplugin.options.ASPApplicationSettings"/>
         <fileTypeFactory implementation="pl.mpsk2.aspplugin.ASPFileTypeFactory"/>
         <lang.commenter language="Answer Set Programming" implementationClass="pl.mpsk2.aspplugin.ASPCommenter"/>
         <lang.parserDefinition language="Answer Set Programming"
