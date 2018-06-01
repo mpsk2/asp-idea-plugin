@@ -34,7 +34,9 @@ import java.util.List;
         }
 )
 public class ASPApplicationSettings implements PersistentStateComponent<ASPApplicationSettings> {
-    public List<ASPInterpreter> claspInterpreters = new ArrayList<>();
+    private String clasp;
+    private String clingo;
+    private String gringo;
 
     @NotNull
     @Override
@@ -51,11 +53,27 @@ public class ASPApplicationSettings implements PersistentStateComponent<ASPAppli
         return ServiceManager.getService(ASPApplicationSettings.class);
     }
 
-    public List<ASPInterpreter> getClaspInterpreters() {
-        return claspInterpreters;
+    public String getClasp() {
+        return clasp;
     }
 
-    public void setClaspInterpreters(List<ASPInterpreter> claspInterpreters) {
-        this.claspInterpreters = claspInterpreters;
+    public void setClasp(String clasp) {
+        this.clasp = clasp;
+    }
+
+    public String getClingo() {
+        return clingo;
+    }
+
+    public void setClingo(String clingo) {
+        this.clingo = clingo;
+    }
+
+    public String getGringo() {
+        return gringo;
+    }
+
+    public void setGringo(String gringo) {
+        this.gringo = gringo;
     }
 }

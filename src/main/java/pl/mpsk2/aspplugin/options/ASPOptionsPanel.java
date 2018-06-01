@@ -16,46 +16,79 @@
 
 package pl.mpsk2.aspplugin.options;
 
+import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory;
 import com.intellij.openapi.options.BaseConfigurable;
 import com.intellij.openapi.options.Configurable;
+import com.intellij.openapi.ui.TextFieldWithBrowseButton;
+import com.intellij.ui.DocumentAdapter;
 import com.intellij.ui.IdeBorderFactory;
-import com.intellij.ui.border.IdeaTitledBorder;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import pl.mpsk2.aspplugin.ASPLanguage;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
-import java.util.Observable;
-import java.util.Observer;
+import javax.swing.event.DocumentEvent;
+import java.awt.*;
 
 public class ASPOptionsPanel extends BaseConfigurable implements Configurable {
     private JPanel mainPanel;
-    private JPanel claspPanel;
-    // private JPanel clingoPanel;
-    // private JPanel gringoPanel;
-    private ASPInterpretersTable claspTable;
-    // private ASPInterpretersTable clingoTable;
-    // private ASPInterpretersTable gringoTable;
+    private GridBagConstraints gridConstraints;
+    private TextFieldWithBrowseButton claspPathField;
+    private TextFieldWithBrowseButton clingoPathField;
+    private TextFieldWithBrowseButton gringoPathField;
+
+    private class MyGridBagConstrains extends GridBagConstraints {
+        public void setConstraints(int gridx, int gridy, double weightx, int anchor, int fill) {
+            this.weighty = 0;
+            this.weightx = weightx;
+            this.gridx = gridx;
+            this.gridy = gridy;
+            this.anchor = anchor;
+            this.fill = fill;
+        }
+    }
 
     public ASPOptionsPanel() {
-        claspTable = new ASPInterpretersTable();
-        // clingoTable = new ASPInterpretersTable();
-        // gringoTable = new ASPInterpretersTable();
+        mainPanel.setLayout(new GridBagLayout());
+        gridConstraints = new MyGridBagConstrains();
 
-        claspTable.addObserver(new Observer() {
+        claspPathField = new TextFieldWithBrowseButton();
+        clingoPathField = new TextFieldWithBrowseButton();
+        gringoPathField = new TextFieldWithBrowseButton();
+
+        claspPathField.addBrowseFolderListener("Select $Clasp", null, null, FileChooserDescriptorFactory.createSingleLocalFileDescriptor());
+        clingoPathField.addBrowseFolderListener("Select $Clingo", null, null, FileChooserDescriptorFactory.createSingleLocalFileDescriptor());
+        gringoPathField.addBrowseFolderListener("Select $Gringo", null, null, FileChooserDescriptorFactory.createSingleLocalFileDescriptor());
+
+        DocumentAdapter listener = new DocumentAdapter() {
             @Override
-            public void update(Observable observable, Object o) {
+            protected void textChanged(DocumentEvent e) {
                 setModified(true);
             }
-        });
+        };
 
-        claspPanel.add(claspTable.getComponent());
-        // clingoPanel.add(clingoTable.getComponent());
-        // gringoPanel.add(gringoTable.getComponent());
+        claspPathField.getTextField().getDocument().addDocumentListener(listener);
+        clingoPathField.getTextField().getDocument().addDocumentListener(listener);
+        gringoPathField.getTextField().getDocument().addDocumentListener(listener);
 
-        TitledBorder claspBorder = IdeBorderFactory.createTitledBorder("Clasp", false);
+        addLabeledControl(1, "clasp", claspPathField);
+        addLabeledControl(2, "clingo", clingoPathField);
+        addLabeledControl(3, "gringo", gringoPathField);
 
-        claspPanel.setBorder(claspBorder);
+
+        TitledBorder mainBorder = IdeBorderFactory.createTitledBorder("Answer Set Programming interpreters", false);
+
+        mainPanel.setBorder(mainBorder);
+    }
+
+    private void addLabeledControl(int row, String label, JComponent component) {
+        ((MyGridBagConstrains) gridConstraints).setConstraints(0, row, 0, GridBagConstraints.LINE_START, GridBagConstraints.NONE);
+        mainPanel.add(new JLabel(label), gridConstraints);
+        ((MyGridBagConstrains) gridConstraints).setConstraints(1, row, 1.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
+        mainPanel.add(component, gridConstraints);
+        ((MyGridBagConstrains) gridConstraints).setConstraints(2, row, 0.1, GridBagConstraints.CENTER, GridBagConstraints.NONE);
+        mainPanel.add(Box.createHorizontalStrut(1), gridConstraints);
     }
 
     @NotNull
@@ -66,29 +99,20 @@ public class ASPOptionsPanel extends BaseConfigurable implements Configurable {
 
     @Override
     public void apply() {
-        getData(ASPApplicationSettings.getInstance());
+        ASPApplicationSettings state = ASPApplicationSettings.getInstance();
+        state.setClasp(claspPathField.getText());
+        state.setClingo(clingoPathField.getText());
+        state.setGringo(gringoPathField.getText());
         setModified(false);
     }
 
+    @Nullable
     @Override
     public JComponent createComponent() {
-        setData(ASPApplicationSettings.getInstance());
-        return getMainPanel();
-    }
-
-    public JPanel getMainPanel() {
+        ASPApplicationSettings state = ASPApplicationSettings.getInstance();
+        claspPathField.setText(state.getClasp());
+        clingoPathField.setText(state.getClingo());
+        gringoPathField.setText(state.getGringo());
         return mainPanel;
-    }
-
-    private void setData(ASPApplicationSettings settings) {
-        claspTable.setValues(settings.getClaspInterpreters());
-    }
-
-    private void getData(ASPApplicationSettings settings) {
-        settings.setClaspInterpreters(claspTable.getTableView().getItems());
-    }
-
-    public boolean isModified(ASPApplicationSettings settings) {
-        return claspTable.hasChanged();
     }
 }
