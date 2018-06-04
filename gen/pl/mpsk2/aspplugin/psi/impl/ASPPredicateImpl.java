@@ -15,7 +15,7 @@
  */
 
 // This is a generated file. Not intended for manual editing.
-package pl.mpsk2.aspplugin.psi.impl.term;
+package pl.mpsk2.aspplugin.psi.impl;
 
 import java.util.List;
 
@@ -27,19 +27,16 @@ import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
 
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
 
-import pl.mpsk2.aspplugin.psi.term.*;
-import pl.mpsk2.aspplugin.psi.ASPVisitor;
-import pl.mpsk2.aspplugin.psi.impl.ASPPsiImplUtil;
-import pl.mpsk2.aspplugin.psi.ASPPredicate;
+import pl.mpsk2.aspplugin.psi.*;
 
-public class ASPIdTermImpl extends ASPTermImpl implements ASPIdTerm {
+public class ASPPredicateImpl extends ASPCompositeElementImpl implements ASPPredicate {
 
-    public ASPIdTermImpl(ASTNode node) {
+    public ASPPredicateImpl(ASTNode node) {
         super(node);
     }
 
     public void accept(@NotNull ASPVisitor visitor) {
-        visitor.visitIdTerm(this);
+        visitor.visitPredicate(this);
     }
 
     public void accept(@NotNull PsiElementVisitor visitor) {
@@ -48,15 +45,27 @@ public class ASPIdTermImpl extends ASPTermImpl implements ASPIdTerm {
     }
 
     @Override
+    @Nullable
+    public ASPArgVec getArgVec() {
+        return findChildByClass(ASPArgVec.class);
+    }
+
+    @Override
     @NotNull
-    public ASPPredicate getPredicate() {
-        return findNotNullChildByClass(ASPPredicate.class);
+    public ASPIdentifier getIdentifier() {
+        return findNotNullChildByClass(ASPIdentifier.class);
     }
 
     @Override
     @Nullable
-    public PsiElement getAt() {
-        return findChildByType(AT);
+    public PsiElement getLparen() {
+        return findChildByType(LPAREN);
+    }
+
+    @Override
+    @Nullable
+    public PsiElement getRparen() {
+        return findChildByType(RPAREN);
     }
 
 }

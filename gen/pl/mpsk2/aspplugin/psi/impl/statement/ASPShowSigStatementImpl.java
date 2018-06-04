@@ -18,15 +18,12 @@
 package pl.mpsk2.aspplugin.psi.impl.statement;
 
 import java.util.List;
-
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
-
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
-
 import pl.mpsk2.aspplugin.psi.statement.*;
 import pl.mpsk2.aspplugin.psi.ASPVisitor;
 import pl.mpsk2.aspplugin.psi.impl.ASPPsiImplUtil;
@@ -34,59 +31,59 @@ import pl.mpsk2.aspplugin.psi.ASPIdentifier;
 
 public class ASPShowSigStatementImpl extends ASPStatementImpl implements ASPShowSigStatement {
 
-    public ASPShowSigStatementImpl(ASTNode node) {
-        super(node);
-    }
+  public ASPShowSigStatementImpl(ASTNode node) {
+    super(node);
+  }
 
-    public void accept(@NotNull ASPVisitor visitor) {
-        visitor.visitShowSigStatement(this);
-    }
+  public void accept(@NotNull ASPVisitor visitor) {
+    visitor.visitShowSigStatement(this);
+  }
 
-    public void accept(@NotNull PsiElementVisitor visitor) {
-        if (visitor instanceof ASPVisitor) accept((ASPVisitor) visitor);
-        else super.accept(visitor);
-    }
+  public void accept(@NotNull PsiElementVisitor visitor) {
+    if (visitor instanceof ASPVisitor) accept((ASPVisitor)visitor);
+    else super.accept(visitor);
+  }
 
-    @Override
-    @Nullable
-    public ASPIdentifier getIdentifier() {
-        return findChildByClass(ASPIdentifier.class);
-    }
+  @Override
+  @Nullable
+  public ASPIdentifier getIdentifier() {
+    return findChildByClass(ASPIdentifier.class);
+  }
 
-    @Override
-    @Nullable
-    public PsiElement getCsp() {
-        return findChildByType(CSP);
-    }
+  @Override
+  @Nullable
+  public PsiElement getCsp() {
+    return findChildByType(CSP);
+  }
 
-    @Override
-    @Nullable
-    public PsiElement getDot() {
-        return findChildByType(DOT);
-    }
+  @Override
+  @Nullable
+  public PsiElement getDot() {
+    return findChildByType(DOT);
+  }
 
-    @Override
-    @NotNull
-    public PsiElement getShowsig() {
-        return findNotNullChildByType(SHOWSIG);
-    }
+  @Override
+  @NotNull
+  public PsiElement getShowsig() {
+    return findNotNullChildByType(SHOWSIG);
+  }
 
-    @Override
-    @Nullable
-    public PsiElement getSlash() {
-        return findChildByType(SLASH);
-    }
+  @Override
+  @Nullable
+  public PsiElement getSlash() {
+    return findChildByType(SLASH);
+  }
 
-    @Override
-    @Nullable
-    public PsiElement getSub() {
-        return findChildByType(SUB);
-    }
+  @Override
+  @Nullable
+  public PsiElement getSub() {
+    return findChildByType(SUB);
+  }
 
-    @Override
-    @Nullable
-    public PsiElement getNumber() {
-        return findChildByType(NUMBER);
-    }
+  @Override
+  @Nullable
+  public PsiElement getNumber() {
+    return findChildByType(NUMBER);
+  }
 
 }

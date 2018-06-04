@@ -12,25 +12,28 @@ Answer Set Programming file
           OPTIMIZE_TUPLE
             PsiElement(,)(',')
             N_TERM_VEC
-              CONST_TERM
-                IDENTIFIER
-                  PsiElement(id)('t')
+              ID_TERM
+                PREDICATE
+                  IDENTIFIER
+                    PsiElement(id)('t')
           OPTIMIZE_COND
             PsiElement(:)(':')
             OPTIMIZE_LIT_VEC
               N_LIT_VEC
                 LITERAL
                   ATOM
-                    IDENTIFIER
-                      PsiElement(id)('goon')
-                    PsiElement(()('(')
-                    ARG_VEC
-                      TERM_VEC
-                        N_TERM_VEC
-                          CONST_TERM
-                            IDENTIFIER
-                              PsiElement(id)('t')
-                    PsiElement())(')')
+                    PREDICATE
+                      IDENTIFIER
+                        PsiElement(id)('goon')
+                      PsiElement(()('(')
+                      ARG_VEC
+                        TERM_VEC
+                          N_TERM_VEC
+                            ID_TERM
+                              PREDICATE
+                                IDENTIFIER
+                                  PsiElement(id)('t')
+                      PsiElement())(')')
       PsiElement(})('}')
       PsiElement(.)('.')
     MAXIMIZE_STATEMENT
@@ -39,30 +42,34 @@ Answer Set Programming file
       MAX_MIN_LIST
         MAX_MIN_ELEM
           OPTIMIZE_WEIGHT
-            CONST_TERM
-              IDENTIFIER
-                PsiElement(id)('o')
+            ID_TERM
+              PREDICATE
+                IDENTIFIER
+                  PsiElement(id)('o')
           OPTIMIZE_TUPLE
             PsiElement(,)(',')
             N_TERM_VEC
-              CONST_TERM
-                IDENTIFIER
-                  PsiElement(id)('t')
+              ID_TERM
+                PREDICATE
+                  IDENTIFIER
+                    PsiElement(id)('t')
           OPTIMIZE_COND
             PsiElement(:)(':')
             OPTIMIZE_LIT_VEC
               N_LIT_VEC
                 LITERAL
                   ATOM
-                    IDENTIFIER
-                      PsiElement(id)('random')
-                    PsiElement(()('(')
-                    ARG_VEC
-                      TERM_VEC
-                        N_TERM_VEC
-                          CONST_TERM
-                            IDENTIFIER
-                              PsiElement(id)('t')
-                    PsiElement())(')')
+                    PREDICATE
+                      IDENTIFIER
+                        PsiElement(id)('random')
+                      PsiElement(()('(')
+                      ARG_VEC
+                        TERM_VEC
+                          N_TERM_VEC
+                            ID_TERM
+                              PREDICATE
+                                IDENTIFIER
+                                  PsiElement(id)('t')
+                      PsiElement())(')')
       PsiElement(})('}')
       PsiElement(.)('.')

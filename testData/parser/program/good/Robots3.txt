@@ -14,60 +14,65 @@ Answer Set Programming file
       HEAD_
         LITERAL
           ATOM
-            IDENTIFIER
-              PsiElement(id)('goon')
-            PsiElement(()('(')
-            ARG_VEC
-              TERM_VEC
-                N_TERM_VEC
-                  CONST_TERM
-                    IDENTIFIER
-                      PsiElement(id)('t')
-            PsiElement())(')')
+            PREDICATE
+              IDENTIFIER
+                PsiElement(id)('goon')
+              PsiElement(()('(')
+              ARG_VEC
+                TERM_VEC
+                  N_TERM_VEC
+                    ID_TERM
+                      PREDICATE
+                        IDENTIFIER
+                          PsiElement(id)('t')
+              PsiElement())(')')
       PsiElement(:-)(':-')
       BODY_
         BODY_DOT_ELEM
           LITERAL
             ATOM
-              IDENTIFIER
-                PsiElement(id)('target')
-              PsiElement(()('(')
-              ARG_VEC
-                TERM_VEC
-                  N_TERM_VEC
-                    CONST_TERM
-                      PsiElement(variable)('R')
-                    PsiElement(,)(',')
-                    CONST_TERM
-                      PsiElement(variable)('X')
-                    PsiElement(,)(',')
-                    CONST_TERM
-                      PsiElement(variable)('Y')
-              PsiElement())(')')
+              PREDICATE
+                IDENTIFIER
+                  PsiElement(id)('target')
+                PsiElement(()('(')
+                ARG_VEC
+                  TERM_VEC
+                    N_TERM_VEC
+                      CONST_TERM
+                        PsiElement(variable)('R')
+                      PsiElement(,)(',')
+                      CONST_TERM
+                        PsiElement(variable)('X')
+                      PsiElement(,)(',')
+                      CONST_TERM
+                        PsiElement(variable)('Y')
+                PsiElement())(')')
         PsiElement(,)(',')
         BODY_DOT_ELEM
           LITERAL
             PsiElement(not)('not')
             ATOM
-              IDENTIFIER
-                PsiElement(id)('pos')
-              PsiElement(()('(')
-              ARG_VEC
-                TERM_VEC
-                  N_TERM_VEC
-                    CONST_TERM
-                      PsiElement(variable)('R')
-                    PsiElement(,)(',')
-                    CONST_TERM
-                      PsiElement(variable)('X')
-                    PsiElement(,)(',')
-                    CONST_TERM
-                      PsiElement(variable)('Y')
-                    PsiElement(,)(',')
-                    CONST_TERM
-                      IDENTIFIER
-                        PsiElement(id)('t')
-              PsiElement())(')')
+              PREDICATE
+                IDENTIFIER
+                  PsiElement(id)('pos')
+                PsiElement(()('(')
+                ARG_VEC
+                  TERM_VEC
+                    N_TERM_VEC
+                      CONST_TERM
+                        PsiElement(variable)('R')
+                      PsiElement(,)(',')
+                      CONST_TERM
+                        PsiElement(variable)('X')
+                      PsiElement(,)(',')
+                      CONST_TERM
+                        PsiElement(variable)('Y')
+                      PsiElement(,)(',')
+                      ID_TERM
+                        PREDICATE
+                          IDENTIFIER
+                            PsiElement(id)('t')
+                PsiElement())(')')
       PsiElement(.)('.')
     MINIMIZE_STATEMENT
       PsiElement(#minimize)('#minimize')
@@ -81,25 +86,28 @@ Answer Set Programming file
           OPTIMIZE_TUPLE
             PsiElement(,)(',')
             N_TERM_VEC
-              CONST_TERM
-                IDENTIFIER
-                  PsiElement(id)('t')
+              ID_TERM
+                PREDICATE
+                  IDENTIFIER
+                    PsiElement(id)('t')
           OPTIMIZE_COND
             PsiElement(:)(':')
             OPTIMIZE_LIT_VEC
               N_LIT_VEC
                 LITERAL
                   ATOM
-                    IDENTIFIER
-                      PsiElement(id)('goon')
-                    PsiElement(()('(')
-                    ARG_VEC
-                      TERM_VEC
-                        N_TERM_VEC
-                          CONST_TERM
-                            IDENTIFIER
-                              PsiElement(id)('t')
-                    PsiElement())(')')
+                    PREDICATE
+                      IDENTIFIER
+                        PsiElement(id)('goon')
+                      PsiElement(()('(')
+                      ARG_VEC
+                        TERM_VEC
+                          N_TERM_VEC
+                            ID_TERM
+                              PREDICATE
+                                IDENTIFIER
+                                  PsiElement(id)('t')
+                      PsiElement())(')')
       PsiElement(})('}')
       PsiElement(.)('.')
     BLOCK_STATEMENT
@@ -115,16 +123,18 @@ Answer Set Programming file
     EXTERNAL_STATEMENT
       PsiElement(#external)('#external')
       ATOM
-        IDENTIFIER
-          PsiElement(id)('horizon')
-        PsiElement(()('(')
-        ARG_VEC
-          TERM_VEC
-            N_TERM_VEC
-              CONST_TERM
-                IDENTIFIER
-                  PsiElement(id)('t')
-        PsiElement())(')')
+        PREDICATE
+          IDENTIFIER
+            PsiElement(id)('horizon')
+          PsiElement(()('(')
+          ARG_VEC
+            TERM_VEC
+              N_TERM_VEC
+                ID_TERM
+                  PREDICATE
+                    IDENTIFIER
+                      PsiElement(id)('t')
+          PsiElement())(')')
       PsiElement(.)('.')
     IF_STATEMENT
       PsiElement(:-)(':-')
@@ -132,38 +142,43 @@ Answer Set Programming file
         BODY_DOT_ELEM
           LITERAL
             ATOM
-              IDENTIFIER
-                PsiElement(id)('goon')
-              PsiElement(()('(')
-              ARG_VEC
-                TERM_VEC
-                  N_TERM_VEC
-                    CONST_TERM
-                      IDENTIFIER
-                        PsiElement(id)('t')
-              PsiElement())(')')
+              PREDICATE
+                IDENTIFIER
+                  PsiElement(id)('goon')
+                PsiElement(()('(')
+                ARG_VEC
+                  TERM_VEC
+                    N_TERM_VEC
+                      ID_TERM
+                        PREDICATE
+                          IDENTIFIER
+                            PsiElement(id)('t')
+                PsiElement())(')')
         PsiElement(,)(',')
         BODY_DOT_ELEM
           LITERAL
             ATOM
-              IDENTIFIER
-                PsiElement(id)('horizon')
-              PsiElement(()('(')
-              ARG_VEC
-                TERM_VEC
-                  N_TERM_VEC
-                    CONST_TERM
-                      IDENTIFIER
-                        PsiElement(id)('t')
-              PsiElement())(')')
+              PREDICATE
+                IDENTIFIER
+                  PsiElement(id)('horizon')
+                PsiElement(()('(')
+                ARG_VEC
+                  TERM_VEC
+                    N_TERM_VEC
+                      ID_TERM
+                        PREDICATE
+                          IDENTIFIER
+                            PsiElement(id)('t')
+                PsiElement())(')')
       PsiElement(.)('.')
     SHOW_STATEMENT
       PsiElement(#show)('#show')
       SHOW_STATEMENT_BODY
         MUL_TERM
-          CONST_TERM
-            IDENTIFIER
-              PsiElement(id)('move')
+          ID_TERM
+            PREDICATE
+              IDENTIFIER
+                PsiElement(id)('move')
           PsiElement(/)('/')
           CONST_TERM
             CONSTANT

@@ -99,21 +99,22 @@ Answer Set Programming file
       HEAD_
         LITERAL
           ATOM
-            IDENTIFIER
-              PsiElement(id)('d')
-            PsiElement(()('(')
-            ARG_VEC
-              TERM_VEC
-                N_TERM_VEC
-                  CONST_TERM
-                    PsiElement(variable)('X')
-                  PsiElement(,)(',')
-                  CONST_TERM
-                    PsiElement(variable)('Y')
-                  PsiElement(,)(',')
-                  CONST_TERM
-                    PsiElement(variable)('Z')
-            PsiElement())(')')
+            PREDICATE
+              IDENTIFIER
+                PsiElement(id)('d')
+              PsiElement(()('(')
+              ARG_VEC
+                TERM_VEC
+                  N_TERM_VEC
+                    CONST_TERM
+                      PsiElement(variable)('X')
+                    PsiElement(,)(',')
+                    CONST_TERM
+                      PsiElement(variable)('Y')
+                    PsiElement(,)(',')
+                    CONST_TERM
+                      PsiElement(variable)('Z')
+              PsiElement())(')')
       PsiElement(:-)(':-')
       BODY_
         BODY_DOT_ELEM
@@ -131,17 +132,20 @@ Answer Set Programming file
                               ADD_TERM
                                 UN_NOT_TERM
                                   PsiElement(not)('not')
-                                  CONST_TERM
-                                    IDENTIFIER
-                                      PsiElement(id)('a')
+                                  ID_TERM
+                                    PREDICATE
+                                      IDENTIFIER
+                                        PsiElement(id)('a')
                                 PsiElement(+)('+')
-                                CONST_TERM
-                                  IDENTIFIER
-                                    PsiElement(id)('b')
+                                ID_TERM
+                                  PREDICATE
+                                    IDENTIFIER
+                                      PsiElement(id)('b')
                               PsiElement(&)('&')
-                              CONST_TERM
-                                IDENTIFIER
-                                  PsiElement(id)('c')
+                              ID_TERM
+                                PREDICATE
+                                  IDENTIFIER
+                                    PsiElement(id)('c')
                         PsiElement())(')')
                       PsiElement(^)('^')
                       PAREN_TERM
@@ -151,23 +155,26 @@ Answer Set Programming file
                             ADD_TERM
                               UN_NEG_TERM
                                 PsiElement(-)('-')
-                                CONST_TERM
-                                  IDENTIFIER
-                                    PsiElement(id)('x')
+                                ID_TERM
+                                  PREDICATE
+                                    IDENTIFIER
+                                      PsiElement(id)('x')
                               PsiElement(+)('+')
                               CONST_TERM
                                 CONSTANT
                                   PsiElement(number)('15')
                             PsiElement(,)(',')
-                            CONST_TERM
-                              IDENTIFIER
-                                PsiElement(id)('c')
+                            ID_TERM
+                              PREDICATE
+                                IDENTIFIER
+                                  PsiElement(id)('c')
                             PsiElement(,)(',')
                             V_BAR_TERM
                               PsiElement(|)('|')
-                              CONST_TERM
-                                IDENTIFIER
-                                  PsiElement(id)('d')
+                              ID_TERM
+                                PREDICATE
+                                  IDENTIFIER
+                                    PsiElement(id)('d')
                               PsiElement(|)('|')
                         PsiElement())(')')
                     PsiElement(^)('^')
@@ -179,13 +186,15 @@ Answer Set Programming file
                       ADD_TERM
                         ADD_TERM
                           MUL_TERM
-                            CONST_TERM
-                              IDENTIFIER
-                                PsiElement(id)('dfg')
+                            ID_TERM
+                              PREDICATE
+                                IDENTIFIER
+                                  PsiElement(id)('dfg')
                             PsiElement(*)('*')
-                            CONST_TERM
-                              IDENTIFIER
-                                PsiElement(id)('g')
+                            ID_TERM
+                              PREDICATE
+                                IDENTIFIER
+                                  PsiElement(id)('g')
                           PsiElement(-)('-')
                           PAREN_TERM
                             PsiElement(()('(')
@@ -193,26 +202,30 @@ Answer Set Programming file
                               N_TERM_VEC
                                 UN_NEG_TERM
                                   PsiElement(-)('-')
-                                  CONST_TERM
-                                    IDENTIFIER
-                                      PsiElement(id)('h')
+                                  ID_TERM
+                                    PREDICATE
+                                      IDENTIFIER
+                                        PsiElement(id)('h')
                             PsiElement())(')')
                         PsiElement(-)('-')
                         ID_TERM
                           PsiElement(@)('@')
-                          IDENTIFIER
-                            PsiElement(id)('f')
-                          PsiElement(()('(')
-                          ARG_VEC
-                            TERM_VEC
-                              N_TERM_VEC
-                                ADD_TERM
-                                  CONST_TERM
-                                    IDENTIFIER
-                                      PsiElement(id)('x')
-                                  PsiElement(-)('-')
-                                  CONST_TERM
-                                    IDENTIFIER
-                                      PsiElement(id)('y')
-                          PsiElement())(')')
+                          PREDICATE
+                            IDENTIFIER
+                              PsiElement(id)('f')
+                            PsiElement(()('(')
+                            ARG_VEC
+                              TERM_VEC
+                                N_TERM_VEC
+                                  ADD_TERM
+                                    ID_TERM
+                                      PREDICATE
+                                        IDENTIFIER
+                                          PsiElement(id)('x')
+                                    PsiElement(-)('-')
+                                    ID_TERM
+                                      PREDICATE
+                                        IDENTIFIER
+                                          PsiElement(id)('y')
+                            PsiElement())(')')
       PsiElement(.)('.')

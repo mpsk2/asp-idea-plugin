@@ -9,140 +9,61 @@ Answer Set Programming file
       HEAD_
         LITERAL
           ATOM
-            IDENTIFIER
-              PsiElement(id)('dir')
-            PsiElement(()('(')
-            ARG_VEC
-              TERM_VEC
-                N_TERM_VEC
-                  UN_NEG_TERM
-                    PsiElement(-)('-')
-                    CONST_TERM
-                      CONSTANT
-                        PsiElement(number)('1')
-                  PsiElement(,)(',')
-                  CONST_TERM
-                    CONSTANT
-                      PsiElement(number)('0')
-              PsiElement(;)(';')
-              TERM_VEC
-                N_TERM_VEC
-                  CONST_TERM
-                    CONSTANT
-                      PsiElement(number)('1')
-                  PsiElement(,)(',')
-                  CONST_TERM
-                    CONSTANT
-                      PsiElement(number)('0')
-              PsiElement(;)(';')
-              TERM_VEC
-                N_TERM_VEC
-                  CONST_TERM
-                    CONSTANT
-                      PsiElement(number)('0')
-                  PsiElement(,)(',')
-                  UN_NEG_TERM
-                    PsiElement(-)('-')
-                    CONST_TERM
-                      CONSTANT
-                        PsiElement(number)('1')
-              PsiElement(;)(';')
-              TERM_VEC
-                N_TERM_VEC
-                  CONST_TERM
-                    CONSTANT
-                      PsiElement(number)('0')
-                  PsiElement(,)(',')
-                  CONST_TERM
-                    CONSTANT
-                      PsiElement(number)('1')
-            PsiElement())(')')
-      PsiElement(.)('.')
-    HEAD_STATEMENT
-      HEAD_
-        LITERAL
-          ATOM
-            IDENTIFIER
-              PsiElement(id)('stop')
-            PsiElement(()('(')
-            ARG_VEC
-              TERM_VEC
-                N_TERM_VEC
-                  CONST_TERM
-                    PsiElement(variable)('DX')
-                  PsiElement(,)(',')
-                  CONST_TERM
-                    PsiElement(variable)('DY')
-                  PsiElement(,)(',')
-                  CONST_TERM
-                    PsiElement(variable)('X')
-                  PsiElement(,)(',')
-                  CONST_TERM
-                    PsiElement(variable)('Y')
-            PsiElement())(')')
-      PsiElement(:-)(':-')
-      BODY_
-        BODY_DOT_ELEM
-          LITERAL
-            ATOM
+            PREDICATE
               IDENTIFIER
-                PsiElement(id)('barrier')
+                PsiElement(id)('dir')
               PsiElement(()('(')
               ARG_VEC
                 TERM_VEC
                   N_TERM_VEC
-                    CONST_TERM
-                      PsiElement(variable)('X')
+                    UN_NEG_TERM
+                      PsiElement(-)('-')
+                      CONST_TERM
+                        CONSTANT
+                          PsiElement(number)('1')
                     PsiElement(,)(',')
                     CONST_TERM
-                      PsiElement(variable)('Y')
+                      CONSTANT
+                        PsiElement(number)('0')
+                PsiElement(;)(';')
+                TERM_VEC
+                  N_TERM_VEC
+                    CONST_TERM
+                      CONSTANT
+                        PsiElement(number)('1')
                     PsiElement(,)(',')
                     CONST_TERM
-                      PsiElement(variable)('DX')
+                      CONSTANT
+                        PsiElement(number)('0')
+                PsiElement(;)(';')
+                TERM_VEC
+                  N_TERM_VEC
+                    CONST_TERM
+                      CONSTANT
+                        PsiElement(number)('0')
+                    PsiElement(,)(',')
+                    UN_NEG_TERM
+                      PsiElement(-)('-')
+                      CONST_TERM
+                        CONSTANT
+                          PsiElement(number)('1')
+                PsiElement(;)(';')
+                TERM_VEC
+                  N_TERM_VEC
+                    CONST_TERM
+                      CONSTANT
+                        PsiElement(number)('0')
                     PsiElement(,)(',')
                     CONST_TERM
-                      PsiElement(variable)('DY')
+                      CONSTANT
+                        PsiElement(number)('1')
               PsiElement())(')')
       PsiElement(.)('.')
     HEAD_STATEMENT
       HEAD_
         LITERAL
           ATOM
-            IDENTIFIER
-              PsiElement(id)('stop')
-            PsiElement(()('(')
-            ARG_VEC
-              TERM_VEC
-                N_TERM_VEC
-                  UN_NEG_TERM
-                    PsiElement(-)('-')
-                    CONST_TERM
-                      PsiElement(variable)('DX')
-                  PsiElement(,)(',')
-                  UN_NEG_TERM
-                    PsiElement(-)('-')
-                    CONST_TERM
-                      PsiElement(variable)('DY')
-                  PsiElement(,)(',')
-                  ADD_TERM
-                    CONST_TERM
-                      PsiElement(variable)('X')
-                    PsiElement(+)('+')
-                    CONST_TERM
-                      PsiElement(variable)('DX')
-                  PsiElement(,)(',')
-                  ADD_TERM
-                    CONST_TERM
-                      PsiElement(variable)('Y')
-                    PsiElement(+)('+')
-                    CONST_TERM
-                      PsiElement(variable)('DY')
-            PsiElement())(')')
-      PsiElement(:-)(':-')
-      BODY_
-        BODY_DOT_ELEM
-          LITERAL
-            ATOM
+            PREDICATE
               IDENTIFIER
                 PsiElement(id)('stop')
               PsiElement(()('(')
@@ -161,111 +82,201 @@ Answer Set Programming file
                     CONST_TERM
                       PsiElement(variable)('Y')
               PsiElement())(')')
+      PsiElement(:-)(':-')
+      BODY_
+        BODY_DOT_ELEM
+          LITERAL
+            ATOM
+              PREDICATE
+                IDENTIFIER
+                  PsiElement(id)('barrier')
+                PsiElement(()('(')
+                ARG_VEC
+                  TERM_VEC
+                    N_TERM_VEC
+                      CONST_TERM
+                        PsiElement(variable)('X')
+                      PsiElement(,)(',')
+                      CONST_TERM
+                        PsiElement(variable)('Y')
+                      PsiElement(,)(',')
+                      CONST_TERM
+                        PsiElement(variable)('DX')
+                      PsiElement(,)(',')
+                      CONST_TERM
+                        PsiElement(variable)('DY')
+                PsiElement())(')')
+      PsiElement(.)('.')
+    HEAD_STATEMENT
+      HEAD_
+        LITERAL
+          ATOM
+            PREDICATE
+              IDENTIFIER
+                PsiElement(id)('stop')
+              PsiElement(()('(')
+              ARG_VEC
+                TERM_VEC
+                  N_TERM_VEC
+                    UN_NEG_TERM
+                      PsiElement(-)('-')
+                      CONST_TERM
+                        PsiElement(variable)('DX')
+                    PsiElement(,)(',')
+                    UN_NEG_TERM
+                      PsiElement(-)('-')
+                      CONST_TERM
+                        PsiElement(variable)('DY')
+                    PsiElement(,)(',')
+                    ADD_TERM
+                      CONST_TERM
+                        PsiElement(variable)('X')
+                      PsiElement(+)('+')
+                      CONST_TERM
+                        PsiElement(variable)('DX')
+                    PsiElement(,)(',')
+                    ADD_TERM
+                      CONST_TERM
+                        PsiElement(variable)('Y')
+                      PsiElement(+)('+')
+                      CONST_TERM
+                        PsiElement(variable)('DY')
+              PsiElement())(')')
+      PsiElement(:-)(':-')
+      BODY_
+        BODY_DOT_ELEM
+          LITERAL
+            ATOM
+              PREDICATE
+                IDENTIFIER
+                  PsiElement(id)('stop')
+                PsiElement(()('(')
+                ARG_VEC
+                  TERM_VEC
+                    N_TERM_VEC
+                      CONST_TERM
+                        PsiElement(variable)('DX')
+                      PsiElement(,)(',')
+                      CONST_TERM
+                        PsiElement(variable)('DY')
+                      PsiElement(,)(',')
+                      CONST_TERM
+                        PsiElement(variable)('X')
+                      PsiElement(,)(',')
+                      CONST_TERM
+                        PsiElement(variable)('Y')
+                PsiElement())(')')
       PsiElement(.)('.')
     EXTERNAL_STATEMENT
       PsiElement(#external)('#external')
       ATOM
-        IDENTIFIER
-          PsiElement(id)('target')
-        PsiElement(()('(')
-        ARG_VEC
-          TERM_VEC
-            N_TERM_VEC
-              CONST_TERM
-                PsiElement(variable)('R')
-              PsiElement(,)(',')
-              CONST_TERM
-                PsiElement(variable)('X')
-              PsiElement(,)(',')
-              CONST_TERM
-                PsiElement(variable)('Y')
-        PsiElement())(')')
+        PREDICATE
+          IDENTIFIER
+            PsiElement(id)('target')
+          PsiElement(()('(')
+          ARG_VEC
+            TERM_VEC
+              N_TERM_VEC
+                CONST_TERM
+                  PsiElement(variable)('R')
+                PsiElement(,)(',')
+                CONST_TERM
+                  PsiElement(variable)('X')
+                PsiElement(,)(',')
+                CONST_TERM
+                  PsiElement(variable)('Y')
+          PsiElement())(')')
       PsiElement(:)(':')
       BODY_
         BODY_DOT_ELEM
           LITERAL
             ATOM
-              IDENTIFIER
-                PsiElement(id)('available_target')
-              PsiElement(()('(')
-              ARG_VEC
-                TERM_VEC
-                  N_TERM_VEC
-                    CONST_TERM
-                      PsiElement(variable)('R')
-                    PsiElement(,)(',')
-                    CONST_TERM
-                      PsiElement(variable)('M')
-                    PsiElement(,)(',')
-                    CONST_TERM
-                      PsiElement(variable)('X')
-                    PsiElement(,)(',')
-                    CONST_TERM
-                      PsiElement(variable)('Y')
-              PsiElement())(')')
+              PREDICATE
+                IDENTIFIER
+                  PsiElement(id)('available_target')
+                PsiElement(()('(')
+                ARG_VEC
+                  TERM_VEC
+                    N_TERM_VEC
+                      CONST_TERM
+                        PsiElement(variable)('R')
+                      PsiElement(,)(',')
+                      CONST_TERM
+                        PsiElement(variable)('M')
+                      PsiElement(,)(',')
+                      CONST_TERM
+                        PsiElement(variable)('X')
+                      PsiElement(,)(',')
+                      CONST_TERM
+                        PsiElement(variable)('Y')
+                PsiElement())(')')
       PsiElement(.)('.')
     EXTERNAL_STATEMENT
       PsiElement(#external)('#external')
       ATOM
-        IDENTIFIER
-          PsiElement(id)('pos')
-        PsiElement(()('(')
-        ARG_VEC
-          TERM_VEC
-            N_TERM_VEC
-              CONST_TERM
-                PsiElement(variable)('R')
-              PsiElement(,)(',')
-              CONST_TERM
-                PsiElement(variable)('X')
-              PsiElement(,)(',')
-              CONST_TERM
-                PsiElement(variable)('Y')
-              PsiElement(,)(',')
-              CONST_TERM
-                CONSTANT
-                  PsiElement(number)('0')
-        PsiElement())(')')
+        PREDICATE
+          IDENTIFIER
+            PsiElement(id)('pos')
+          PsiElement(()('(')
+          ARG_VEC
+            TERM_VEC
+              N_TERM_VEC
+                CONST_TERM
+                  PsiElement(variable)('R')
+                PsiElement(,)(',')
+                CONST_TERM
+                  PsiElement(variable)('X')
+                PsiElement(,)(',')
+                CONST_TERM
+                  PsiElement(variable)('Y')
+                PsiElement(,)(',')
+                CONST_TERM
+                  CONSTANT
+                    PsiElement(number)('0')
+          PsiElement())(')')
       PsiElement(:)(':')
       BODY_
         BODY_DOT_ELEM
           LITERAL
             ATOM
-              IDENTIFIER
-                PsiElement(id)('dim')
-              PsiElement(()('(')
-              ARG_VEC
-                TERM_VEC
-                  N_TERM_VEC
-                    CONST_TERM
-                      PsiElement(variable)('X')
-              PsiElement())(')')
+              PREDICATE
+                IDENTIFIER
+                  PsiElement(id)('dim')
+                PsiElement(()('(')
+                ARG_VEC
+                  TERM_VEC
+                    N_TERM_VEC
+                      CONST_TERM
+                        PsiElement(variable)('X')
+                PsiElement())(')')
         PsiElement(,)(',')
         BODY_DOT_ELEM
           LITERAL
             ATOM
-              IDENTIFIER
-                PsiElement(id)('dim')
-              PsiElement(()('(')
-              ARG_VEC
-                TERM_VEC
-                  N_TERM_VEC
-                    CONST_TERM
-                      PsiElement(variable)('Y')
-              PsiElement())(')')
+              PREDICATE
+                IDENTIFIER
+                  PsiElement(id)('dim')
+                PsiElement(()('(')
+                ARG_VEC
+                  TERM_VEC
+                    N_TERM_VEC
+                      CONST_TERM
+                        PsiElement(variable)('Y')
+                PsiElement())(')')
         PsiElement(,)(',')
         BODY_DOT_ELEM
           LITERAL
             ATOM
-              IDENTIFIER
-                PsiElement(id)('robot')
-              PsiElement(()('(')
-              ARG_VEC
-                TERM_VEC
-                  N_TERM_VEC
-                    CONST_TERM
-                      PsiElement(variable)('R')
-              PsiElement())(')')
+              PREDICATE
+                IDENTIFIER
+                  PsiElement(id)('robot')
+                PsiElement(()('(')
+                ARG_VEC
+                  TERM_VEC
+                    N_TERM_VEC
+                      CONST_TERM
+                        PsiElement(variable)('R')
+                PsiElement())(')')
       PsiElement(.)('.')
     BLOCK_STATEMENT
       PsiElement(#program)('#program')

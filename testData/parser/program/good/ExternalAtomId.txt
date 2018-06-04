@@ -3,13 +3,15 @@ Answer Set Programming file
     EXTERNAL_STATEMENT
       PsiElement(#external)('#external')
       ATOM
-        IDENTIFIER
-          PsiElement(id)('abecadlo')
+        PREDICATE
+          IDENTIFIER
+            PsiElement(id)('abecadlo')
       PsiElement(.)('.')
     EXTERNAL_STATEMENT
       PsiElement(#external)('#external')
       ATOM
         PsiElement(-)('-')
-        IDENTIFIER
-          PsiElement(id)('abecadlo')
+        PREDICATE
+          IDENTIFIER
+            PsiElement(id)('abecadlo')
       PsiElement(.)('.')

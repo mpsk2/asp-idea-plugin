@@ -45,27 +45,9 @@ public class ASPAtomImpl extends ASPCompositeElementImpl implements ASPAtom {
     }
 
     @Override
-    @Nullable
-    public ASPArgVec getArgVec() {
-        return findChildByClass(ASPArgVec.class);
-    }
-
-    @Override
     @NotNull
-    public ASPIdentifier getIdentifier() {
-        return findNotNullChildByClass(ASPIdentifier.class);
-    }
-
-    @Override
-    @Nullable
-    public PsiElement getLparen() {
-        return findChildByType(LPAREN);
-    }
-
-    @Override
-    @Nullable
-    public PsiElement getRparen() {
-        return findChildByType(RPAREN);
+    public ASPPredicate getPredicate() {
+        return findNotNullChildByClass(ASPPredicate.class);
     }
 
     @Override

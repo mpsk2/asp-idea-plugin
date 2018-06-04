@@ -3,9 +3,10 @@ Answer Set Programming file
     HEAD_STATEMENT
       HEAD_
         LU_HEAD_AGGREGATE
-          CONST_TERM
-            IDENTIFIER
-              PsiElement(id)('mazda')
+          ID_TERM
+            PREDICATE
+              IDENTIFIER
+                PsiElement(id)('mazda')
           HEAD_AGGREGATE
             PsiElement({)('{')
             PsiElement(})('}')
@@ -13,25 +14,28 @@ Answer Set Programming file
     HEAD_STATEMENT
       HEAD_
         LU_HEAD_AGGREGATE
-          CONST_TERM
-            IDENTIFIER
-              PsiElement(id)('mazda')
+          ID_TERM
+            PREDICATE
+              IDENTIFIER
+                PsiElement(id)('mazda')
           HEAD_AGGREGATE
             PsiElement({)('{')
             ALT_HEAD_AGGR_VEC
               ALT_HEAD_AGGR_ELEM
                 LITERAL
                   ATOM
-                    IDENTIFIER
-                      PsiElement(id)('a')
+                    PREDICATE
+                      IDENTIFIER
+                        PsiElement(id)('a')
                 OPT_CONDITION
                   <empty list>
               PsiElement(;)(';')
               ALT_HEAD_AGGR_ELEM
                 LITERAL
                   ATOM
-                    IDENTIFIER
-                      PsiElement(id)('c')
+                    PREDICATE
+                      IDENTIFIER
+                        PsiElement(id)('c')
                 OPT_CONDITION
                   PsiElement(:)(':')
                   N_LIT_VEC

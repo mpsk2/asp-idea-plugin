@@ -159,6 +159,8 @@ public class ASPParser implements PsiParser, LightPsiParser {
             r = OptimizeTuple(b, 0);
         } else if (t == OPTIMIZE_WEIGHT) {
             r = OptimizeWeight(b, 0);
+        } else if (t == PREDICATE) {
+            r = Predicate(b, 0);
         } else if (t == PROGRAM) {
             r = Program(b, 0);
         } else if (t == PROJECT_STATEMENT) {
@@ -446,16 +448,14 @@ public class ASPParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // SUB? Identifier !CspAnyOp (LPAREN ArgVec RPAREN)?
+    // SUB? Predicate
     public static boolean Atom(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "Atom")) return false;
         if (!nextTokenIs(b, "<atom>", SUB, ID)) return false;
         boolean r;
         Marker m = enter_section_(b, l, _NONE_, ATOM, "<atom>");
         r = Atom_0(b, l + 1);
-        r = r && Identifier(b, l + 1);
-        r = r && Atom_2(b, l + 1);
-        r = r && Atom_3(b, l + 1);
+        r = r && Predicate(b, l + 1);
         exit_section_(b, l, m, r, false, null);
         return r;
     }
@@ -465,35 +465,6 @@ public class ASPParser implements PsiParser, LightPsiParser {
         if (!recursion_guard_(b, l, "Atom_0")) return false;
         consumeToken(b, SUB);
         return true;
-    }
-
-    // !CspAnyOp
-    private static boolean Atom_2(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "Atom_2")) return false;
-        boolean r;
-        Marker m = enter_section_(b, l, _NOT_);
-        r = !CspAnyOp(b, l + 1);
-        exit_section_(b, l, m, r, false, null);
-        return r;
-    }
-
-    // (LPAREN ArgVec RPAREN)?
-    private static boolean Atom_3(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "Atom_3")) return false;
-        Atom_3_0(b, l + 1);
-        return true;
-    }
-
-    // LPAREN ArgVec RPAREN
-    private static boolean Atom_3_0(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "Atom_3_0")) return false;
-        boolean r;
-        Marker m = enter_section_(b);
-        r = consumeToken(b, LPAREN);
-        r = r && ArgVec(b, l + 1);
-        r = r && consumeToken(b, RPAREN);
-        exit_section_(b, m, null, r);
-        return r;
     }
 
     /* ********************************************************** */
@@ -2195,6 +2166,49 @@ public class ASPParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
+    // Identifier !CspAnyOp (LPAREN ArgVec RPAREN)?
+    public static boolean Predicate(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "Predicate")) return false;
+        if (!nextTokenIs(b, ID)) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = Identifier(b, l + 1);
+        r = r && Predicate_1(b, l + 1);
+        r = r && Predicate_2(b, l + 1);
+        exit_section_(b, m, PREDICATE, r);
+        return r;
+    }
+
+    // !CspAnyOp
+    private static boolean Predicate_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "Predicate_1")) return false;
+        boolean r;
+        Marker m = enter_section_(b, l, _NOT_);
+        r = !CspAnyOp(b, l + 1);
+        exit_section_(b, l, m, r, false, null);
+        return r;
+    }
+
+    // (LPAREN ArgVec RPAREN)?
+    private static boolean Predicate_2(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "Predicate_2")) return false;
+        Predicate_2_0(b, l + 1);
+        return true;
+    }
+
+    // LPAREN ArgVec RPAREN
+    private static boolean Predicate_2_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "Predicate_2_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, LPAREN);
+        r = r && ArgVec(b, l + 1);
+        r = r && consumeToken(b, RPAREN);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    /* ********************************************************** */
     // Statement+
     public static boolean Program(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "Program")) return false;
@@ -2645,34 +2659,14 @@ public class ASPParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // Identifier (LPAREN ArgVec RPAREN)?
+    // Predicate
     public static boolean TheoryAtomName(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "TheoryAtomName")) return false;
         if (!nextTokenIs(b, ID)) return false;
         boolean r;
         Marker m = enter_section_(b);
-        r = Identifier(b, l + 1);
-        r = r && TheoryAtomName_1(b, l + 1);
+        r = Predicate(b, l + 1);
         exit_section_(b, m, THEORY_ATOM_NAME, r);
-        return r;
-    }
-
-    // (LPAREN ArgVec RPAREN)?
-    private static boolean TheoryAtomName_1(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "TheoryAtomName_1")) return false;
-        TheoryAtomName_1_0(b, l + 1);
-        return true;
-    }
-
-    // LPAREN ArgVec RPAREN
-    private static boolean TheoryAtomName_1_0(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "TheoryAtomName_1_0")) return false;
-        boolean r;
-        Marker m = enter_section_(b);
-        r = consumeToken(b, LPAREN);
-        r = r && ArgVec(b, l + 1);
-        r = r && consumeToken(b, RPAREN);
-        exit_section_(b, m, null, r);
         return r;
     }
 
@@ -3503,17 +3497,14 @@ public class ASPParser implements PsiParser, LightPsiParser {
         return true;
     }
 
-    // AT? Identifier LPAREN ArgVec RPAREN
+    // AT? Predicate
     public static boolean IdTerm(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "IdTerm")) return false;
         if (!nextTokenIsSmart(b, AT, ID)) return false;
         boolean r;
         Marker m = enter_section_(b, l, _NONE_, ID_TERM, "<id term>");
         r = IdTerm_0(b, l + 1);
-        r = r && Identifier(b, l + 1);
-        r = r && consumeToken(b, LPAREN);
-        r = r && ArgVec(b, l + 1);
-        r = r && consumeToken(b, RPAREN);
+        r = r && Predicate(b, l + 1);
         exit_section_(b, l, m, r, false, null);
         return r;
     }

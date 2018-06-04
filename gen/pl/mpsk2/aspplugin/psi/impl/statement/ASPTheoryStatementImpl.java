@@ -18,15 +18,12 @@
 package pl.mpsk2.aspplugin.psi.impl.statement;
 
 import java.util.List;
-
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
-
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
-
 import pl.mpsk2.aspplugin.psi.statement.*;
 import pl.mpsk2.aspplugin.psi.ASPVisitor;
 import pl.mpsk2.aspplugin.psi.impl.ASPPsiImplUtil;
@@ -34,47 +31,47 @@ import pl.mpsk2.aspplugin.psi.theory.ASPTheoryRoot;
 
 public class ASPTheoryStatementImpl extends ASPStatementImpl implements ASPTheoryStatement {
 
-    public ASPTheoryStatementImpl(ASTNode node) {
-        super(node);
-    }
+  public ASPTheoryStatementImpl(ASTNode node) {
+    super(node);
+  }
 
-    public void accept(@NotNull ASPVisitor visitor) {
-        visitor.visitTheoryStatement(this);
-    }
+  public void accept(@NotNull ASPVisitor visitor) {
+    visitor.visitTheoryStatement(this);
+  }
 
-    public void accept(@NotNull PsiElementVisitor visitor) {
-        if (visitor instanceof ASPVisitor) accept((ASPVisitor) visitor);
-        else super.accept(visitor);
-    }
+  public void accept(@NotNull PsiElementVisitor visitor) {
+    if (visitor instanceof ASPVisitor) accept((ASPVisitor)visitor);
+    else super.accept(visitor);
+  }
 
-    @Override
-    @Nullable
-    public ASPTheoryRoot getTheoryRoot() {
-        return findChildByClass(ASPTheoryRoot.class);
-    }
+  @Override
+  @Nullable
+  public ASPTheoryRoot getTheoryRoot() {
+    return findChildByClass(ASPTheoryRoot.class);
+  }
 
-    @Override
-    @Nullable
-    public PsiElement getDot() {
-        return findChildByType(DOT);
-    }
+  @Override
+  @Nullable
+  public PsiElement getDot() {
+    return findChildByType(DOT);
+  }
 
-    @Override
-    @Nullable
-    public PsiElement getLbrace() {
-        return findChildByType(LBRACE);
-    }
+  @Override
+  @Nullable
+  public PsiElement getLbrace() {
+    return findChildByType(LBRACE);
+  }
 
-    @Override
-    @Nullable
-    public PsiElement getRbrace() {
-        return findChildByType(RBRACE);
-    }
+  @Override
+  @Nullable
+  public PsiElement getRbrace() {
+    return findChildByType(RBRACE);
+  }
 
-    @Override
-    @NotNull
-    public PsiElement getTheory() {
-        return findNotNullChildByType(THEORY);
-    }
+  @Override
+  @NotNull
+  public PsiElement getTheory() {
+    return findNotNullChildByType(THEORY);
+  }
 
 }

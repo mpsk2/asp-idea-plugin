@@ -100,6 +100,7 @@ public interface ASPTypes {
     IElementType OPT_CONDITION = new ASPElementType("OPT_CONDITION");
     IElementType PAREN_CONSTANT_TERM = new ASPElementType("PAREN_CONSTANT_TERM");
     IElementType PAREN_TERM = new ASPElementType("PAREN_TERM");
+    IElementType PREDICATE = new ASPElementType("PREDICATE");
     IElementType PROGRAM = new ASPElementType("PROGRAM");
     IElementType PROJECT_STATEMENT = new ASPElementType("PROJECT_STATEMENT");
     IElementType PROJECT_STATEMENT_BODY = new ASPElementType("PROJECT_STATEMENT_BODY");
@@ -373,6 +374,8 @@ public interface ASPTypes {
                 return new ASPParenConstantTermImpl(node);
             } else if (type == PAREN_TERM) {
                 return new ASPParenTermImpl(node);
+            } else if (type == PREDICATE) {
+                return new ASPPredicateImpl(node);
             } else if (type == PROGRAM) {
                 return new ASPProgramImpl(node);
             } else if (type == PROJECT_STATEMENT) {

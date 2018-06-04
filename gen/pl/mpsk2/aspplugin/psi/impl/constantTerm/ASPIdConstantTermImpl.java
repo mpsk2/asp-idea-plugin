@@ -18,15 +18,12 @@
 package pl.mpsk2.aspplugin.psi.impl.constantTerm;
 
 import java.util.List;
-
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
-
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
-
 import pl.mpsk2.aspplugin.psi.constantTerm.*;
 import pl.mpsk2.aspplugin.psi.ASPVisitor;
 import pl.mpsk2.aspplugin.psi.impl.ASPPsiImplUtil;
@@ -35,47 +32,47 @@ import pl.mpsk2.aspplugin.psi.ASPIdentifier;
 
 public class ASPIdConstantTermImpl extends ASPConstantTermImpl implements ASPIdConstantTerm {
 
-    public ASPIdConstantTermImpl(ASTNode node) {
-        super(node);
-    }
+  public ASPIdConstantTermImpl(ASTNode node) {
+    super(node);
+  }
 
-    public void accept(@NotNull ASPVisitor visitor) {
-        visitor.visitIdConstantTerm(this);
-    }
+  public void accept(@NotNull ASPVisitor visitor) {
+    visitor.visitIdConstantTerm(this);
+  }
 
-    public void accept(@NotNull PsiElementVisitor visitor) {
-        if (visitor instanceof ASPVisitor) accept((ASPVisitor) visitor);
-        else super.accept(visitor);
-    }
+  public void accept(@NotNull PsiElementVisitor visitor) {
+    if (visitor instanceof ASPVisitor) accept((ASPVisitor)visitor);
+    else super.accept(visitor);
+  }
 
-    @Override
-    @Nullable
-    public ASPConstantTermVec getConstantTermVec() {
-        return findChildByClass(ASPConstantTermVec.class);
-    }
+  @Override
+  @Nullable
+  public ASPConstantTermVec getConstantTermVec() {
+    return findChildByClass(ASPConstantTermVec.class);
+  }
 
-    @Override
-    @NotNull
-    public ASPIdentifier getIdentifier() {
-        return findNotNullChildByClass(ASPIdentifier.class);
-    }
+  @Override
+  @NotNull
+  public ASPIdentifier getIdentifier() {
+    return findNotNullChildByClass(ASPIdentifier.class);
+  }
 
-    @Override
-    @Nullable
-    public PsiElement getAt() {
-        return findChildByType(AT);
-    }
+  @Override
+  @Nullable
+  public PsiElement getAt() {
+    return findChildByType(AT);
+  }
 
-    @Override
-    @NotNull
-    public PsiElement getLparen() {
-        return findNotNullChildByType(LPAREN);
-    }
+  @Override
+  @NotNull
+  public PsiElement getLparen() {
+    return findNotNullChildByType(LPAREN);
+  }
 
-    @Override
-    @NotNull
-    public PsiElement getRparen() {
-        return findNotNullChildByType(RPAREN);
-    }
+  @Override
+  @NotNull
+  public PsiElement getRparen() {
+    return findNotNullChildByType(RPAREN);
+  }
 
 }

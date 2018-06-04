@@ -7,16 +7,18 @@ Answer Set Programming file
             ADD_TERM_CSP
               MUL_TERM_CSP
                 PsiElement($)('$')
-                CONST_TERM
-                  IDENTIFIER
-                    PsiElement(id)('abc')
+                ID_TERM
+                  PREDICATE
+                    IDENTIFIER
+                      PsiElement(id)('abc')
       PsiElement(.)('.')
     HEAD_STATEMENT
       HEAD_
         LITERAL
           ATOM
-            IDENTIFIER
-              PsiElement(id)('abc')
+            PREDICATE
+              IDENTIFIER
+                PsiElement(id)('abc')
       PsiElement(.)('.')
     HEAD_STATEMENT
       HEAD_
@@ -29,7 +31,8 @@ Answer Set Programming file
                     PsiElement(id)('abc')
               PsiElement($+)('$+')
               MUL_TERM_CSP
-                CONST_TERM
-                  IDENTIFIER
-                    PsiElement(id)('cde')
+                ID_TERM
+                  PREDICATE
+                    IDENTIFIER
+                      PsiElement(id)('cde')
       PsiElement(.)('.')

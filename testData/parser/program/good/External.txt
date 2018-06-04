@@ -4,8 +4,9 @@ Answer Set Programming file
       PsiElement(#external)('#external')
       ATOM
         PsiElement(-)('-')
-        IDENTIFIER
-          PsiElement(id)('nottoday')
+        PREDICATE
+          IDENTIFIER
+            PsiElement(id)('nottoday')
       PsiElement(:)(':')
       BODY_
         BODY_DOT_ELEM
@@ -16,50 +17,52 @@ Answer Set Programming file
     EXTERNAL_STATEMENT
       PsiElement(#external)('#external')
       ATOM
-        IDENTIFIER
-          PsiElement(id)('today')
-        PsiElement(()('(')
-        ARG_VEC
-          TERM_VEC
-            N_TERM_VEC
-              CONST_TERM
-                CONSTANT
-                  PsiElement(number)('1')
-              PsiElement(,)(',')
-              CONST_TERM
-                CONSTANT
-                  PsiElement(number)('2')
-              PsiElement(,)(',')
-              CONST_TERM
-                CONSTANT
-                  PsiElement(number)('3')
-        PsiElement())(')')
+        PREDICATE
+          IDENTIFIER
+            PsiElement(id)('today')
+          PsiElement(()('(')
+          ARG_VEC
+            TERM_VEC
+              N_TERM_VEC
+                CONST_TERM
+                  CONSTANT
+                    PsiElement(number)('1')
+                PsiElement(,)(',')
+                CONST_TERM
+                  CONSTANT
+                    PsiElement(number)('2')
+                PsiElement(,)(',')
+                CONST_TERM
+                  CONSTANT
+                    PsiElement(number)('3')
+          PsiElement())(')')
       PsiElement(:)(':')
       PsiElement(.)('.')
     EXTERNAL_STATEMENT
       PsiElement(#external)('#external')
       ATOM
         PsiElement(-)('-')
-        IDENTIFIER
-          PsiElement(id)('tomorrow')
-        PsiElement(()('(')
-        ARG_VEC
-          TERM_VEC
-            N_TERM_VEC
-              CONST_TERM
-                CONSTANT
-                  PsiElement(number)('1')
-              PsiElement(,)(',')
-              CONST_TERM
-                CONSTANT
-                  PsiElement(number)('2')
-              PsiElement(,)(',')
-              CONST_TERM
-                CONSTANT
-                  PsiElement(number)('5')
-              PsiElement(,)(',')
-              CONST_TERM
-                CONSTANT
-                  PsiElement(number)('7')
-        PsiElement())(')')
+        PREDICATE
+          IDENTIFIER
+            PsiElement(id)('tomorrow')
+          PsiElement(()('(')
+          ARG_VEC
+            TERM_VEC
+              N_TERM_VEC
+                CONST_TERM
+                  CONSTANT
+                    PsiElement(number)('1')
+                PsiElement(,)(',')
+                CONST_TERM
+                  CONSTANT
+                    PsiElement(number)('2')
+                PsiElement(,)(',')
+                CONST_TERM
+                  CONSTANT
+                    PsiElement(number)('5')
+                PsiElement(,)(',')
+                CONST_TERM
+                  CONSTANT
+                    PsiElement(number)('7')
+          PsiElement())(')')
       PsiElement(.)('.')

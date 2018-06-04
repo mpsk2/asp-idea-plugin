@@ -257,7 +257,7 @@ BinaryArgVecElem ::= Term COMMA Term
 // Literals
 
 private CmpOp ::= EQ | NEQ | GT | GEQ | LT | LEQ
-Atom ::= SUB? Identifier !CspAnyOp (LPAREN ArgVec RPAREN)?
+Atom ::= SUB? Predicate
 Literal ::=
       NOT NOT TRUE
     |     NOT TRUE
@@ -388,7 +388,7 @@ MulTerm ::= Term MulOp Term
 UnNegTerm ::= SUB Term
 UnNotTerm ::= NOT Term
 ParenTerm ::= LPAREN TermVec? COMMA? RPAREN
-IdTerm ::= AT? Identifier LPAREN ArgVec RPAREN
+IdTerm ::= AT? Predicate
 VBarTerm ::= VBAR Term VBAR
 ConstTerm ::= Identifier | Constant | variable | anonymous
 
@@ -429,7 +429,7 @@ TheoryOperatorList ::= theoryop (COMMA theoryop)*
 TheoryAtomType ::= HEAD | BODY | ANY | DIRECTIVE
 
 TheoryAtom ::= AND TheoryAtomName LBRACE TheoryAtomElementList? RBRACE (theoryop TheoryOpTerm+)?
-TheoryAtomName ::= Identifier (LPAREN ArgVec RPAREN)?
+TheoryAtomName ::= Predicate
 TheoryAtomElementList ::= TheoryAtomElement (SEM TheoryAtomElement)*
 TheoryAtomElement ::= COLON NLitVec? | TheoryOpTermList? OptCondition
 TheoryOpTermList ::= TheoryOpTermVec (COMMA TheoryOpTermVec)*
@@ -445,3 +445,5 @@ TheoryTerm ::=
     | INFIMUM
     | SUPREMUM
     | variable
+
+Predicate ::= Identifier !CspAnyOp (LPAREN ArgVec RPAREN)?

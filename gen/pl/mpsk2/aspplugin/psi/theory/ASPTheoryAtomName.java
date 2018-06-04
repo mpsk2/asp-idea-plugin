@@ -21,21 +21,11 @@ import java.util.List;
 
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
-import pl.mpsk2.aspplugin.psi.ASPArgVec;
-import pl.mpsk2.aspplugin.psi.ASPIdentifier;
+import pl.mpsk2.aspplugin.psi.ASPPredicate;
 
 public interface ASPTheoryAtomName extends PsiElement {
 
-    @Nullable
-    ASPArgVec getArgVec();
-
     @NotNull
-    ASPIdentifier getIdentifier();
-
-    @Nullable
-    PsiElement getLparen();
-
-    @Nullable
-    PsiElement getRparen();
+    ASPPredicate getPredicate();
 
 }

@@ -24,17 +24,8 @@ import com.intellij.psi.PsiElement;
 
 public interface ASPAtom extends PsiElement {
 
-    @Nullable
-    ASPArgVec getArgVec();
-
     @NotNull
-    ASPIdentifier getIdentifier();
-
-    @Nullable
-    PsiElement getLparen();
-
-    @Nullable
-    PsiElement getRparen();
+    ASPPredicate getPredicate();
 
     @Nullable
     PsiElement getSub();

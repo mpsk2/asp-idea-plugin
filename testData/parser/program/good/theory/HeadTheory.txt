@@ -6,28 +6,33 @@ Answer Set Programming file
           THEORY_ATOM
             PsiElement(&)('&')
             THEORY_ATOM_NAME
-              IDENTIFIER
-                PsiElement(id)('name')
-              PsiElement(()('(')
-              ARG_VEC
-                TERM_VEC
-                  N_TERM_VEC
-                    CONST_TERM
-                      IDENTIFIER
-                        PsiElement(id)('a')
-                    PsiElement(,)(',')
-                    CONST_TERM
-                      IDENTIFIER
-                        PsiElement(id)('b')
-                    PsiElement(,)(',')
-                    CONST_TERM
-                      IDENTIFIER
-                        PsiElement(id)('c')
-                    PsiElement(,)(',')
-                    CONST_TERM
-                      IDENTIFIER
-                        PsiElement(id)('d')
-              PsiElement())(')')
+              PREDICATE
+                IDENTIFIER
+                  PsiElement(id)('name')
+                PsiElement(()('(')
+                ARG_VEC
+                  TERM_VEC
+                    N_TERM_VEC
+                      ID_TERM
+                        PREDICATE
+                          IDENTIFIER
+                            PsiElement(id)('a')
+                      PsiElement(,)(',')
+                      ID_TERM
+                        PREDICATE
+                          IDENTIFIER
+                            PsiElement(id)('b')
+                      PsiElement(,)(',')
+                      ID_TERM
+                        PREDICATE
+                          IDENTIFIER
+                            PsiElement(id)('c')
+                      PsiElement(,)(',')
+                      ID_TERM
+                        PREDICATE
+                          IDENTIFIER
+                            PsiElement(id)('d')
+                PsiElement())(')')
             PsiElement({)('{')
             THEORY_ATOM_ELEMENT_LIST
               THEORY_ATOM_ELEMENT
@@ -47,28 +52,33 @@ Answer Set Programming file
             THEORY_ATOM
               PsiElement(&)('&')
               THEORY_ATOM_NAME
-                IDENTIFIER
-                  PsiElement(id)('name')
-                PsiElement(()('(')
-                ARG_VEC
-                  TERM_VEC
-                    N_TERM_VEC
-                      CONST_TERM
-                        IDENTIFIER
-                          PsiElement(id)('a')
-                      PsiElement(,)(',')
-                      CONST_TERM
-                        IDENTIFIER
-                          PsiElement(id)('b')
-                      PsiElement(,)(',')
-                      CONST_TERM
-                        IDENTIFIER
-                          PsiElement(id)('c')
-                      PsiElement(,)(',')
-                      CONST_TERM
-                        IDENTIFIER
-                          PsiElement(id)('d')
-                PsiElement())(')')
+                PREDICATE
+                  IDENTIFIER
+                    PsiElement(id)('name')
+                  PsiElement(()('(')
+                  ARG_VEC
+                    TERM_VEC
+                      N_TERM_VEC
+                        ID_TERM
+                          PREDICATE
+                            IDENTIFIER
+                              PsiElement(id)('a')
+                        PsiElement(,)(',')
+                        ID_TERM
+                          PREDICATE
+                            IDENTIFIER
+                              PsiElement(id)('b')
+                        PsiElement(,)(',')
+                        ID_TERM
+                          PREDICATE
+                            IDENTIFIER
+                              PsiElement(id)('c')
+                        PsiElement(,)(',')
+                        ID_TERM
+                          PREDICATE
+                            IDENTIFIER
+                              PsiElement(id)('d')
+                  PsiElement())(')')
               PsiElement({)('{')
               THEORY_ATOM_ELEMENT_LIST
                 THEORY_ATOM_ELEMENT

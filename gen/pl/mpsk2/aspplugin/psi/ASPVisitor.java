@@ -323,6 +323,10 @@ public class ASPVisitor extends PsiElementVisitor {
         visitTerm(o);
     }
 
+    public void visitPredicate(@NotNull ASPPredicate o) {
+        visitPsiElement(o);
+    }
+
     public void visitProgram(@NotNull ASPProgram o) {
         visitPsiElement(o);
     }

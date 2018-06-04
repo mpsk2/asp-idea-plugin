@@ -18,38 +18,35 @@
 package pl.mpsk2.aspplugin.psi.impl.constantTerm;
 
 import java.util.List;
-
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
-
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
-
 import pl.mpsk2.aspplugin.psi.constantTerm.*;
 import pl.mpsk2.aspplugin.psi.ASPVisitor;
 import pl.mpsk2.aspplugin.psi.impl.ASPPsiImplUtil;
 
 public class ASPQuestionConstantTermImpl extends ASPBinaryConstantTermImpl implements ASPQuestionConstantTerm {
 
-    public ASPQuestionConstantTermImpl(ASTNode node) {
-        super(node);
-    }
+  public ASPQuestionConstantTermImpl(ASTNode node) {
+    super(node);
+  }
 
-    public void accept(@NotNull ASPVisitor visitor) {
-        visitor.visitQuestionConstantTerm(this);
-    }
+  public void accept(@NotNull ASPVisitor visitor) {
+    visitor.visitQuestionConstantTerm(this);
+  }
 
-    public void accept(@NotNull PsiElementVisitor visitor) {
-        if (visitor instanceof ASPVisitor) accept((ASPVisitor) visitor);
-        else super.accept(visitor);
-    }
+  public void accept(@NotNull PsiElementVisitor visitor) {
+    if (visitor instanceof ASPVisitor) accept((ASPVisitor)visitor);
+    else super.accept(visitor);
+  }
 
-    @Override
-    @NotNull
-    public PsiElement getQuestion() {
-        return findNotNullChildByType(QUESTION);
-    }
+  @Override
+  @NotNull
+  public PsiElement getQuestion() {
+    return findNotNullChildByType(QUESTION);
+  }
 
 }

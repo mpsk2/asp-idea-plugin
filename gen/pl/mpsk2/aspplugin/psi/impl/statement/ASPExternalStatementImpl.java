@@ -18,15 +18,12 @@
 package pl.mpsk2.aspplugin.psi.impl.statement;
 
 import java.util.List;
-
 import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
-
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
-
 import pl.mpsk2.aspplugin.psi.statement.*;
 import pl.mpsk2.aspplugin.psi.ASPVisitor;
 import pl.mpsk2.aspplugin.psi.impl.ASPPsiImplUtil;
@@ -35,47 +32,47 @@ import pl.mpsk2.aspplugin.psi.ASPBody_;
 
 public class ASPExternalStatementImpl extends ASPStatementImpl implements ASPExternalStatement {
 
-    public ASPExternalStatementImpl(ASTNode node) {
-        super(node);
-    }
+  public ASPExternalStatementImpl(ASTNode node) {
+    super(node);
+  }
 
-    public void accept(@NotNull ASPVisitor visitor) {
-        visitor.visitExternalStatement(this);
-    }
+  public void accept(@NotNull ASPVisitor visitor) {
+    visitor.visitExternalStatement(this);
+  }
 
-    public void accept(@NotNull PsiElementVisitor visitor) {
-        if (visitor instanceof ASPVisitor) accept((ASPVisitor) visitor);
-        else super.accept(visitor);
-    }
+  public void accept(@NotNull PsiElementVisitor visitor) {
+    if (visitor instanceof ASPVisitor) accept((ASPVisitor)visitor);
+    else super.accept(visitor);
+  }
 
-    @Override
-    @NotNull
-    public ASPAtom getAtom() {
-        return findNotNullChildByClass(ASPAtom.class);
-    }
+  @Override
+  @NotNull
+  public ASPAtom getAtom() {
+    return findNotNullChildByClass(ASPAtom.class);
+  }
 
-    @Override
-    @Nullable
-    public ASPBody_ getBody_() {
-        return findChildByClass(ASPBody_.class);
-    }
+  @Override
+  @Nullable
+  public ASPBody_ getBody_() {
+    return findChildByClass(ASPBody_.class);
+  }
 
-    @Override
-    @Nullable
-    public PsiElement getColon() {
-        return findChildByType(COLON);
-    }
+  @Override
+  @Nullable
+  public PsiElement getColon() {
+    return findChildByType(COLON);
+  }
 
-    @Override
-    @NotNull
-    public PsiElement getDot() {
-        return findNotNullChildByType(DOT);
-    }
+  @Override
+  @NotNull
+  public PsiElement getDot() {
+    return findNotNullChildByType(DOT);
+  }
 
-    @Override
-    @NotNull
-    public PsiElement getExternal() {
-        return findNotNullChildByType(EXTERNAL);
-    }
+  @Override
+  @NotNull
+  public PsiElement getExternal() {
+    return findNotNullChildByType(EXTERNAL);
+  }
 
 }

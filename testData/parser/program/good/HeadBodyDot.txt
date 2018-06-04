@@ -5,14 +5,16 @@ Answer Set Programming file
         DISJUNCTION
           LITERAL
             ATOM
-              IDENTIFIER
-                PsiElement(id)('jazda')
+              PREDICATE
+                IDENTIFIER
+                  PsiElement(id)('jazda')
           PsiElement(:)(':')
           N_LIT_VEC
             LITERAL
               ATOM
-                IDENTIFIER
-                  PsiElement(id)('jazda')
+                PREDICATE
+                  IDENTIFIER
+                    PsiElement(id)('jazda')
       PsiElement(:-)(':-')
       BODY_
         BODY_DOT_ELEM
@@ -26,14 +28,16 @@ Answer Set Programming file
         DISJUNCTION
           LITERAL
             ATOM
-              IDENTIFIER
-                PsiElement(id)('jazda')
+              PREDICATE
+                IDENTIFIER
+                  PsiElement(id)('jazda')
           PsiElement(:)(':')
           N_LIT_VEC
             LITERAL
               ATOM
-                IDENTIFIER
-                  PsiElement(id)('jazda')
+                PREDICATE
+                  IDENTIFIER
+                    PsiElement(id)('jazda')
       PsiElement(:-)(':-')
       BODY_
         BODY_DOT_ELEM

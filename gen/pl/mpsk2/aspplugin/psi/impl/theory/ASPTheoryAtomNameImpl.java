@@ -31,8 +31,7 @@ import pl.mpsk2.aspplugin.psi.impl.ASPCompositeElementImpl;
 import pl.mpsk2.aspplugin.psi.theory.*;
 import pl.mpsk2.aspplugin.psi.ASPVisitor;
 import pl.mpsk2.aspplugin.psi.impl.ASPPsiImplUtil;
-import pl.mpsk2.aspplugin.psi.ASPArgVec;
-import pl.mpsk2.aspplugin.psi.ASPIdentifier;
+import pl.mpsk2.aspplugin.psi.ASPPredicate;
 
 public class ASPTheoryAtomNameImpl extends ASPCompositeElementImpl implements ASPTheoryAtomName {
 
@@ -50,27 +49,9 @@ public class ASPTheoryAtomNameImpl extends ASPCompositeElementImpl implements AS
     }
 
     @Override
-    @Nullable
-    public ASPArgVec getArgVec() {
-        return findChildByClass(ASPArgVec.class);
-    }
-
-    @Override
     @NotNull
-    public ASPIdentifier getIdentifier() {
-        return findNotNullChildByClass(ASPIdentifier.class);
-    }
-
-    @Override
-    @Nullable
-    public PsiElement getLparen() {
-        return findChildByType(LPAREN);
-    }
-
-    @Override
-    @Nullable
-    public PsiElement getRparen() {
-        return findChildByType(RPAREN);
+    public ASPPredicate getPredicate() {
+        return findNotNullChildByClass(ASPPredicate.class);
     }
 
 }

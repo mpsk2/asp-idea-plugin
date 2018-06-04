@@ -6,8 +6,9 @@ Answer Set Programming file
         BODY_DOT_ELEM
           LITERAL
             ATOM
-              IDENTIFIER
-                PsiElement(id)('x')
+              PREDICATE
+                IDENTIFIER
+                  PsiElement(id)('x')
         PsiElement(;)(';')
         BODY_DOT_ELEM_2
           CONJUNCTION
@@ -25,11 +26,13 @@ Answer Set Programming file
               LITERAL
                 PsiElement(not)('not')
                 PsiElement(not)('not')
-                CONST_TERM
-                  IDENTIFIER
-                    PsiElement(id)('a')
+                ID_TERM
+                  PREDICATE
+                    IDENTIFIER
+                      PsiElement(id)('a')
                 PsiElement(<)('<')
-                CONST_TERM
-                  IDENTIFIER
-                    PsiElement(id)('b')
+                ID_TERM
+                  PREDICATE
+                    IDENTIFIER
+                      PsiElement(id)('b')
       PsiElement(.)('.')

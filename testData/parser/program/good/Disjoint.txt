@@ -24,9 +24,10 @@ Answer Set Programming file
           N_CSP_ELEM
             TERM_VEC
               N_TERM_VEC
-                CONST_TERM
-                  IDENTIFIER
-                    PsiElement(id)('optyk')
+                ID_TERM
+                  PREDICATE
+                    IDENTIFIER
+                      PsiElement(id)('optyk')
             PsiElement(:)(':')
             ADD_TERM_CSP
               MUL_TERM_CSP
@@ -35,9 +36,10 @@ Answer Set Programming file
                     PsiElement(id)('abc')
               PsiElement($+)('$+')
               MUL_TERM_CSP
-                CONST_TERM
-                  IDENTIFIER
-                    PsiElement(id)('cde')
+                ID_TERM
+                  PREDICATE
+                    IDENTIFIER
+                      PsiElement(id)('cde')
             OPT_CONDITION
               PsiElement(:)(':')
               N_LIT_VEC
@@ -57,18 +59,21 @@ Answer Set Programming file
         BODY_DOT_ELEM
           LITERAL
             ATOM
-              IDENTIFIER
-                PsiElement(id)('a')
+              PREDICATE
+                IDENTIFIER
+                  PsiElement(id)('a')
         PsiElement(,)(',')
         BODY_DOT_ELEM
           LITERAL
             ATOM
-              IDENTIFIER
-                PsiElement(id)('b')
+              PREDICATE
+                IDENTIFIER
+                  PsiElement(id)('b')
         PsiElement(,)(',')
         BODY_DOT_ELEM
           LITERAL
             ATOM
-              IDENTIFIER
-                PsiElement(id)('c')
+              PREDICATE
+                IDENTIFIER
+                  PsiElement(id)('c')
       PsiElement(.)('.')
