@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2018 Michał Piotr Stankiewicz
+ * Copyright 2018 Michał Piotr Stankiewicz
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,14 @@
  * limitations under the License.
  */
 
-package pl.mpsk2.aspplugin.parser;
+// This is a generated file. Not intended for manual editing.
+package pl.mpsk2.aspplugin.psi.theory;
 
-public class TheoryPassASPParserTest extends ASPParserTestBase {
-    public TheoryPassASPParserTest() {
-        super("program/good/theory");
-    }
+import java.util.List;
 
-    public void testDummy() {
-        doTest();
-    }
+import org.jetbrains.annotations.*;
+import com.intellij.psi.PsiElement;
 
-    public void testAtomDefinition() {
-        doTest();
-    }
-    public void testThermDefinition() {
-        doTest();
-    }
+public interface ASPTheoryOperatorList extends PsiElement {
+
 }

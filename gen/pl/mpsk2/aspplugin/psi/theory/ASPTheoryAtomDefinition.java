@@ -24,4 +24,31 @@ import com.intellij.psi.PsiElement;
 
 public interface ASPTheoryAtomDefinition extends PsiElement {
 
+    @Nullable
+    ASPTheoryAtomType getTheoryAtomType();
+
+    @NotNull
+    List<ASPTheoryDefinitionIdentifier> getTheoryDefinitionIdentifierList();
+
+    @Nullable
+    ASPTheoryOperatorList getTheoryOperatorList();
+
+    @Nullable
+    PsiElement getAnd();
+
+    @Nullable
+    PsiElement getColon();
+
+    @Nullable
+    PsiElement getLbrace();
+
+    @Nullable
+    PsiElement getRbrace();
+
+    @Nullable
+    PsiElement getSlash();
+
+    @Nullable
+    PsiElement getNumber();
+
 }

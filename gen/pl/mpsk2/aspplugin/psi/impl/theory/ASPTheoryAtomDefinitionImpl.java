@@ -47,4 +47,58 @@ public class ASPTheoryAtomDefinitionImpl extends ASPCompositeElementImpl impleme
         else super.accept(visitor);
     }
 
+    @Override
+    @Nullable
+    public ASPTheoryAtomType getTheoryAtomType() {
+        return findChildByClass(ASPTheoryAtomType.class);
+    }
+
+    @Override
+    @NotNull
+    public List<ASPTheoryDefinitionIdentifier> getTheoryDefinitionIdentifierList() {
+        return ASPPsiTreeUtil.getChildrenOfTypeAsList(this, ASPTheoryDefinitionIdentifier.class);
+    }
+
+    @Override
+    @Nullable
+    public ASPTheoryOperatorList getTheoryOperatorList() {
+        return findChildByClass(ASPTheoryOperatorList.class);
+    }
+
+    @Override
+    @Nullable
+    public PsiElement getAnd() {
+        return findChildByType(AND);
+    }
+
+    @Override
+    @Nullable
+    public PsiElement getColon() {
+        return findChildByType(COLON);
+    }
+
+    @Override
+    @Nullable
+    public PsiElement getLbrace() {
+        return findChildByType(LBRACE);
+    }
+
+    @Override
+    @Nullable
+    public PsiElement getRbrace() {
+        return findChildByType(RBRACE);
+    }
+
+    @Override
+    @Nullable
+    public PsiElement getSlash() {
+        return findChildByType(SLASH);
+    }
+
+    @Override
+    @Nullable
+    public PsiElement getNumber() {
+        return findChildByType(NUMBER);
+    }
+
 }

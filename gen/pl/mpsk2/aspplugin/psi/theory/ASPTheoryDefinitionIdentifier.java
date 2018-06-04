@@ -29,19 +29,10 @@ public interface ASPTheoryDefinitionIdentifier extends PsiElement {
     ASPIdentifier getIdentifier();
 
     @Nullable
-    PsiElement getAny();
+    ASPTheoryAtomType getTheoryAtomType();
 
     @Nullable
     PsiElement getBinary();
-
-    @Nullable
-    PsiElement getBody();
-
-    @Nullable
-    PsiElement getDirective();
-
-    @Nullable
-    PsiElement getHead();
 
     @Nullable
     PsiElement getLeft();

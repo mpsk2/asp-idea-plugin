@@ -432,18 +432,21 @@ TheoryDefinitionVec ::=
       TheoryTermDefinition (SEM TheoryTermDefinition)*
     | TheoryAtomDefinition (SEM TheoryAtomDefinition)*
 
-TheoryAtomDefinition ::= "todo1"
+TheoryAtomDefinition ::=
+      AND TheoryDefinitionIdentifier SLASH number COLON TheoryDefinitionIdentifier COMMA TheoryAtomType?
+    | LBRACE TheoryOperatorList? RBRACE COMMA TheoryDefinitionIdentifier COMMA TheoryAtomType
+
 TheoryTermDefinition ::= TheoryDefinitionIdentifier LBRACE TheoryOperatorDefinitionList? RBRACE
 TheoryDefinitionIdentifier ::=
       LEFT
     | RIGHT
     | UNARY
     | BINARY
-    | HEAD
-    | BODY
-    | ANY
-    | DIRECTIVE
+    | TheoryAtomType
     | Identifier
 
 TheoryOperatorDefinitionList ::= TheoryOperatorDefinition (SEM TheoryOperatorDefinition)*
 TheoryOperatorDefinition ::= theoryop COLON number COMMA (UNARY|BINARY COMMA (LEFT|RIGHT))
+
+TheoryOperatorList ::= theoryop (COMMA theoryop)*
+TheoryAtomType ::= HEAD | BODY | ANY | DIRECTIVE

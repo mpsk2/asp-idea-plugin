@@ -113,10 +113,12 @@ public interface ASPTypes {
     IElementType TERM = new ASPElementType("TERM");
     IElementType TERM_VEC = new ASPElementType("TERM_VEC");
     IElementType THEORY_ATOM_DEFINITION = new ASPElementType("THEORY_ATOM_DEFINITION");
+    IElementType THEORY_ATOM_TYPE = new ASPElementType("THEORY_ATOM_TYPE");
     IElementType THEORY_DEFINITION_IDENTIFIER = new ASPElementType("THEORY_DEFINITION_IDENTIFIER");
     IElementType THEORY_DEFINITION_VEC = new ASPElementType("THEORY_DEFINITION_VEC");
     IElementType THEORY_OPERATOR_DEFINITION = new ASPElementType("THEORY_OPERATOR_DEFINITION");
     IElementType THEORY_OPERATOR_DEFINITION_LIST = new ASPElementType("THEORY_OPERATOR_DEFINITION_LIST");
+    IElementType THEORY_OPERATOR_LIST = new ASPElementType("THEORY_OPERATOR_LIST");
     IElementType THEORY_ROOT = new ASPElementType("THEORY_ROOT");
     IElementType THEORY_STATEMENT = new ASPElementType("THEORY_STATEMENT");
     IElementType THEORY_TERM_DEFINITION = new ASPElementType("THEORY_TERM_DEFINITION");
@@ -385,6 +387,8 @@ public interface ASPTypes {
                 return new ASPTermVecImpl(node);
             } else if (type == THEORY_ATOM_DEFINITION) {
                 return new ASPTheoryAtomDefinitionImpl(node);
+            } else if (type == THEORY_ATOM_TYPE) {
+                return new ASPTheoryAtomTypeImpl(node);
             } else if (type == THEORY_DEFINITION_IDENTIFIER) {
                 return new ASPTheoryDefinitionIdentifierImpl(node);
             } else if (type == THEORY_DEFINITION_VEC) {
@@ -393,6 +397,8 @@ public interface ASPTypes {
                 return new ASPTheoryOperatorDefinitionImpl(node);
             } else if (type == THEORY_OPERATOR_DEFINITION_LIST) {
                 return new ASPTheoryOperatorDefinitionListImpl(node);
+            } else if (type == THEORY_OPERATOR_LIST) {
+                return new ASPTheoryOperatorListImpl(node);
             } else if (type == THEORY_ROOT) {
                 return new ASPTheoryRootImpl(node);
             } else if (type == THEORY_STATEMENT) {

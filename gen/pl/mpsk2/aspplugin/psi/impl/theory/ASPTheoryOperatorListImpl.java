@@ -31,57 +31,20 @@ import pl.mpsk2.aspplugin.psi.impl.ASPCompositeElementImpl;
 import pl.mpsk2.aspplugin.psi.theory.*;
 import pl.mpsk2.aspplugin.psi.ASPVisitor;
 import pl.mpsk2.aspplugin.psi.impl.ASPPsiImplUtil;
-import pl.mpsk2.aspplugin.psi.ASPIdentifier;
 
-public class ASPTheoryDefinitionIdentifierImpl extends ASPCompositeElementImpl implements ASPTheoryDefinitionIdentifier {
+public class ASPTheoryOperatorListImpl extends ASPCompositeElementImpl implements ASPTheoryOperatorList {
 
-    public ASPTheoryDefinitionIdentifierImpl(ASTNode node) {
+    public ASPTheoryOperatorListImpl(ASTNode node) {
         super(node);
     }
 
     public void accept(@NotNull ASPVisitor visitor) {
-        visitor.visitTheoryDefinitionIdentifier(this);
+        visitor.visitTheoryOperatorList(this);
     }
 
     public void accept(@NotNull PsiElementVisitor visitor) {
         if (visitor instanceof ASPVisitor) accept((ASPVisitor) visitor);
         else super.accept(visitor);
-    }
-
-    @Override
-    @Nullable
-    public ASPIdentifier getIdentifier() {
-        return findChildByClass(ASPIdentifier.class);
-    }
-
-    @Override
-    @Nullable
-    public ASPTheoryAtomType getTheoryAtomType() {
-        return findChildByClass(ASPTheoryAtomType.class);
-    }
-
-    @Override
-    @Nullable
-    public PsiElement getBinary() {
-        return findChildByType(BINARY);
-    }
-
-    @Override
-    @Nullable
-    public PsiElement getLeft() {
-        return findChildByType(LEFT);
-    }
-
-    @Override
-    @Nullable
-    public PsiElement getRight() {
-        return findChildByType(RIGHT);
-    }
-
-    @Override
-    @Nullable
-    public PsiElement getUnary() {
-        return findChildByType(UNARY);
     }
 
 }

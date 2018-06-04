@@ -132,7 +132,7 @@ THEORYOP=[/!<=>+\-*\\?&@|:;~\^\.]+
   "~"                { return BNOT; }
   ":"                { return COLON; }
   ","                { return COMMA; }
-  "."                { return DOT; }
+  "."                { yybegin(YYINITIAL); return DOT; }
   ".."               { return DOTS; }
   ">="               { return GEQ; }
   ">"                { return GT; }

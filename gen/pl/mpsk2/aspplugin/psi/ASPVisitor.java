@@ -375,6 +375,10 @@ public class ASPVisitor extends PsiElementVisitor {
         visitPsiElement(o);
     }
 
+    public void visitTheoryAtomType(@NotNull ASPTheoryAtomType o) {
+        visitPsiElement(o);
+    }
+
     public void visitTheoryDefinitionIdentifier(@NotNull ASPTheoryDefinitionIdentifier o) {
         visitPsiElement(o);
     }
@@ -388,6 +392,10 @@ public class ASPVisitor extends PsiElementVisitor {
     }
 
     public void visitTheoryOperatorDefinitionList(@NotNull ASPTheoryOperatorDefinitionList o) {
+        visitPsiElement(o);
+    }
+
+    public void visitTheoryOperatorList(@NotNull ASPTheoryOperatorList o) {
         visitPsiElement(o);
     }
 

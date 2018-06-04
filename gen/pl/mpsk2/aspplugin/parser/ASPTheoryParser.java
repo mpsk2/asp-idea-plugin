@@ -28,12 +28,73 @@ import static pl.mpsk2.aspplugin.parser.ASPParser.*;
 public class ASPTheoryParser {
 
     /* ********************************************************** */
-    // "todo1"
+    // AND TheoryDefinitionIdentifier SLASH number COLON TheoryDefinitionIdentifier COMMA TheoryAtomType?
+    //     | LBRACE TheoryOperatorList? RBRACE COMMA TheoryDefinitionIdentifier COMMA TheoryAtomType
     public static boolean TheoryAtomDefinition(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "TheoryAtomDefinition")) return false;
+        if (!nextTokenIs(b, "<theory atom definition>", AND, LBRACE)) return false;
         boolean r;
         Marker m = enter_section_(b, l, _NONE_, THEORY_ATOM_DEFINITION, "<theory atom definition>");
-        r = consumeToken(b, "todo1");
+        r = TheoryAtomDefinition_0(b, l + 1);
+        if (!r) r = TheoryAtomDefinition_1(b, l + 1);
+        exit_section_(b, l, m, r, false, null);
+        return r;
+    }
+
+    // AND TheoryDefinitionIdentifier SLASH number COLON TheoryDefinitionIdentifier COMMA TheoryAtomType?
+    private static boolean TheoryAtomDefinition_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtomDefinition_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, AND);
+        r = r && TheoryDefinitionIdentifier(b, l + 1);
+        r = r && consumeTokens(b, 0, SLASH, NUMBER, COLON);
+        r = r && TheoryDefinitionIdentifier(b, l + 1);
+        r = r && consumeToken(b, COMMA);
+        r = r && TheoryAtomDefinition_0_7(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // TheoryAtomType?
+    private static boolean TheoryAtomDefinition_0_7(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtomDefinition_0_7")) return false;
+        TheoryAtomType(b, l + 1);
+        return true;
+    }
+
+    // LBRACE TheoryOperatorList? RBRACE COMMA TheoryDefinitionIdentifier COMMA TheoryAtomType
+    private static boolean TheoryAtomDefinition_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtomDefinition_1")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, LBRACE);
+        r = r && TheoryAtomDefinition_1_1(b, l + 1);
+        r = r && consumeTokens(b, 0, RBRACE, COMMA);
+        r = r && TheoryDefinitionIdentifier(b, l + 1);
+        r = r && consumeToken(b, COMMA);
+        r = r && TheoryAtomType(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // TheoryOperatorList?
+    private static boolean TheoryAtomDefinition_1_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtomDefinition_1_1")) return false;
+        TheoryOperatorList(b, l + 1);
+        return true;
+    }
+
+    /* ********************************************************** */
+    // HEAD | BODY | ANY | DIRECTIVE
+    public static boolean TheoryAtomType(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtomType")) return false;
+        boolean r;
+        Marker m = enter_section_(b, l, _NONE_, THEORY_ATOM_TYPE, "<theory atom type>");
+        r = consumeToken(b, HEAD);
+        if (!r) r = consumeToken(b, BODY);
+        if (!r) r = consumeToken(b, ANY);
+        if (!r) r = consumeToken(b, DIRECTIVE);
         exit_section_(b, l, m, r, false, null);
         return r;
     }
@@ -43,10 +104,7 @@ public class ASPTheoryParser {
     //     | RIGHT
     //     | UNARY
     //     | BINARY
-    //     | HEAD
-    //     | BODY
-    //     | ANY
-    //     | DIRECTIVE
+    //     | TheoryAtomType
     //     | Identifier
     public static boolean TheoryDefinitionIdentifier(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "TheoryDefinitionIdentifier")) return false;
@@ -56,10 +114,7 @@ public class ASPTheoryParser {
         if (!r) r = consumeToken(b, RIGHT);
         if (!r) r = consumeToken(b, UNARY);
         if (!r) r = consumeToken(b, BINARY);
-        if (!r) r = consumeToken(b, HEAD);
-        if (!r) r = consumeToken(b, BODY);
-        if (!r) r = consumeToken(b, ANY);
-        if (!r) r = consumeToken(b, DIRECTIVE);
+        if (!r) r = TheoryAtomType(b, l + 1);
         if (!r) r = Identifier(b, l + 1);
         exit_section_(b, l, m, r, false, null);
         return r;
@@ -219,6 +274,40 @@ public class ASPTheoryParser {
         Marker m = enter_section_(b);
         r = consumeToken(b, SEM);
         r = r && TheoryOperatorDefinition(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    /* ********************************************************** */
+    // theoryop (COMMA theoryop)*
+    public static boolean TheoryOperatorList(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryOperatorList")) return false;
+        if (!nextTokenIs(b, THEORYOP)) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, THEORYOP);
+        r = r && TheoryOperatorList_1(b, l + 1);
+        exit_section_(b, m, THEORY_OPERATOR_LIST, r);
+        return r;
+    }
+
+    // (COMMA theoryop)*
+    private static boolean TheoryOperatorList_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryOperatorList_1")) return false;
+        while (true) {
+            int c = current_position_(b);
+            if (!TheoryOperatorList_1_0(b, l + 1)) break;
+            if (!empty_element_parsed_guard_(b, "TheoryOperatorList_1", c)) break;
+        }
+        return true;
+    }
+
+    // COMMA theoryop
+    private static boolean TheoryOperatorList_1_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryOperatorList_1_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeTokens(b, 0, COMMA, THEORYOP);
         exit_section_(b, m, null, r);
         return r;
     }
