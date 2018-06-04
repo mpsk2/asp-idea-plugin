@@ -24,6 +24,7 @@ import pl.mpsk2.aspplugin.psi.impl.*;
 import pl.mpsk2.aspplugin.psi.impl.constantTerm.*;
 import pl.mpsk2.aspplugin.psi.impl.statement.*;
 import pl.mpsk2.aspplugin.psi.impl.term.*;
+import pl.mpsk2.aspplugin.psi.impl.theory.*;
 
 public interface ASPTypes {
 
@@ -111,7 +112,14 @@ public interface ASPTypes {
     IElementType STATEMENT = new ASPElementType("STATEMENT");
     IElementType TERM = new ASPElementType("TERM");
     IElementType TERM_VEC = new ASPElementType("TERM_VEC");
+    IElementType THEORY_ATOM_DEFINITION = new ASPElementType("THEORY_ATOM_DEFINITION");
+    IElementType THEORY_DEFINITION_IDENTIFIER = new ASPElementType("THEORY_DEFINITION_IDENTIFIER");
+    IElementType THEORY_DEFINITION_VEC = new ASPElementType("THEORY_DEFINITION_VEC");
+    IElementType THEORY_OPERATOR_DEFINITION = new ASPElementType("THEORY_OPERATOR_DEFINITION");
+    IElementType THEORY_OPERATOR_DEFINITION_LIST = new ASPElementType("THEORY_OPERATOR_DEFINITION_LIST");
+    IElementType THEORY_ROOT = new ASPElementType("THEORY_ROOT");
     IElementType THEORY_STATEMENT = new ASPElementType("THEORY_STATEMENT");
+    IElementType THEORY_TERM_DEFINITION = new ASPElementType("THEORY_TERM_DEFINITION");
     IElementType UN_NEG_CONSTANT_TERM = new ASPElementType("UN_NEG_CONSTANT_TERM");
     IElementType UN_NEG_TERM = new ASPElementType("UN_NEG_TERM");
     IElementType UN_NOT_CONSTANT_TERM = new ASPElementType("UN_NOT_CONSTANT_TERM");
@@ -165,7 +173,7 @@ public interface ASPTypes {
     IElementType ID = new ASPTokenType("id");
     IElementType IF = new ASPTokenType(":-");
     IElementType INCLUDE = new ASPTokenType("#include");
-    IElementType INFIMUM = new ASPTokenType("#inf");
+    IElementType INFIMUM = new ASPTokenType("INFIMUM");
     IElementType LBRACE = new ASPTokenType("{");
     IElementType LBRACK = new ASPTokenType("[");
     IElementType LEFT = new ASPTokenType("left");
@@ -198,9 +206,10 @@ public interface ASPTypes {
     IElementType SUB = new ASPTokenType("-");
     IElementType SUM = new ASPTokenType("#sum");
     IElementType SUMP = new ASPTokenType("#sum+");
-    IElementType SUPREMUM = new ASPTokenType("#sup");
+    IElementType SUPREMUM = new ASPTokenType("SUPREMUM");
     IElementType TERMVEC_1_0 = new ASPTokenType("TermVec_1_0");
     IElementType THEORY = new ASPTokenType("#theory");
+    IElementType THEORYOP = new ASPTokenType("theoryop");
     IElementType TRUE = new ASPTokenType("#true");
     IElementType UNARY = new ASPTokenType("unary");
     IElementType VARIABLE = new ASPTokenType("variable");
@@ -374,8 +383,22 @@ public interface ASPTypes {
                 return new ASPShowStatementBodyImpl(node);
             } else if (type == TERM_VEC) {
                 return new ASPTermVecImpl(node);
+            } else if (type == THEORY_ATOM_DEFINITION) {
+                return new ASPTheoryAtomDefinitionImpl(node);
+            } else if (type == THEORY_DEFINITION_IDENTIFIER) {
+                return new ASPTheoryDefinitionIdentifierImpl(node);
+            } else if (type == THEORY_DEFINITION_VEC) {
+                return new ASPTheoryDefinitionVecImpl(node);
+            } else if (type == THEORY_OPERATOR_DEFINITION) {
+                return new ASPTheoryOperatorDefinitionImpl(node);
+            } else if (type == THEORY_OPERATOR_DEFINITION_LIST) {
+                return new ASPTheoryOperatorDefinitionListImpl(node);
+            } else if (type == THEORY_ROOT) {
+                return new ASPTheoryRootImpl(node);
             } else if (type == THEORY_STATEMENT) {
                 return new ASPTheoryStatementImpl(node);
+            } else if (type == THEORY_TERM_DEFINITION) {
+                return new ASPTheoryTermDefinitionImpl(node);
             } else if (type == UN_NEG_CONSTANT_TERM) {
                 return new ASPUnNegConstantTermImpl(node);
             } else if (type == UN_NEG_TERM) {

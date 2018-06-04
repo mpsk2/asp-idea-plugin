@@ -2393,14 +2393,25 @@ public class ASPParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // "todo theory statement"
+    // THEORY LBRACE TheoryRoot? RBRACE DOT
     public static boolean TheoryStatement(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "TheoryStatement")) return false;
-        boolean r;
-        Marker m = enter_section_(b, l, _NONE_, THEORY_STATEMENT, "<theory statement>");
-        r = consumeToken(b, "todo theory statement");
-        exit_section_(b, l, m, r, false, null);
-        return r;
+        if (!nextTokenIs(b, THEORY)) return false;
+        boolean r, p;
+        Marker m = enter_section_(b, l, _NONE_, THEORY_STATEMENT, null);
+        r = consumeTokens(b, 1, THEORY, LBRACE);
+        p = r; // pin = 1
+        r = r && report_error_(b, TheoryStatement_2(b, l + 1));
+        r = p && report_error_(b, consumeTokens(b, -1, RBRACE, DOT)) && r;
+        exit_section_(b, l, m, r, p, null);
+        return r || p;
+    }
+
+    // TheoryRoot?
+    private static boolean TheoryStatement_2(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryStatement_2")) return false;
+        ASPTheoryParser.TheoryRoot(b, l + 1);
+        return true;
     }
 
     /* ********************************************************** */

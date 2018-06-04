@@ -1,0 +1,9 @@
+Answer Set Programming file
+  PROGRAM
+    THEORY_STATEMENT
+      PsiElement(#theory)('#theory')
+      PsiElement({)('{')
+      THEORY_ROOT
+        <empty list>
+      PsiElement(})('}')
+      PsiElement(.)('.')

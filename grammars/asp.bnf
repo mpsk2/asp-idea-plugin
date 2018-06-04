@@ -48,7 +48,7 @@
         GT        = ">"
         IF        = ":-"
         INCLUDE   = "#include"
-        INFIMUM   = "#inf"
+        INFIMUM   = "regexp:#inf(remum)?"
         LBRACE    = "{"
         LBRACK    = "["
         LEQ       = "<="
@@ -76,7 +76,7 @@
         SUB       = "-"
         SUM       = "#sum"
         SUMP      = "#sum+"
-        SUPREMUM  = "#sup"
+        SUPREMUM  = "regexp:#sup(remum)?"
         TRUE      = "#true"
         BLOCK     = "#program"
         VBAR      = "|"
@@ -104,8 +104,11 @@
         variable  = "regexp:_*[A-Z][a-zA-Z0-9_']*"
         anonymous = "_"
         string    = "regexp:('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")"
+        theoryop  = "regexp:[/!<=>+\-*\\?&@|:;~\^\.]+"
     ]
 
+    psiPackage("Theory(?!Statement).*")="pl.mpsk2.aspplugin.psi.theory"
+    psiImplPackage("Theory(?!Statement).*")="pl.mpsk2.aspplugin.psi.impl.theory"
 
     extends("(Xor|Question|And|Add|Mul)ConstantTerm")=BinaryConstantTerm
     extends(".*ConstantTerm")=ConstantTerm
@@ -234,8 +237,7 @@ ExternalStatement ::=
       EXTERNAL Atom COLON Body_ DOT
     | EXTERNAL Atom COLON? DOT {pin=1}
 
-TheoryStatement ::= "todo theory statement"
-    // THEORY identifier[name] enable_theory_definition_lexing LBRACE theory_definition_list[defs] RBRACE disable_theory_lexing DOT
+TheoryStatement ::= THEORY LBRACE TheoryRoot? RBRACE DOT
 
 // Argument lists for unary operations
 
@@ -400,3 +402,48 @@ private MulOp ::= MUL | MOD | SLASH // DIV? TODO
 Identifier ::= id
 IdentifierList ::= Identifier (COMMA Identifier)*
 Constant ::= INFIMUM | SUPREMUM | string | number | Identifier
+
+; {
+    parserClass = 'pl.mpsk2.aspplugin.parser.ASPTheoryParser'
+    classHeader = 'copyrightHeader.java'
+
+    extends = 'pl.mpsk2.aspplugin.psi.impl.ASPCompositeElementImpl'
+
+    psiClassPrefix = 'ASP'
+    psiImplClassSuffix = 'Impl'
+    psiPackage = 'pl.mpsk2.aspplugin.psi.theory'
+    psiImplPackage = 'pl.mpsk2.aspplugin.psi.impl.theory'
+    psiImplUtilClass = 'pl.mpsk2.aspplugin.psi.impl.ASPPsiImplUtil'
+    parserUtilClass = 'pl.mpsk2.aspplugin.parser.ASPParserUtil'
+
+    elementTypeHolderClass = 'pl.mpsk2.aspplugin.psi.ASPTypes'
+    elementTypeClass = 'pl.mpsk2.aspplugin.psi.ASPElementType'
+    tokenTypeClass = 'pl.mpsk2.aspplugin.psi.ASPTokenType'
+    psiTreeUtilClass = 'pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil'
+
+    tokens = [
+        theoryop  = "regexp:[/!<=>+\-*\\?&@|:;~\^\.]+"
+    ]
+}
+
+TheoryRoot ::= TheoryDefinitionVec?
+
+TheoryDefinitionVec ::=
+      TheoryTermDefinition (SEM TheoryTermDefinition)*
+    | TheoryAtomDefinition (SEM TheoryAtomDefinition)*
+
+TheoryAtomDefinition ::= "todo1"
+TheoryTermDefinition ::= TheoryDefinitionIdentifier LBRACE TheoryOperatorDefinitionList? RBRACE
+TheoryDefinitionIdentifier ::=
+      LEFT
+    | RIGHT
+    | UNARY
+    | BINARY
+    | HEAD
+    | BODY
+    | ANY
+    | DIRECTIVE
+    | Identifier
+
+TheoryOperatorDefinitionList ::= TheoryOperatorDefinition (SEM TheoryOperatorDefinition)*
+TheoryOperatorDefinition ::= theoryop COLON number COMMA (UNARY|BINARY COMMA (LEFT|RIGHT))

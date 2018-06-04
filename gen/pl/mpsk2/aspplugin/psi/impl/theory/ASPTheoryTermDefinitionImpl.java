@@ -15,7 +15,7 @@
  */
 
 // This is a generated file. Not intended for manual editing.
-package pl.mpsk2.aspplugin.psi.impl.statement;
+package pl.mpsk2.aspplugin.psi.impl.theory;
 
 import java.util.List;
 
@@ -27,19 +27,19 @@ import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
 
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
 
-import pl.mpsk2.aspplugin.psi.statement.*;
+import pl.mpsk2.aspplugin.psi.impl.ASPCompositeElementImpl;
+import pl.mpsk2.aspplugin.psi.theory.*;
 import pl.mpsk2.aspplugin.psi.ASPVisitor;
 import pl.mpsk2.aspplugin.psi.impl.ASPPsiImplUtil;
-import pl.mpsk2.aspplugin.psi.theory.ASPTheoryRoot;
 
-public class ASPTheoryStatementImpl extends ASPStatementImpl implements ASPTheoryStatement {
+public class ASPTheoryTermDefinitionImpl extends ASPCompositeElementImpl implements ASPTheoryTermDefinition {
 
-    public ASPTheoryStatementImpl(ASTNode node) {
+    public ASPTheoryTermDefinitionImpl(ASTNode node) {
         super(node);
     }
 
     public void accept(@NotNull ASPVisitor visitor) {
-        visitor.visitTheoryStatement(this);
+        visitor.visitTheoryTermDefinition(this);
     }
 
     public void accept(@NotNull PsiElementVisitor visitor) {
@@ -48,33 +48,27 @@ public class ASPTheoryStatementImpl extends ASPStatementImpl implements ASPTheor
     }
 
     @Override
-    @Nullable
-    public ASPTheoryRoot getTheoryRoot() {
-        return findChildByClass(ASPTheoryRoot.class);
+    @NotNull
+    public ASPTheoryDefinitionIdentifier getTheoryDefinitionIdentifier() {
+        return findNotNullChildByClass(ASPTheoryDefinitionIdentifier.class);
     }
 
     @Override
     @Nullable
-    public PsiElement getDot() {
-        return findChildByType(DOT);
-    }
-
-    @Override
-    @Nullable
-    public PsiElement getLbrace() {
-        return findChildByType(LBRACE);
-    }
-
-    @Override
-    @Nullable
-    public PsiElement getRbrace() {
-        return findChildByType(RBRACE);
+    public ASPTheoryOperatorDefinitionList getTheoryOperatorDefinitionList() {
+        return findChildByClass(ASPTheoryOperatorDefinitionList.class);
     }
 
     @Override
     @NotNull
-    public PsiElement getTheory() {
-        return findNotNullChildByType(THEORY);
+    public PsiElement getLbrace() {
+        return findNotNullChildByType(LBRACE);
+    }
+
+    @Override
+    @NotNull
+    public PsiElement getRbrace() {
+        return findNotNullChildByType(RBRACE);
     }
 
 }

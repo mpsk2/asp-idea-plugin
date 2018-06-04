@@ -15,29 +15,41 @@
  */
 
 // This is a generated file. Not intended for manual editing.
-package pl.mpsk2.aspplugin.psi.statement;
+package pl.mpsk2.aspplugin.psi.theory;
 
 import java.util.List;
 
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
-import pl.mpsk2.aspplugin.psi.theory.ASPTheoryRoot;
+import pl.mpsk2.aspplugin.psi.ASPIdentifier;
 
-public interface ASPTheoryStatement extends ASPStatement {
-
-    @Nullable
-    ASPTheoryRoot getTheoryRoot();
+public interface ASPTheoryDefinitionIdentifier extends PsiElement {
 
     @Nullable
-    PsiElement getDot();
+    ASPIdentifier getIdentifier();
 
     @Nullable
-    PsiElement getLbrace();
+    PsiElement getAny();
 
     @Nullable
-    PsiElement getRbrace();
+    PsiElement getBinary();
 
-    @NotNull
-    PsiElement getTheory();
+    @Nullable
+    PsiElement getBody();
+
+    @Nullable
+    PsiElement getDirective();
+
+    @Nullable
+    PsiElement getHead();
+
+    @Nullable
+    PsiElement getLeft();
+
+    @Nullable
+    PsiElement getRight();
+
+    @Nullable
+    PsiElement getUnary();
 
 }

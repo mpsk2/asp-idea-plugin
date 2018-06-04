@@ -8,11 +8,11 @@ Answer Set Programming file
         ADD_CONSTANT_TERM
           CONST_CONSTANT_TERM
             CONSTANT
-              PsiElement(#inf)('#inf')
+              PsiElement(INFIMUM)('#inf')
           PsiElement(+)('+')
           CONST_CONSTANT_TERM
             CONSTANT
-              PsiElement(#sup)('#sup')
+              PsiElement(SUPREMUM)('#sup')
         PsiElement(+)('+')
         CONST_CONSTANT_TERM
           CONSTANT

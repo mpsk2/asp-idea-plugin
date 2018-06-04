@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @State(
-        name="ASPApplicationSettings",
+        name = "ASPApplicationSettings",
         storages = {
                 @Storage(file = "$APP_CONFIG/other.xml")
         }

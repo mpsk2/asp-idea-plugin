@@ -23,6 +23,7 @@ import com.intellij.psi.PsiElement;
 import pl.mpsk2.aspplugin.psi.constantTerm.*;
 import pl.mpsk2.aspplugin.psi.statement.*;
 import pl.mpsk2.aspplugin.psi.term.*;
+import pl.mpsk2.aspplugin.psi.theory.*;
 
 public class ASPVisitor extends PsiElementVisitor {
 
@@ -370,8 +371,36 @@ public class ASPVisitor extends PsiElementVisitor {
         visitPsiElement(o);
     }
 
+    public void visitTheoryAtomDefinition(@NotNull ASPTheoryAtomDefinition o) {
+        visitPsiElement(o);
+    }
+
+    public void visitTheoryDefinitionIdentifier(@NotNull ASPTheoryDefinitionIdentifier o) {
+        visitPsiElement(o);
+    }
+
+    public void visitTheoryDefinitionVec(@NotNull ASPTheoryDefinitionVec o) {
+        visitPsiElement(o);
+    }
+
+    public void visitTheoryOperatorDefinition(@NotNull ASPTheoryOperatorDefinition o) {
+        visitPsiElement(o);
+    }
+
+    public void visitTheoryOperatorDefinitionList(@NotNull ASPTheoryOperatorDefinitionList o) {
+        visitPsiElement(o);
+    }
+
+    public void visitTheoryRoot(@NotNull ASPTheoryRoot o) {
+        visitPsiElement(o);
+    }
+
     public void visitTheoryStatement(@NotNull ASPTheoryStatement o) {
         visitStatement(o);
+    }
+
+    public void visitTheoryTermDefinition(@NotNull ASPTheoryTermDefinition o) {
+        visitPsiElement(o);
     }
 
     public void visitUnNegConstantTerm(@NotNull ASPUnNegConstantTerm o) {

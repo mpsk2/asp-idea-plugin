@@ -1,0 +1,21 @@
+Answer Set Programming file
+  PROGRAM
+    THEORY_STATEMENT
+      PsiElement(#theory)('#theory')
+      PsiElement({)('{')
+      THEORY_ROOT
+        THEORY_DEFINITION_VEC
+          THEORY_TERM_DEFINITION
+            THEORY_DEFINITION_IDENTIFIER
+              PsiElement(left)('left')
+            PsiElement({)('{')
+            THEORY_OPERATOR_DEFINITION_LIST
+              THEORY_OPERATOR_DEFINITION
+                PsiElement(theoryop)(':.')
+                PsiElement(:)(':')
+                PsiElement(number)('15')
+                PsiElement(,)(',')
+                PsiElement(unary)('unary')
+            PsiElement(})('}')
+      PsiElement(})('}')
+      PsiElement(.)('.')
