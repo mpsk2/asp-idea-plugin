@@ -15,7 +15,7 @@
  */
 
 // This is a generated file. Not intended for manual editing.
-package pl.mpsk2.aspplugin.psi.impl;
+package pl.mpsk2.aspplugin.psi.impl.theory;
 
 import java.util.List;
 
@@ -27,18 +27,20 @@ import pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil;
 
 import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
 
-import pl.mpsk2.aspplugin.psi.*;
+import pl.mpsk2.aspplugin.psi.impl.ASPCompositeElementImpl;
+import pl.mpsk2.aspplugin.psi.theory.*;
+import pl.mpsk2.aspplugin.psi.ASPVisitor;
+import pl.mpsk2.aspplugin.psi.impl.ASPPsiImplUtil;
 import pl.mpsk2.aspplugin.psi.term.ASPTerm;
-import pl.mpsk2.aspplugin.psi.theory.ASPTheoryAtom;
 
-public class ASPLuHeadAggregateImpl extends ASPCompositeElementImpl implements ASPLuHeadAggregate {
+public class ASPTheoryAtomImpl extends ASPCompositeElementImpl implements ASPTheoryAtom {
 
-    public ASPLuHeadAggregateImpl(ASTNode node) {
+    public ASPTheoryAtomImpl(ASTNode node) {
         super(node);
     }
 
     public void accept(@NotNull ASPVisitor visitor) {
-        visitor.visitLuHeadAggregate(this);
+        visitor.visitTheoryAtom(this);
     }
 
     public void accept(@NotNull PsiElementVisitor visitor) {
@@ -47,63 +49,45 @@ public class ASPLuHeadAggregateImpl extends ASPCompositeElementImpl implements A
     }
 
     @Override
-    @Nullable
-    public ASPHeadAggregate getHeadAggregate() {
-        return findChildByClass(ASPHeadAggregate.class);
+    @NotNull
+    public List<ASPTerm> getTermList() {
+        return ASPPsiTreeUtil.getChildrenOfTypeAsList(this, ASPTerm.class);
     }
 
     @Override
     @Nullable
-    public ASPTerm getTerm() {
-        return findChildByClass(ASPTerm.class);
+    public ASPTheoryAtomElementList getTheoryAtomElementList() {
+        return findChildByClass(ASPTheoryAtomElementList.class);
+    }
+
+    @Override
+    @NotNull
+    public ASPTheoryAtomName getTheoryAtomName() {
+        return findNotNullChildByClass(ASPTheoryAtomName.class);
+    }
+
+    @Override
+    @NotNull
+    public PsiElement getAnd() {
+        return findNotNullChildByType(AND);
+    }
+
+    @Override
+    @NotNull
+    public PsiElement getLbrace() {
+        return findNotNullChildByType(LBRACE);
+    }
+
+    @Override
+    @NotNull
+    public PsiElement getRbrace() {
+        return findNotNullChildByType(RBRACE);
     }
 
     @Override
     @Nullable
-    public ASPTheoryAtom getTheoryAtom() {
-        return findChildByClass(ASPTheoryAtom.class);
-    }
-
-    @Override
-    @Nullable
-    public ASPUpper_ getUpper_() {
-        return findChildByClass(ASPUpper_.class);
-    }
-
-    @Override
-    @Nullable
-    public PsiElement getEq() {
-        return findChildByType(EQ);
-    }
-
-    @Override
-    @Nullable
-    public PsiElement getGeq() {
-        return findChildByType(GEQ);
-    }
-
-    @Override
-    @Nullable
-    public PsiElement getGt() {
-        return findChildByType(GT);
-    }
-
-    @Override
-    @Nullable
-    public PsiElement getLeq() {
-        return findChildByType(LEQ);
-    }
-
-    @Override
-    @Nullable
-    public PsiElement getLt() {
-        return findChildByType(LT);
-    }
-
-    @Override
-    @Nullable
-    public PsiElement getNeq() {
-        return findChildByType(NEQ);
+    public PsiElement getTheoryop() {
+        return findChildByType(THEORYOP);
     }
 
 }

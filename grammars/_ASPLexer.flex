@@ -42,7 +42,7 @@ THEORYOP=[/!<=>+\-*\\?&@|:;~\^\.]+
   {WHITE_SPACE}      { return WHITE_SPACE; }
 
   "+"                { return ADD; }
-  "&"                { return AND; }
+  "&"                { yybegin(THEORY_STATE); return AND; }
   "="                { return EQ; }
   "@"                { return AT; }
   "#base"            { return BASE; }
@@ -136,7 +136,7 @@ THEORYOP=[/!<=>+\-*\\?&@|:;~\^\.]+
   ".."               { return DOTS; }
   ">="               { return GEQ; }
   ">"                { return GT; }
-  ":-"               { return IF; }
+  ":-"               { yybegin(YYINITIAL); return IF; }
   "{"                { return LBRACE; }
   "["                { return LBRACK; }
   "<="               { return LEQ; }
@@ -169,11 +169,15 @@ THEORYOP=[/!<=>+\-*\\?&@|:;~\^\.]+
   "not"              { return NOT; }
   "_"                { return ANONYMOUS; }
 
+  {INFIMUM}          { return INFIMUM; }
+  {SUPREMUM}         { return SUPREMUM; }
   {WHITE_SPACE}      { return WHITE_SPACE; }
   {SPACE}            { return SPACE; }
   {COMMENT}          { return COMMENT; }
   {NUMBER}           { return NUMBER; }
+  {ID}               { return ID; }
   {THEORYOP}         { return THEORYOP; }
+  {VARIABLE}         { return VARIABLE; }
   {STRING}           { return STRING; }
 }
 

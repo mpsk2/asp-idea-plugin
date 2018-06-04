@@ -15,45 +15,27 @@
  */
 
 // This is a generated file. Not intended for manual editing.
-package pl.mpsk2.aspplugin.psi;
+package pl.mpsk2.aspplugin.psi.theory;
 
 import java.util.List;
 
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
-import pl.mpsk2.aspplugin.psi.term.ASPTerm;
-import pl.mpsk2.aspplugin.psi.theory.ASPTheoryAtom;
+import pl.mpsk2.aspplugin.psi.ASPNLitVec;
+import pl.mpsk2.aspplugin.psi.ASPOptCondition;
 
-public interface ASPLuBodyAggregate extends PsiElement {
-
-    @Nullable
-    ASPBodyAggregate getBodyAggregate();
+public interface ASPTheoryAtomElement extends PsiElement {
 
     @Nullable
-    ASPTerm getTerm();
+    ASPNLitVec getNLitVec();
 
     @Nullable
-    ASPTheoryAtom getTheoryAtom();
+    ASPOptCondition getOptCondition();
 
     @Nullable
-    ASPUpper_ getUpper_();
+    ASPTheoryOpTermList getTheoryOpTermList();
 
     @Nullable
-    PsiElement getEq();
-
-    @Nullable
-    PsiElement getGeq();
-
-    @Nullable
-    PsiElement getGt();
-
-    @Nullable
-    PsiElement getLeq();
-
-    @Nullable
-    PsiElement getLt();
-
-    @Nullable
-    PsiElement getNeq();
+    PsiElement getColon();
 
 }

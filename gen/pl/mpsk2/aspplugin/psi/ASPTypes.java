@@ -112,15 +112,23 @@ public interface ASPTypes {
     IElementType STATEMENT = new ASPElementType("STATEMENT");
     IElementType TERM = new ASPElementType("TERM");
     IElementType TERM_VEC = new ASPElementType("TERM_VEC");
+    IElementType THEORY_ATOM = new ASPElementType("THEORY_ATOM");
     IElementType THEORY_ATOM_DEFINITION = new ASPElementType("THEORY_ATOM_DEFINITION");
+    IElementType THEORY_ATOM_ELEMENT = new ASPElementType("THEORY_ATOM_ELEMENT");
+    IElementType THEORY_ATOM_ELEMENT_LIST = new ASPElementType("THEORY_ATOM_ELEMENT_LIST");
+    IElementType THEORY_ATOM_NAME = new ASPElementType("THEORY_ATOM_NAME");
     IElementType THEORY_ATOM_TYPE = new ASPElementType("THEORY_ATOM_TYPE");
     IElementType THEORY_DEFINITION_IDENTIFIER = new ASPElementType("THEORY_DEFINITION_IDENTIFIER");
     IElementType THEORY_DEFINITION_VEC = new ASPElementType("THEORY_DEFINITION_VEC");
     IElementType THEORY_OPERATOR_DEFINITION = new ASPElementType("THEORY_OPERATOR_DEFINITION");
     IElementType THEORY_OPERATOR_DEFINITION_LIST = new ASPElementType("THEORY_OPERATOR_DEFINITION_LIST");
     IElementType THEORY_OPERATOR_LIST = new ASPElementType("THEORY_OPERATOR_LIST");
+    IElementType THEORY_OP_TERM = new ASPElementType("THEORY_OP_TERM");
+    IElementType THEORY_OP_TERM_LIST = new ASPElementType("THEORY_OP_TERM_LIST");
+    IElementType THEORY_OP_TERM_VEC = new ASPElementType("THEORY_OP_TERM_VEC");
     IElementType THEORY_ROOT = new ASPElementType("THEORY_ROOT");
     IElementType THEORY_STATEMENT = new ASPElementType("THEORY_STATEMENT");
+    IElementType THEORY_TERM = new ASPElementType("THEORY_TERM");
     IElementType THEORY_TERM_DEFINITION = new ASPElementType("THEORY_TERM_DEFINITION");
     IElementType UN_NEG_CONSTANT_TERM = new ASPElementType("UN_NEG_CONSTANT_TERM");
     IElementType UN_NEG_TERM = new ASPElementType("UN_NEG_TERM");
@@ -385,8 +393,16 @@ public interface ASPTypes {
                 return new ASPShowStatementBodyImpl(node);
             } else if (type == TERM_VEC) {
                 return new ASPTermVecImpl(node);
+            } else if (type == THEORY_ATOM) {
+                return new ASPTheoryAtomImpl(node);
             } else if (type == THEORY_ATOM_DEFINITION) {
                 return new ASPTheoryAtomDefinitionImpl(node);
+            } else if (type == THEORY_ATOM_ELEMENT) {
+                return new ASPTheoryAtomElementImpl(node);
+            } else if (type == THEORY_ATOM_ELEMENT_LIST) {
+                return new ASPTheoryAtomElementListImpl(node);
+            } else if (type == THEORY_ATOM_NAME) {
+                return new ASPTheoryAtomNameImpl(node);
             } else if (type == THEORY_ATOM_TYPE) {
                 return new ASPTheoryAtomTypeImpl(node);
             } else if (type == THEORY_DEFINITION_IDENTIFIER) {
@@ -399,10 +415,18 @@ public interface ASPTypes {
                 return new ASPTheoryOperatorDefinitionListImpl(node);
             } else if (type == THEORY_OPERATOR_LIST) {
                 return new ASPTheoryOperatorListImpl(node);
+            } else if (type == THEORY_OP_TERM) {
+                return new ASPTheoryOpTermImpl(node);
+            } else if (type == THEORY_OP_TERM_LIST) {
+                return new ASPTheoryOpTermListImpl(node);
+            } else if (type == THEORY_OP_TERM_VEC) {
+                return new ASPTheoryOpTermVecImpl(node);
             } else if (type == THEORY_ROOT) {
                 return new ASPTheoryRootImpl(node);
             } else if (type == THEORY_STATEMENT) {
                 return new ASPTheoryStatementImpl(node);
+            } else if (type == THEORY_TERM) {
+                return new ASPTheoryTermImpl(node);
             } else if (type == THEORY_TERM_DEFINITION) {
                 return new ASPTheoryTermDefinitionImpl(node);
             } else if (type == UN_NEG_CONSTANT_TERM) {

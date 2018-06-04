@@ -305,7 +305,7 @@ AltBody_AggrVec ::= AltBody_AggrElem (SEM AltBody_AggrVec)*
 
 BodyAggregate ::= AggregateFunction? LBRACE AltBody_AggrVec? RBRACE
 Upper_ ::= CmpOp? Term
-LuBodyAggregate ::= Term CmpOp? BodyAggregate Upper_? // | theory_atom
+LuBodyAggregate ::= Term CmpOp? BodyAggregate Upper_? | TheoryAtom
 
 // Head Aggregate Elements
 
@@ -316,7 +316,7 @@ AltHeadAggrVec ::= AltHeadAggrElem (SEM AltHeadAggrElem)*
 
 // Head Aggregate
 HeadAggregate ::= AggregateFunction LBRACE HeadAggrVec? RBRACE | LBRACE AltHeadAggrVec? RBRACE
-LuHeadAggregate ::= (Term CmpOp?)? HeadAggregate Upper_? {pin=2}// | theory_atom
+LuHeadAggregate ::= (Term CmpOp?)? HeadAggregate Upper_?  | TheoryAtom {pin=2}
 
 // Disjoint Aggregate
 NCspElem ::= TermVec COLON AddTermCsp OptCondition
@@ -403,29 +403,6 @@ Identifier ::= id
 IdentifierList ::= Identifier (COMMA Identifier)*
 Constant ::= INFIMUM | SUPREMUM | string | number | Identifier
 
-; {
-    parserClass = 'pl.mpsk2.aspplugin.parser.ASPTheoryParser'
-    classHeader = 'copyrightHeader.java'
-
-    extends = 'pl.mpsk2.aspplugin.psi.impl.ASPCompositeElementImpl'
-
-    psiClassPrefix = 'ASP'
-    psiImplClassSuffix = 'Impl'
-    psiPackage = 'pl.mpsk2.aspplugin.psi.theory'
-    psiImplPackage = 'pl.mpsk2.aspplugin.psi.impl.theory'
-    psiImplUtilClass = 'pl.mpsk2.aspplugin.psi.impl.ASPPsiImplUtil'
-    parserUtilClass = 'pl.mpsk2.aspplugin.parser.ASPParserUtil'
-
-    elementTypeHolderClass = 'pl.mpsk2.aspplugin.psi.ASPTypes'
-    elementTypeClass = 'pl.mpsk2.aspplugin.psi.ASPElementType'
-    tokenTypeClass = 'pl.mpsk2.aspplugin.psi.ASPTokenType'
-    psiTreeUtilClass = 'pl.mpsk2.aspplugin.psi.ASPPsiTreeUtil'
-
-    tokens = [
-        theoryop  = "regexp:[/!<=>+\-*\\?&@|:;~\^\.]+"
-    ]
-}
-
 TheoryRoot ::= TheoryDefinitionVec?
 
 TheoryDefinitionVec ::=
@@ -450,3 +427,21 @@ TheoryOperatorDefinition ::= theoryop COLON number COMMA (UNARY|BINARY COMMA (LE
 
 TheoryOperatorList ::= theoryop (COMMA theoryop)*
 TheoryAtomType ::= HEAD | BODY | ANY | DIRECTIVE
+
+TheoryAtom ::= AND TheoryAtomName LBRACE TheoryAtomElementList? RBRACE (theoryop TheoryOpTerm+)?
+TheoryAtomName ::= Identifier (LPAREN ArgVec RPAREN)?
+TheoryAtomElementList ::= TheoryAtomElement (SEM TheoryAtomElement)*
+TheoryAtomElement ::= COLON NLitVec? | TheoryOpTermList? OptCondition
+TheoryOpTermList ::= TheoryOpTermVec (COMMA TheoryOpTermVec)*
+TheoryOpTermVec ::= TheoryOpTerm+
+TheoryOpTerm ::= TheoryOperatorList? TheoryTerm
+TheoryTerm ::=
+      LBRACE TheoryOpTermList RBRACE
+    | LBRACK TheoryOpTermList RBRACK
+    | LPAREN (TheoryOpTerm (COMMA TheoryOpTermList?)?)? RPAREN
+    | Identifier (LPAREN TheoryOpTermList? RPAREN)?
+    | number
+    | string
+    | INFIMUM
+    | SUPREMUM
+    | variable

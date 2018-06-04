@@ -29,6 +29,7 @@ import static pl.mpsk2.aspplugin.psi.ASPTypes.*;
 
 import pl.mpsk2.aspplugin.psi.*;
 import pl.mpsk2.aspplugin.psi.term.ASPTerm;
+import pl.mpsk2.aspplugin.psi.theory.ASPTheoryAtom;
 
 public class ASPLuBodyAggregateImpl extends ASPCompositeElementImpl implements ASPLuBodyAggregate {
 
@@ -46,15 +47,21 @@ public class ASPLuBodyAggregateImpl extends ASPCompositeElementImpl implements A
     }
 
     @Override
-    @NotNull
+    @Nullable
     public ASPBodyAggregate getBodyAggregate() {
-        return findNotNullChildByClass(ASPBodyAggregate.class);
+        return findChildByClass(ASPBodyAggregate.class);
     }
 
     @Override
-    @NotNull
+    @Nullable
     public ASPTerm getTerm() {
-        return findNotNullChildByClass(ASPTerm.class);
+        return findChildByClass(ASPTerm.class);
+    }
+
+    @Override
+    @Nullable
+    public ASPTheoryAtom getTheoryAtom() {
+        return findChildByClass(ASPTheoryAtom.class);
     }
 
     @Override

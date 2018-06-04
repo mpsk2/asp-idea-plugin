@@ -22,14 +22,18 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 import pl.mpsk2.aspplugin.psi.term.ASPTerm;
+import pl.mpsk2.aspplugin.psi.theory.ASPTheoryAtom;
 
 public interface ASPLuHeadAggregate extends PsiElement {
 
-    @NotNull
+    @Nullable
     ASPHeadAggregate getHeadAggregate();
 
     @Nullable
     ASPTerm getTerm();
+
+    @Nullable
+    ASPTheoryAtom getTheoryAtom();
 
     @Nullable
     ASPUpper_ getUpper_();

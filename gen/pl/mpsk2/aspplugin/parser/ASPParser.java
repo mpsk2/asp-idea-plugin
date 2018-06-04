@@ -179,8 +179,42 @@ public class ASPParser implements PsiParser, LightPsiParser {
             r = Term(b, 0, -1);
         } else if (t == TERM_VEC) {
             r = TermVec(b, 0);
+        } else if (t == THEORY_ATOM) {
+            r = TheoryAtom(b, 0);
+        } else if (t == THEORY_ATOM_DEFINITION) {
+            r = TheoryAtomDefinition(b, 0);
+        } else if (t == THEORY_ATOM_ELEMENT) {
+            r = TheoryAtomElement(b, 0);
+        } else if (t == THEORY_ATOM_ELEMENT_LIST) {
+            r = TheoryAtomElementList(b, 0);
+        } else if (t == THEORY_ATOM_NAME) {
+            r = TheoryAtomName(b, 0);
+        } else if (t == THEORY_ATOM_TYPE) {
+            r = TheoryAtomType(b, 0);
+        } else if (t == THEORY_DEFINITION_IDENTIFIER) {
+            r = TheoryDefinitionIdentifier(b, 0);
+        } else if (t == THEORY_DEFINITION_VEC) {
+            r = TheoryDefinitionVec(b, 0);
+        } else if (t == THEORY_OP_TERM) {
+            r = TheoryOpTerm(b, 0);
+        } else if (t == THEORY_OP_TERM_LIST) {
+            r = TheoryOpTermList(b, 0);
+        } else if (t == THEORY_OP_TERM_VEC) {
+            r = TheoryOpTermVec(b, 0);
+        } else if (t == THEORY_OPERATOR_DEFINITION) {
+            r = TheoryOperatorDefinition(b, 0);
+        } else if (t == THEORY_OPERATOR_DEFINITION_LIST) {
+            r = TheoryOperatorDefinitionList(b, 0);
+        } else if (t == THEORY_OPERATOR_LIST) {
+            r = TheoryOperatorList(b, 0);
+        } else if (t == THEORY_ROOT) {
+            r = TheoryRoot(b, 0);
         } else if (t == THEORY_STATEMENT) {
             r = TheoryStatement(b, 0);
+        } else if (t == THEORY_TERM) {
+            r = TheoryTerm(b, 0);
+        } else if (t == THEORY_TERM_DEFINITION) {
+            r = TheoryTermDefinition(b, 0);
         } else if (t == UPPER_) {
             r = Upper_(b, 0);
         } else if (t == W_IF_STATEMENT) {
@@ -201,8 +235,8 @@ public class ASPParser implements PsiParser, LightPsiParser {
                     UN_NEG_CONSTANT_TERM, UN_NOT_CONSTANT_TERM, V_BAR_CONSTANT_TERM, XOR_CONSTANT_TERM),
             create_token_set_(ADD_TERM, AND_TERM, CONST_TERM, DOTS_TERM,
                     ID_TERM, MUL_TERM, PAREN_TERM, QUESTION_TERM,
-                    TERM, UN_NEG_TERM, UN_NOT_TERM, V_BAR_TERM,
-                    XOR_TERM),
+                    TERM, THEORY_OP_TERM, THEORY_TERM, UN_NEG_TERM,
+                    UN_NOT_TERM, V_BAR_TERM, XOR_TERM),
             create_token_set_(BLOCK_STATEMENT, DEFINE_STATEMENT, DISJOINT_STATEMENT, EDGE_STATEMENT,
                     EXTERNAL_STATEMENT, HEAD_STATEMENT, HEURISTIC_STATEMENT, IF_STATEMENT,
                     INCLUDE_STATEMENT, LUA_CODE_STATEMENT, MAXIMIZE_STATEMENT, MINIMIZE_STATEMENT,
@@ -1649,75 +1683,96 @@ public class ASPParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // Term CmpOp? BodyAggregate Upper_?
+    // Term CmpOp? BodyAggregate Upper_? | TheoryAtom
     public static boolean LuBodyAggregate(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "LuBodyAggregate")) return false;
         boolean r;
         Marker m = enter_section_(b, l, _NONE_, LU_BODY_AGGREGATE, "<lu body aggregate>");
-        r = Term(b, l + 1, -1);
-        r = r && LuBodyAggregate_1(b, l + 1);
-        r = r && BodyAggregate(b, l + 1);
-        r = r && LuBodyAggregate_3(b, l + 1);
+        r = LuBodyAggregate_0(b, l + 1);
+        if (!r) r = TheoryAtom(b, l + 1);
         exit_section_(b, l, m, r, false, null);
         return r;
     }
 
-    // CmpOp?
-    private static boolean LuBodyAggregate_1(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "LuBodyAggregate_1")) return false;
-        CmpOp(b, l + 1);
-        return true;
-    }
-
-    // Upper_?
-    private static boolean LuBodyAggregate_3(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "LuBodyAggregate_3")) return false;
-        Upper_(b, l + 1);
-        return true;
-    }
-
-    /* ********************************************************** */
-    // (Term CmpOp?)? HeadAggregate Upper_?
-    public static boolean LuHeadAggregate(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "LuHeadAggregate")) return false;
-        boolean r, p;
-        Marker m = enter_section_(b, l, _NONE_, LU_HEAD_AGGREGATE, "<lu head aggregate>");
-        r = LuHeadAggregate_0(b, l + 1);
-        r = r && HeadAggregate(b, l + 1);
-        p = r; // pin = 2
-        r = r && LuHeadAggregate_2(b, l + 1);
-        exit_section_(b, l, m, r, p, null);
-        return r || p;
-    }
-
-    // (Term CmpOp?)?
-    private static boolean LuHeadAggregate_0(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "LuHeadAggregate_0")) return false;
-        LuHeadAggregate_0_0(b, l + 1);
-        return true;
-    }
-
-    // Term CmpOp?
-    private static boolean LuHeadAggregate_0_0(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "LuHeadAggregate_0_0")) return false;
+    // Term CmpOp? BodyAggregate Upper_?
+    private static boolean LuBodyAggregate_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "LuBodyAggregate_0")) return false;
         boolean r;
         Marker m = enter_section_(b);
         r = Term(b, l + 1, -1);
-        r = r && LuHeadAggregate_0_0_1(b, l + 1);
+        r = r && LuBodyAggregate_0_1(b, l + 1);
+        r = r && BodyAggregate(b, l + 1);
+        r = r && LuBodyAggregate_0_3(b, l + 1);
         exit_section_(b, m, null, r);
         return r;
     }
 
     // CmpOp?
-    private static boolean LuHeadAggregate_0_0_1(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "LuHeadAggregate_0_0_1")) return false;
+    private static boolean LuBodyAggregate_0_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "LuBodyAggregate_0_1")) return false;
         CmpOp(b, l + 1);
         return true;
     }
 
     // Upper_?
-    private static boolean LuHeadAggregate_2(PsiBuilder b, int l) {
-        if (!recursion_guard_(b, l, "LuHeadAggregate_2")) return false;
+    private static boolean LuBodyAggregate_0_3(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "LuBodyAggregate_0_3")) return false;
+        Upper_(b, l + 1);
+        return true;
+    }
+
+    /* ********************************************************** */
+    // (Term CmpOp?)? HeadAggregate Upper_?  | TheoryAtom
+    public static boolean LuHeadAggregate(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "LuHeadAggregate")) return false;
+        boolean r;
+        Marker m = enter_section_(b, l, _NONE_, LU_HEAD_AGGREGATE, "<lu head aggregate>");
+        r = LuHeadAggregate_0(b, l + 1);
+        if (!r) r = TheoryAtom(b, l + 1);
+        exit_section_(b, l, m, r, false, null);
+        return r;
+    }
+
+    // (Term CmpOp?)? HeadAggregate Upper_?
+    private static boolean LuHeadAggregate_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "LuHeadAggregate_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = LuHeadAggregate_0_0(b, l + 1);
+        r = r && HeadAggregate(b, l + 1);
+        r = r && LuHeadAggregate_0_2(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // (Term CmpOp?)?
+    private static boolean LuHeadAggregate_0_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "LuHeadAggregate_0_0")) return false;
+        LuHeadAggregate_0_0_0(b, l + 1);
+        return true;
+    }
+
+    // Term CmpOp?
+    private static boolean LuHeadAggregate_0_0_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "LuHeadAggregate_0_0_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = Term(b, l + 1, -1);
+        r = r && LuHeadAggregate_0_0_0_1(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // CmpOp?
+    private static boolean LuHeadAggregate_0_0_0_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "LuHeadAggregate_0_0_0_1")) return false;
+        CmpOp(b, l + 1);
+        return true;
+    }
+
+    // Upper_?
+    private static boolean LuHeadAggregate_0_2(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "LuHeadAggregate_0_2")) return false;
         Upper_(b, l + 1);
         return true;
     }
@@ -2393,6 +2448,541 @@ public class ASPParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
+    // AND TheoryAtomName LBRACE TheoryAtomElementList? RBRACE (theoryop TheoryOpTerm+)?
+    public static boolean TheoryAtom(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtom")) return false;
+        if (!nextTokenIs(b, AND)) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, AND);
+        r = r && TheoryAtomName(b, l + 1);
+        r = r && consumeToken(b, LBRACE);
+        r = r && TheoryAtom_3(b, l + 1);
+        r = r && consumeToken(b, RBRACE);
+        r = r && TheoryAtom_5(b, l + 1);
+        exit_section_(b, m, THEORY_ATOM, r);
+        return r;
+    }
+
+    // TheoryAtomElementList?
+    private static boolean TheoryAtom_3(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtom_3")) return false;
+        TheoryAtomElementList(b, l + 1);
+        return true;
+    }
+
+    // (theoryop TheoryOpTerm+)?
+    private static boolean TheoryAtom_5(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtom_5")) return false;
+        TheoryAtom_5_0(b, l + 1);
+        return true;
+    }
+
+    // theoryop TheoryOpTerm+
+    private static boolean TheoryAtom_5_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtom_5_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, THEORYOP);
+        r = r && TheoryAtom_5_0_1(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // TheoryOpTerm+
+    private static boolean TheoryAtom_5_0_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtom_5_0_1")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = TheoryOpTerm(b, l + 1);
+        while (r) {
+            int c = current_position_(b);
+            if (!TheoryOpTerm(b, l + 1)) break;
+            if (!empty_element_parsed_guard_(b, "TheoryAtom_5_0_1", c)) break;
+        }
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    /* ********************************************************** */
+    // AND TheoryDefinitionIdentifier SLASH number COLON TheoryDefinitionIdentifier COMMA TheoryAtomType?
+    //     | LBRACE TheoryOperatorList? RBRACE COMMA TheoryDefinitionIdentifier COMMA TheoryAtomType
+    public static boolean TheoryAtomDefinition(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtomDefinition")) return false;
+        if (!nextTokenIs(b, "<theory atom definition>", AND, LBRACE)) return false;
+        boolean r;
+        Marker m = enter_section_(b, l, _NONE_, THEORY_ATOM_DEFINITION, "<theory atom definition>");
+        r = TheoryAtomDefinition_0(b, l + 1);
+        if (!r) r = TheoryAtomDefinition_1(b, l + 1);
+        exit_section_(b, l, m, r, false, null);
+        return r;
+    }
+
+    // AND TheoryDefinitionIdentifier SLASH number COLON TheoryDefinitionIdentifier COMMA TheoryAtomType?
+    private static boolean TheoryAtomDefinition_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtomDefinition_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, AND);
+        r = r && TheoryDefinitionIdentifier(b, l + 1);
+        r = r && consumeTokens(b, 0, SLASH, NUMBER, COLON);
+        r = r && TheoryDefinitionIdentifier(b, l + 1);
+        r = r && consumeToken(b, COMMA);
+        r = r && TheoryAtomDefinition_0_7(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // TheoryAtomType?
+    private static boolean TheoryAtomDefinition_0_7(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtomDefinition_0_7")) return false;
+        TheoryAtomType(b, l + 1);
+        return true;
+    }
+
+    // LBRACE TheoryOperatorList? RBRACE COMMA TheoryDefinitionIdentifier COMMA TheoryAtomType
+    private static boolean TheoryAtomDefinition_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtomDefinition_1")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, LBRACE);
+        r = r && TheoryAtomDefinition_1_1(b, l + 1);
+        r = r && consumeTokens(b, 0, RBRACE, COMMA);
+        r = r && TheoryDefinitionIdentifier(b, l + 1);
+        r = r && consumeToken(b, COMMA);
+        r = r && TheoryAtomType(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // TheoryOperatorList?
+    private static boolean TheoryAtomDefinition_1_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtomDefinition_1_1")) return false;
+        TheoryOperatorList(b, l + 1);
+        return true;
+    }
+
+    /* ********************************************************** */
+    // COLON NLitVec? | TheoryOpTermList? OptCondition
+    public static boolean TheoryAtomElement(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtomElement")) return false;
+        boolean r;
+        Marker m = enter_section_(b, l, _NONE_, THEORY_ATOM_ELEMENT, "<theory atom element>");
+        r = TheoryAtomElement_0(b, l + 1);
+        if (!r) r = TheoryAtomElement_1(b, l + 1);
+        exit_section_(b, l, m, r, false, null);
+        return r;
+    }
+
+    // COLON NLitVec?
+    private static boolean TheoryAtomElement_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtomElement_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, COLON);
+        r = r && TheoryAtomElement_0_1(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // NLitVec?
+    private static boolean TheoryAtomElement_0_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtomElement_0_1")) return false;
+        NLitVec(b, l + 1);
+        return true;
+    }
+
+    // TheoryOpTermList? OptCondition
+    private static boolean TheoryAtomElement_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtomElement_1")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = TheoryAtomElement_1_0(b, l + 1);
+        r = r && OptCondition(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // TheoryOpTermList?
+    private static boolean TheoryAtomElement_1_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtomElement_1_0")) return false;
+        TheoryOpTermList(b, l + 1);
+        return true;
+    }
+
+    /* ********************************************************** */
+    // TheoryAtomElement (SEM TheoryAtomElement)*
+    public static boolean TheoryAtomElementList(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtomElementList")) return false;
+        boolean r;
+        Marker m = enter_section_(b, l, _NONE_, THEORY_ATOM_ELEMENT_LIST, "<theory atom element list>");
+        r = TheoryAtomElement(b, l + 1);
+        r = r && TheoryAtomElementList_1(b, l + 1);
+        exit_section_(b, l, m, r, false, null);
+        return r;
+    }
+
+    // (SEM TheoryAtomElement)*
+    private static boolean TheoryAtomElementList_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtomElementList_1")) return false;
+        while (true) {
+            int c = current_position_(b);
+            if (!TheoryAtomElementList_1_0(b, l + 1)) break;
+            if (!empty_element_parsed_guard_(b, "TheoryAtomElementList_1", c)) break;
+        }
+        return true;
+    }
+
+    // SEM TheoryAtomElement
+    private static boolean TheoryAtomElementList_1_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtomElementList_1_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, SEM);
+        r = r && TheoryAtomElement(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    /* ********************************************************** */
+    // Identifier (LPAREN ArgVec RPAREN)?
+    public static boolean TheoryAtomName(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtomName")) return false;
+        if (!nextTokenIs(b, ID)) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = Identifier(b, l + 1);
+        r = r && TheoryAtomName_1(b, l + 1);
+        exit_section_(b, m, THEORY_ATOM_NAME, r);
+        return r;
+    }
+
+    // (LPAREN ArgVec RPAREN)?
+    private static boolean TheoryAtomName_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtomName_1")) return false;
+        TheoryAtomName_1_0(b, l + 1);
+        return true;
+    }
+
+    // LPAREN ArgVec RPAREN
+    private static boolean TheoryAtomName_1_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtomName_1_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, LPAREN);
+        r = r && ArgVec(b, l + 1);
+        r = r && consumeToken(b, RPAREN);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    /* ********************************************************** */
+    // HEAD | BODY | ANY | DIRECTIVE
+    public static boolean TheoryAtomType(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryAtomType")) return false;
+        boolean r;
+        Marker m = enter_section_(b, l, _NONE_, THEORY_ATOM_TYPE, "<theory atom type>");
+        r = consumeToken(b, HEAD);
+        if (!r) r = consumeToken(b, BODY);
+        if (!r) r = consumeToken(b, ANY);
+        if (!r) r = consumeToken(b, DIRECTIVE);
+        exit_section_(b, l, m, r, false, null);
+        return r;
+    }
+
+    /* ********************************************************** */
+    // LEFT
+    //     | RIGHT
+    //     | UNARY
+    //     | BINARY
+    //     | TheoryAtomType
+    //     | Identifier
+    public static boolean TheoryDefinitionIdentifier(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryDefinitionIdentifier")) return false;
+        boolean r;
+        Marker m = enter_section_(b, l, _NONE_, THEORY_DEFINITION_IDENTIFIER, "<theory definition identifier>");
+        r = consumeToken(b, LEFT);
+        if (!r) r = consumeToken(b, RIGHT);
+        if (!r) r = consumeToken(b, UNARY);
+        if (!r) r = consumeToken(b, BINARY);
+        if (!r) r = TheoryAtomType(b, l + 1);
+        if (!r) r = Identifier(b, l + 1);
+        exit_section_(b, l, m, r, false, null);
+        return r;
+    }
+
+    /* ********************************************************** */
+    // TheoryTermDefinition (SEM TheoryTermDefinition)*
+    //     | TheoryAtomDefinition (SEM TheoryAtomDefinition)*
+    public static boolean TheoryDefinitionVec(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryDefinitionVec")) return false;
+        boolean r;
+        Marker m = enter_section_(b, l, _NONE_, THEORY_DEFINITION_VEC, "<theory definition vec>");
+        r = TheoryDefinitionVec_0(b, l + 1);
+        if (!r) r = TheoryDefinitionVec_1(b, l + 1);
+        exit_section_(b, l, m, r, false, null);
+        return r;
+    }
+
+    // TheoryTermDefinition (SEM TheoryTermDefinition)*
+    private static boolean TheoryDefinitionVec_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryDefinitionVec_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = TheoryTermDefinition(b, l + 1);
+        r = r && TheoryDefinitionVec_0_1(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // (SEM TheoryTermDefinition)*
+    private static boolean TheoryDefinitionVec_0_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryDefinitionVec_0_1")) return false;
+        while (true) {
+            int c = current_position_(b);
+            if (!TheoryDefinitionVec_0_1_0(b, l + 1)) break;
+            if (!empty_element_parsed_guard_(b, "TheoryDefinitionVec_0_1", c)) break;
+        }
+        return true;
+    }
+
+    // SEM TheoryTermDefinition
+    private static boolean TheoryDefinitionVec_0_1_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryDefinitionVec_0_1_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, SEM);
+        r = r && TheoryTermDefinition(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // TheoryAtomDefinition (SEM TheoryAtomDefinition)*
+    private static boolean TheoryDefinitionVec_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryDefinitionVec_1")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = TheoryAtomDefinition(b, l + 1);
+        r = r && TheoryDefinitionVec_1_1(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // (SEM TheoryAtomDefinition)*
+    private static boolean TheoryDefinitionVec_1_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryDefinitionVec_1_1")) return false;
+        while (true) {
+            int c = current_position_(b);
+            if (!TheoryDefinitionVec_1_1_0(b, l + 1)) break;
+            if (!empty_element_parsed_guard_(b, "TheoryDefinitionVec_1_1", c)) break;
+        }
+        return true;
+    }
+
+    // SEM TheoryAtomDefinition
+    private static boolean TheoryDefinitionVec_1_1_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryDefinitionVec_1_1_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, SEM);
+        r = r && TheoryAtomDefinition(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    /* ********************************************************** */
+    // TheoryOperatorList? TheoryTerm
+    public static boolean TheoryOpTerm(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryOpTerm")) return false;
+        boolean r;
+        Marker m = enter_section_(b, l, _COLLAPSE_, THEORY_OP_TERM, "<theory op term>");
+        r = TheoryOpTerm_0(b, l + 1);
+        r = r && TheoryTerm(b, l + 1);
+        exit_section_(b, l, m, r, false, null);
+        return r;
+    }
+
+    // TheoryOperatorList?
+    private static boolean TheoryOpTerm_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryOpTerm_0")) return false;
+        TheoryOperatorList(b, l + 1);
+        return true;
+    }
+
+    /* ********************************************************** */
+    // TheoryOpTermVec (COMMA TheoryOpTermVec)*
+    public static boolean TheoryOpTermList(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryOpTermList")) return false;
+        boolean r;
+        Marker m = enter_section_(b, l, _NONE_, THEORY_OP_TERM_LIST, "<theory op term list>");
+        r = TheoryOpTermVec(b, l + 1);
+        r = r && TheoryOpTermList_1(b, l + 1);
+        exit_section_(b, l, m, r, false, null);
+        return r;
+    }
+
+    // (COMMA TheoryOpTermVec)*
+    private static boolean TheoryOpTermList_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryOpTermList_1")) return false;
+        while (true) {
+            int c = current_position_(b);
+            if (!TheoryOpTermList_1_0(b, l + 1)) break;
+            if (!empty_element_parsed_guard_(b, "TheoryOpTermList_1", c)) break;
+        }
+        return true;
+    }
+
+    // COMMA TheoryOpTermVec
+    private static boolean TheoryOpTermList_1_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryOpTermList_1_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, COMMA);
+        r = r && TheoryOpTermVec(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    /* ********************************************************** */
+    // TheoryOpTerm+
+    public static boolean TheoryOpTermVec(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryOpTermVec")) return false;
+        boolean r;
+        Marker m = enter_section_(b, l, _NONE_, THEORY_OP_TERM_VEC, "<theory op term vec>");
+        r = TheoryOpTerm(b, l + 1);
+        while (r) {
+            int c = current_position_(b);
+            if (!TheoryOpTerm(b, l + 1)) break;
+            if (!empty_element_parsed_guard_(b, "TheoryOpTermVec", c)) break;
+        }
+        exit_section_(b, l, m, r, false, null);
+        return r;
+    }
+
+    /* ********************************************************** */
+    // theoryop COLON number COMMA (UNARY|BINARY COMMA (LEFT|RIGHT))
+    public static boolean TheoryOperatorDefinition(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryOperatorDefinition")) return false;
+        if (!nextTokenIs(b, THEORYOP)) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeTokens(b, 0, THEORYOP, COLON, NUMBER, COMMA);
+        r = r && TheoryOperatorDefinition_4(b, l + 1);
+        exit_section_(b, m, THEORY_OPERATOR_DEFINITION, r);
+        return r;
+    }
+
+    // UNARY|BINARY COMMA (LEFT|RIGHT)
+    private static boolean TheoryOperatorDefinition_4(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryOperatorDefinition_4")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, UNARY);
+        if (!r) r = TheoryOperatorDefinition_4_1(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // BINARY COMMA (LEFT|RIGHT)
+    private static boolean TheoryOperatorDefinition_4_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryOperatorDefinition_4_1")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeTokens(b, 0, BINARY, COMMA);
+        r = r && TheoryOperatorDefinition_4_1_2(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // LEFT|RIGHT
+    private static boolean TheoryOperatorDefinition_4_1_2(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryOperatorDefinition_4_1_2")) return false;
+        boolean r;
+        r = consumeToken(b, LEFT);
+        if (!r) r = consumeToken(b, RIGHT);
+        return r;
+    }
+
+    /* ********************************************************** */
+    // TheoryOperatorDefinition (SEM TheoryOperatorDefinition)*
+    public static boolean TheoryOperatorDefinitionList(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryOperatorDefinitionList")) return false;
+        if (!nextTokenIs(b, THEORYOP)) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = TheoryOperatorDefinition(b, l + 1);
+        r = r && TheoryOperatorDefinitionList_1(b, l + 1);
+        exit_section_(b, m, THEORY_OPERATOR_DEFINITION_LIST, r);
+        return r;
+    }
+
+    // (SEM TheoryOperatorDefinition)*
+    private static boolean TheoryOperatorDefinitionList_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryOperatorDefinitionList_1")) return false;
+        while (true) {
+            int c = current_position_(b);
+            if (!TheoryOperatorDefinitionList_1_0(b, l + 1)) break;
+            if (!empty_element_parsed_guard_(b, "TheoryOperatorDefinitionList_1", c)) break;
+        }
+        return true;
+    }
+
+    // SEM TheoryOperatorDefinition
+    private static boolean TheoryOperatorDefinitionList_1_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryOperatorDefinitionList_1_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, SEM);
+        r = r && TheoryOperatorDefinition(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    /* ********************************************************** */
+    // theoryop (COMMA theoryop)*
+    public static boolean TheoryOperatorList(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryOperatorList")) return false;
+        if (!nextTokenIs(b, THEORYOP)) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, THEORYOP);
+        r = r && TheoryOperatorList_1(b, l + 1);
+        exit_section_(b, m, THEORY_OPERATOR_LIST, r);
+        return r;
+    }
+
+    // (COMMA theoryop)*
+    private static boolean TheoryOperatorList_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryOperatorList_1")) return false;
+        while (true) {
+            int c = current_position_(b);
+            if (!TheoryOperatorList_1_0(b, l + 1)) break;
+            if (!empty_element_parsed_guard_(b, "TheoryOperatorList_1", c)) break;
+        }
+        return true;
+    }
+
+    // COMMA theoryop
+    private static boolean TheoryOperatorList_1_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryOperatorList_1_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeTokens(b, 0, COMMA, THEORYOP);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    /* ********************************************************** */
+    // TheoryDefinitionVec?
+    public static boolean TheoryRoot(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryRoot")) return false;
+        Marker m = enter_section_(b, l, _NONE_, THEORY_ROOT, "<theory root>");
+        TheoryDefinitionVec(b, l + 1);
+        exit_section_(b, l, m, true, false, null);
+        return true;
+    }
+
+    /* ********************************************************** */
     // THEORY LBRACE TheoryRoot? RBRACE DOT
     public static boolean TheoryStatement(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "TheoryStatement")) return false;
@@ -2410,7 +3000,171 @@ public class ASPParser implements PsiParser, LightPsiParser {
     // TheoryRoot?
     private static boolean TheoryStatement_2(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "TheoryStatement_2")) return false;
-        ASPTheoryParser.TheoryRoot(b, l + 1);
+        TheoryRoot(b, l + 1);
+        return true;
+    }
+
+    /* ********************************************************** */
+    // LBRACE TheoryOpTermList RBRACE
+    //     | LBRACK TheoryOpTermList RBRACK
+    //     | LPAREN (TheoryOpTerm (COMMA TheoryOpTermList?)?)? RPAREN
+    //     | Identifier (LPAREN TheoryOpTermList? RPAREN)?
+    //     | number
+    //     | string
+    //     | INFIMUM
+    //     | SUPREMUM
+    //     | variable
+    public static boolean TheoryTerm(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryTerm")) return false;
+        boolean r;
+        Marker m = enter_section_(b, l, _NONE_, THEORY_TERM, "<theory term>");
+        r = TheoryTerm_0(b, l + 1);
+        if (!r) r = TheoryTerm_1(b, l + 1);
+        if (!r) r = TheoryTerm_2(b, l + 1);
+        if (!r) r = TheoryTerm_3(b, l + 1);
+        if (!r) r = consumeToken(b, NUMBER);
+        if (!r) r = consumeToken(b, STRING);
+        if (!r) r = consumeToken(b, INFIMUM);
+        if (!r) r = consumeToken(b, SUPREMUM);
+        if (!r) r = consumeToken(b, VARIABLE);
+        exit_section_(b, l, m, r, false, null);
+        return r;
+    }
+
+    // LBRACE TheoryOpTermList RBRACE
+    private static boolean TheoryTerm_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryTerm_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, LBRACE);
+        r = r && TheoryOpTermList(b, l + 1);
+        r = r && consumeToken(b, RBRACE);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // LBRACK TheoryOpTermList RBRACK
+    private static boolean TheoryTerm_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryTerm_1")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, LBRACK);
+        r = r && TheoryOpTermList(b, l + 1);
+        r = r && consumeToken(b, RBRACK);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // LPAREN (TheoryOpTerm (COMMA TheoryOpTermList?)?)? RPAREN
+    private static boolean TheoryTerm_2(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryTerm_2")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, LPAREN);
+        r = r && TheoryTerm_2_1(b, l + 1);
+        r = r && consumeToken(b, RPAREN);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // (TheoryOpTerm (COMMA TheoryOpTermList?)?)?
+    private static boolean TheoryTerm_2_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryTerm_2_1")) return false;
+        TheoryTerm_2_1_0(b, l + 1);
+        return true;
+    }
+
+    // TheoryOpTerm (COMMA TheoryOpTermList?)?
+    private static boolean TheoryTerm_2_1_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryTerm_2_1_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = TheoryOpTerm(b, l + 1);
+        r = r && TheoryTerm_2_1_0_1(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // (COMMA TheoryOpTermList?)?
+    private static boolean TheoryTerm_2_1_0_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryTerm_2_1_0_1")) return false;
+        TheoryTerm_2_1_0_1_0(b, l + 1);
+        return true;
+    }
+
+    // COMMA TheoryOpTermList?
+    private static boolean TheoryTerm_2_1_0_1_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryTerm_2_1_0_1_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, COMMA);
+        r = r && TheoryTerm_2_1_0_1_0_1(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // TheoryOpTermList?
+    private static boolean TheoryTerm_2_1_0_1_0_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryTerm_2_1_0_1_0_1")) return false;
+        TheoryOpTermList(b, l + 1);
+        return true;
+    }
+
+    // Identifier (LPAREN TheoryOpTermList? RPAREN)?
+    private static boolean TheoryTerm_3(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryTerm_3")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = Identifier(b, l + 1);
+        r = r && TheoryTerm_3_1(b, l + 1);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // (LPAREN TheoryOpTermList? RPAREN)?
+    private static boolean TheoryTerm_3_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryTerm_3_1")) return false;
+        TheoryTerm_3_1_0(b, l + 1);
+        return true;
+    }
+
+    // LPAREN TheoryOpTermList? RPAREN
+    private static boolean TheoryTerm_3_1_0(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryTerm_3_1_0")) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, LPAREN);
+        r = r && TheoryTerm_3_1_0_1(b, l + 1);
+        r = r && consumeToken(b, RPAREN);
+        exit_section_(b, m, null, r);
+        return r;
+    }
+
+    // TheoryOpTermList?
+    private static boolean TheoryTerm_3_1_0_1(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryTerm_3_1_0_1")) return false;
+        TheoryOpTermList(b, l + 1);
+        return true;
+    }
+
+    /* ********************************************************** */
+    // TheoryDefinitionIdentifier LBRACE TheoryOperatorDefinitionList? RBRACE
+    public static boolean TheoryTermDefinition(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryTermDefinition")) return false;
+        boolean r;
+        Marker m = enter_section_(b, l, _NONE_, THEORY_TERM_DEFINITION, "<theory term definition>");
+        r = TheoryDefinitionIdentifier(b, l + 1);
+        r = r && consumeToken(b, LBRACE);
+        r = r && TheoryTermDefinition_2(b, l + 1);
+        r = r && consumeToken(b, RBRACE);
+        exit_section_(b, l, m, r, false, null);
+        return r;
+    }
+
+    // TheoryOperatorDefinitionList?
+    private static boolean TheoryTermDefinition_2(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "TheoryTermDefinition_2")) return false;
+        TheoryOperatorDefinitionList(b, l + 1);
         return true;
     }
 

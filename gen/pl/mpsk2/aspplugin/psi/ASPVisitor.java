@@ -371,7 +371,23 @@ public class ASPVisitor extends PsiElementVisitor {
         visitPsiElement(o);
     }
 
+    public void visitTheoryAtom(@NotNull ASPTheoryAtom o) {
+        visitPsiElement(o);
+    }
+
     public void visitTheoryAtomDefinition(@NotNull ASPTheoryAtomDefinition o) {
+        visitPsiElement(o);
+    }
+
+    public void visitTheoryAtomElement(@NotNull ASPTheoryAtomElement o) {
+        visitPsiElement(o);
+    }
+
+    public void visitTheoryAtomElementList(@NotNull ASPTheoryAtomElementList o) {
+        visitPsiElement(o);
+    }
+
+    public void visitTheoryAtomName(@NotNull ASPTheoryAtomName o) {
         visitPsiElement(o);
     }
 
@@ -384,6 +400,18 @@ public class ASPVisitor extends PsiElementVisitor {
     }
 
     public void visitTheoryDefinitionVec(@NotNull ASPTheoryDefinitionVec o) {
+        visitPsiElement(o);
+    }
+
+    public void visitTheoryOpTerm(@NotNull ASPTheoryOpTerm o) {
+        visitTerm(o);
+    }
+
+    public void visitTheoryOpTermList(@NotNull ASPTheoryOpTermList o) {
+        visitPsiElement(o);
+    }
+
+    public void visitTheoryOpTermVec(@NotNull ASPTheoryOpTermVec o) {
         visitPsiElement(o);
     }
 
@@ -405,6 +433,10 @@ public class ASPVisitor extends PsiElementVisitor {
 
     public void visitTheoryStatement(@NotNull ASPTheoryStatement o) {
         visitStatement(o);
+    }
+
+    public void visitTheoryTerm(@NotNull ASPTheoryTerm o) {
+        visitTerm(o);
     }
 
     public void visitTheoryTermDefinition(@NotNull ASPTheoryTermDefinition o) {
